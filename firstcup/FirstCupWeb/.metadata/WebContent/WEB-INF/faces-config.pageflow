@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12046697600580" configfile="/FirstCupWeb/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="greeting" comment="The decision rule used by the NavigationHandler to&#xA;        determine which view must be displayed after the&#xA;        current view, greeting.jsp is processed." x="338" y="178" id="pf12046698954691" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf12046698954692" inlinks="pf12046698954693" path="/greeting.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="response" comment="The decision rules used by the NavigationHandler to&#xA;        determine which view must be displayed after the&#xA;        current view, response.jsp is processed." x="122" y="178" id="pf12046698954694" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf12046698954693" inlinks="pf12046698954692" path="/response.jsp"/>
+  <links id="pf12046698954692" target="pf12046698954694" source="pf12046698954691" outcome="success"/>
+  <links id="pf12046698954693" target="pf12046698954691" source="pf12046698954694" outcome="success"/>
+</pageflow:Pageflow>
