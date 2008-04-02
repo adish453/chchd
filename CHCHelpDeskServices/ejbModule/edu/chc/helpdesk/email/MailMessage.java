@@ -10,8 +10,8 @@ package edu.chc.helpdesk.email;
  */
 public class MailMessage implements Message {
    
-   public boolean send() {
-      return false;
+   public void send() {
+      
    }
 
 }
