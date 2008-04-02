@@ -10,6 +10,6 @@ package edu.chc.helpdesk.email;
  */
 public interface Message {
    
-   public boolean send();
+   public void send();
 
 }
