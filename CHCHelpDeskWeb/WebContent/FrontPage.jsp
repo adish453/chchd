@@ -5,6 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CHC Help Desk Greeting</title>
+
+<script type="text/javascript">
+
+
+</script>
+
 </head>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>  
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
@@ -111,3 +117,4 @@
 </f:view>
 </body>
 </html>
+
