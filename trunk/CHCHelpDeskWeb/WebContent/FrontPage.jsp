@@ -7,8 +7,30 @@
 <title>CHC Help Desk Greeting</title>
 
 <script type="text/javascript">
+function checkForm1()
+{
+	if (document.form.problem.selectedIndex == 0)
+	   {
+	   	alert("you must select a problem");
+	   	return false;
+	   }
+	else if (document.form.UrgentYes.checked == false && document.form.UrgentNo.checked == false)
+		{
+			alert("you must select urgent or not urgent");
+			return false;
+		}
+	else if (checkPhoneNumber(document.form.PhoneNumber.value) == false)
+		{
+			alert("you must enter a valid phone number");
+			return false;
+		}	
+}
 
-
+function checkPhoneNumber(PhoneNumber)
+{
+	re = /^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$/
+	return re.test(PhoneNumber);
+}
 </script>
 
 </head>
@@ -45,11 +67,11 @@
 				</h:form>
 			</tr>
 			<tr id = "row3">
-			<h:form>
-			<h>
-			Location(* for residents) : 
-			</h>
-					<h:selectOneMenu style="width: 105px" id = "location"> 
+				<h:form>
+				<h>
+				Location(* for residents) : 
+				</h>
+					<h:selectOneMenu style="width: 105px" name = "location" value = ""> 
 						<f:selectItem id="FzHall" itemLabel="Fitz Hall" itemValue="1" />
 						<f:selectItem id="StJoes" itemLabel="Saint Joseph's Hall" itemValue="2" />
 						<f:selectItem id="Fr" itemLabel="Fournier" itemValue="3" />
@@ -67,18 +89,18 @@
 				</h:form>
 			</tr>
 			<tr id = "row5">
-					<h:form>
+					<h:form onsubmit = "return checkForm1()">
 					<h> * Phone Number </h>
 						<h:inputText id = "PhoneNumber"> </h:inputText>
-					<h> (xxx-xxx-xxxx)</h>	
+					<h> (xxx)-xxx-xxxx)</h>	
 					</h:form>
 			</tr>
 			<tr id = "row6">
-				<h:form>
+				<h:form onsubmit = "return checkForm1()">
 					<p>
 					* What is your problem (choose one)
 					</p>
-						<h:selectOneMenu id="problem" value="">
+						<h:selectOneMenu name="problem" value="">
 							<f:selectItem id="email" itemLabel="Email" itemValue="1" />
 							<f:selectItem id="MSOffice" itemLabel="Microsoft Office" itemValue="2" />
 							<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
@@ -88,13 +110,13 @@
 				</h:form>
 			</tr> 
 			<tr id = "row7">
-				<h:form>
+				<h:form onsubmit = "return checkForm1()">
 					<h> * Is your Problem Urgent? (choose one) </h>
 					<br>
 						<h> Yes </h>
-						<h:selectBooleanCheckbox id = "UrgentYes"></h:selectBooleanCheckbox>
+						<h:selectBooleanCheckbox name = "UrgentYes"></h:selectBooleanCheckbox>
 						<h> No </h>
-					<h:selectBooleanCheckbox id = "UrgentNo"></h:selectBooleanCheckbox>
+					<h:selectBooleanCheckbox name = "UrgentNo"></h:selectBooleanCheckbox>
 				</h:form>
 			</tr>
 			<tr id = "row8">
