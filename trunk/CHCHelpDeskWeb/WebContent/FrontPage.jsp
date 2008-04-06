@@ -9,17 +9,17 @@
 <script type="text/javascript">
 function checkForm1()
 {
-	if (document.form.problem.selectedIndex == 0)
+	if (document.form7.problem.selectedIndex == 0)
 	   {
 	   	alert("you must select a problem");
 	   	return false;
 	   }
-	else if (document.form.UrgentYes.checked == false && document.form.UrgentNo.checked == false)
+	else if (document.form6.UrgentYes.checked == false && document.form6.UrgentNo.checked == false)
 		{
 			alert("you must select urgent or not urgent");
 			return false;
 		}
-	else if (checkPhoneNumber(document.form.PhoneNumber.value) == false)
+	else if (checkPhoneNumber(document.form5.PhoneNumber.value) == false)
 		{
 			alert("you must enter a valid phone number");
 			return false;
@@ -51,7 +51,7 @@ function checkPhoneNumber(PhoneNumber)
 			</tr>
 			<br>
 		    <tr id = "row1">
-				<h:form>
+				<h:form id = "form1">
 				<h>
 				* First Name :
 				</h>
@@ -59,7 +59,7 @@ function checkPhoneNumber(PhoneNumber)
 				</h:form>
 			</tr>
 			<tr id = "row2">
-				<h:form> 
+				<h:form id = "form2"> 
 					<h>
 					* Last Name :
 					</h>
@@ -67,11 +67,11 @@ function checkPhoneNumber(PhoneNumber)
 				</h:form>
 			</tr>
 			<tr id = "row3">
-				<h:form>
+				<h:form id = "form3">
 				<h>
 				Location(* for residents) : 
 				</h>
-					<h:selectOneMenu style="width: 105px" name = "location" value = ""> 
+					<h:selectOneMenu style="width: 105px" id = "location" value = ""> 
 						<f:selectItem id="FzHall" itemLabel="Fitz Hall" itemValue="1" />
 						<f:selectItem id="StJoes" itemLabel="Saint Joseph's Hall" itemValue="2" />
 						<f:selectItem id="Fr" itemLabel="Fournier" itemValue="3" />
@@ -82,25 +82,25 @@ function checkPhoneNumber(PhoneNumber)
 				</h:form>
 			</tr>
 			<tr id = "row4">
-				<h:form>
+				<h:form id = "form4">
 				<h> * Email </h>
 					<h:inputText id = "Email"> </h:inputText>
 				<h> eg; (yourname@Chc.edu) </h>
 				</h:form>
 			</tr>
 			<tr id = "row5">
-					<h:form onsubmit = "return checkForm1()">
+					<h:form id = "form5" onsubmit = "return checkForm1()">
 					<h> * Phone Number </h>
 						<h:inputText id = "PhoneNumber"> </h:inputText>
-					<h> (xxx)-xxx-xxxx)</h>	
+					<h> eg; ((xxx) xxx-xxxx)</h>	
 					</h:form>
 			</tr>
 			<tr id = "row6">
-				<h:form onsubmit = "return checkForm1()">
+				<h:form id = "form6" onsubmit = "return checkForm1()">
 					<p>
 					* What is your problem (choose one)
 					</p>
-						<h:selectOneMenu name="problem" value="">
+						<h:selectOneMenu id="problem" value="">
 							<f:selectItem id="email" itemLabel="Email" itemValue="1" />
 							<f:selectItem id="MSOffice" itemLabel="Microsoft Office" itemValue="2" />
 							<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
@@ -110,27 +110,27 @@ function checkPhoneNumber(PhoneNumber)
 				</h:form>
 			</tr> 
 			<tr id = "row7">
-				<h:form onsubmit = "return checkForm1()">
+				<h:form id = "form7" onsubmit = "return checkForm1()">
 					<h> * Is your Problem Urgent? (choose one) </h>
 					<br>
 						<h> Yes </h>
-						<h:selectBooleanCheckbox name = "UrgentYes"></h:selectBooleanCheckbox>
+						<h:selectBooleanCheckbox id = "UrgentYes"></h:selectBooleanCheckbox>
 						<h> No </h>
-					<h:selectBooleanCheckbox name = "UrgentNo"></h:selectBooleanCheckbox>
+					<h:selectBooleanCheckbox id = "UrgentNo"></h:selectBooleanCheckbox>
 				</h:form>
 			</tr>
 			<tr id = "row8">
-					<h:form> 
+					<h:form id = "form8"> 
 					<h> Comments(100 characters or less) </h>
 					<br>
 						<h:inputTextarea style="height: 119px; width: 275px"> </h:inputTextarea>
 					</h:form>
 			</tr>
 			<tr id = "row9">
-				<h:form>
+				<h:form id = "form9">
 					<h:commandButton value = "Submit" action = "success">
 					</h:commandButton>
-					<h:commandButton value = "Cancel">
+					<h:commandButton value = "Cancel" action = "reset">
 					</h:commandButton>
 				</h:form>
 			</tr>
