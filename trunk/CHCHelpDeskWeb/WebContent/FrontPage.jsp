@@ -9,6 +9,30 @@
 <script type="text/javascript">
 function checkForm1()
 {
+	if(document.form1.FirstName.value != "" || document.form2.LastName.value != "")
+		return true;
+	else
+	{
+		window.alert("You must enter your first and last names.");
+		return false;
+	}
+	
+	if(document.form3.location.selectIndex == -1)
+	{
+		window.alert("You must select a location.");
+		return false;
+	}
+	else
+		return true; 
+	
+	if(checkEmail(document.form4.Email.value) == false)
+	{
+		window.alert("You must enter a vaild email.");
+		return false;
+	}
+	else
+		return true;
+
 	if (document.form7.problem.selectedIndex == 0)
 	   {
 	   	alert("you must select a problem");
@@ -31,6 +55,12 @@ function checkPhoneNumber(PhoneNumber)
 	re = /^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$/
 	return re.test(PhoneNumber);
 }
+
+function checkEmail(Email)
+{
+	re =/^\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,8}$/
+	return re.test(Email);
+}
 </script>
 
 </head>
@@ -41,7 +71,7 @@ function checkPhoneNumber(PhoneNumber)
 	<h:dataTable border="0">
 		<h:column id="column1">
 			<tr id = "row0">
-				<h:graphicImage src = "C:\Documents and Settings\Owner\My Documents\My Pictures\samuraiReggie.bmp"></h:graphicImage>
+				<h:graphicImage src = "http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png" border="0" alt="Photobucket"></h:graphicImage>
 				<b>
 				<h:outputText value =" Welcome to CHC Help Desk!"></h:outputText>
 				</b>
