@@ -33,19 +33,19 @@ function checkForm1()
 	else
 		return true;
 
-	if (document.form7.problem.selectedIndex == 0)
+	if (document.form7.problem.selectedIndex == -1)
 	   {
-	   	alert("you must select a problem");
+	   	window.alert("you must select a problem");
 	   	return false;
 	   }
 	else if (document.form6.UrgentYes.checked == false && document.form6.UrgentNo.checked == false)
 		{
-			alert("you must select urgent or not urgent");
+			window.alert("you must select urgent or not urgent");
 			return false;
 		}
 	else if (checkPhoneNumber(document.form5.PhoneNumber.value) == false)
 		{
-			alert("you must enter a valid phone number");
+			window.alert("you must enter a valid phone number");
 			return false;
 		}	
 }
