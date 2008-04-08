@@ -3,7 +3,7 @@
  */
 package edu.chc.helpdesk.requests;
 
-import edu.chc.helpdesk.model.HelpRequest;
+import edu.chc.helpdesk.requests.HelpRequest;
 import java.util.List;
 
 /**
