@@ -79,25 +79,21 @@ function checkEmail(Email)
 				<br>
 				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
 			</tr>
+			<h:form id = "form1" onsubmit = "checkForm1()">
 			<br>
 		    <tr id = "row1">
-				<h:form id = "form1">
 				<h>
 				* First Name :
 				</h>
 					<h:inputText id = "FirstName"> </h:inputText>
-				</h:form>
 			</tr>
 			<tr id = "row2">
-				<h:form id = "form2"> 
 					<h>
 					* Last Name :
 					</h>
 					<h:inputText id = "LastName"> </h:inputText>
-				</h:form>
 			</tr>
 			<tr id = "row3">
-				<h:form id = "form3">
 				<h>
 				Location(* for residents) : 
 				</h>
@@ -109,61 +105,49 @@ function checkEmail(Email)
 						<f:selectItem id="Library" itemLabel="Library" itemValue="5" />
 						
 					 </h:selectOneMenu>
-				</h:form>
 			</tr>
 			<tr id = "row4">
-				<h:form id = "form4">
 				<h> * Email </h>
 					<h:inputText id = "Email"> </h:inputText>
 				<h> eg; (yourname@Chc.edu) </h>
-				</h:form>
 			</tr>
 			<tr id = "row5">
-					<h:form id = "form5" onsubmit = "return checkForm1()">
 					<h> * Phone Number </h>
 						<h:inputText id = "PhoneNumber"> </h:inputText>
 					<h> eg; ((xxx) xxx-xxxx)</h>	
-					</h:form>
 			</tr>
 			<tr id = "row6">
-				<h:form id = "form6" onsubmit = "return checkForm1()">
 					<p>
 					* What is your problem (choose one)
 					</p>
-						<h:selectOneMenu id="problem" value="">
-							<f:selectItem id="email" itemLabel="Email" itemValue="1" />
-							<f:selectItem id="MSOffice" itemLabel="Microsoft Office" itemValue="2" />
-							<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
-							<f:selectItem id="Other" itemLabel="Other (Please Specify)" itemValue="4" />
-						</h:selectOneMenu>
-							
-				</h:form>
+					<h:selectOneMenu id="problem" value="">
+						<f:selectItem id="email" itemLabel="Email" itemValue="1" />
+						<f:selectItem id="MSOffice" itemLabel="Microsoft Office" itemValue="2" />
+						<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
+						<f:selectItem id="Other" itemLabel="Other (Please Specify)" itemValue="4" />
+					</h:selectOneMenu>
 			</tr> 
 			<tr id = "row7">
-				<h:form id = "form7" onsubmit = "return checkForm1()">
 					<h> * Is your Problem Urgent? (choose one) </h>
 					<br>
 						<h> Yes </h>
 						<h:selectBooleanCheckbox id = "UrgentYes"></h:selectBooleanCheckbox>
 						<h> No </h>
 					<h:selectBooleanCheckbox id = "UrgentNo"></h:selectBooleanCheckbox>
-				</h:form>
 			</tr>
 			<tr id = "row8">
-					<h:form id = "form8"> 
 					<h> Comments(100 characters or less) </h>
 					<br>
 						<h:inputTextarea style="height: 119px; width: 275px"> </h:inputTextarea>
-					</h:form>
+			
 			</tr>
 			<tr id = "row9">
-				<h:form id = "form9">
 					<h:commandButton value = "Submit" action = "success">
 					</h:commandButton>
 					<h:commandButton value = "Cancel" action = "reset">
 					</h:commandButton>
-				</h:form>
 			</tr>
+			</h:form>
 		</h:column>
 	</h:dataTable>
 </f:view>
