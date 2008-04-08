@@ -9,16 +9,26 @@
 <script type="text/javascript">
 function checkForm1()
 {
+<<<<<<< .mine
+	if(document.form1["form1:FirstName"].value != "" || document.form1["form1:LastName"].value != "")
+=======
 	if(document.form1["form1:FirstName"].value != "" || document.form2["form1:LastName"].value != "")
+>>>>>>> .r37
 	{
 		window.alert("You must enter your first and last names.");
 		return false;
 	{
 	else
+<<<<<<< .mine
+		return true;
+
+/*	if(document.form3.location.selectIndex == -1)
+=======
 		return true;
 		
 	/*
 	if(document.form1.location.selectIndex == -1)
+>>>>>>> .r37
 	{
 		window.alert("You must select a location.");
 		return false;
@@ -62,7 +72,8 @@ function checkEmail(Email)
 {
 	re =/^\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,8}$/
 	return re.test(Email);
-}
+}*/
+
 </script>
 
 </head>
