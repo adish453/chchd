@@ -8,6 +8,8 @@ package edu.chc.helpdesk.requests;
  * @author tim
  *
  */
+
+// FIXME This class should implement HelpRequestFacade
 public class HelpRequestStub implements HelpRequest {
 
    /**
