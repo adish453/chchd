@@ -3,11 +3,14 @@
  */
 package edu.chc.helpdesk.requests;
 
-
 /**
  * @author tim
  *
  */
+
+//FIXME Move this interface to CHCHelpDeskDataModel project
+//FIXME Remame to HelpDeskFacade
+
 interface HelpRequest {
    
    /**
