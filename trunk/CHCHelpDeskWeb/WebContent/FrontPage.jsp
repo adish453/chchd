@@ -9,17 +9,12 @@
 <script type="text/javascript">
 function checkForm1()
 {
-<<<<<<< .mine
 	if(document.form1["form1:FirstName"].value != "" || document.form1["form1:LastName"].value != "")
-=======
-	if(document.form1["form1:FirstName"].value != "" || document.form2["form1:LastName"].value != "")
->>>>>>> .r37
 	{
 		window.alert("You must enter your first and last names.");
 		return false;
-	{
+	}
 	else
-<<<<<<< .mine
 		return true;
 
 /*	if(document.form3.location.selectIndex == -1)
