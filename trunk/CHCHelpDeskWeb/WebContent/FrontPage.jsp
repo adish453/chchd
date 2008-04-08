@@ -9,15 +9,16 @@
 <script type="text/javascript">
 function checkForm1()
 {
-	if(document.form1["form1:FirstName"].value != "" || document.form2["form2:LastName"].value != "")
+	if(document.form1["form1:FirstName"].value != "" || document.form2["form1:LastName"].value != "")
 	{
 		window.alert("You must enter your first and last names.");
 		return false;
 	{
 	else
 		return true;
-	
-	if(document.form3.location.selectIndex == -1)
+		
+	/*
+	if(document.form1.location.selectIndex == -1)
 	{
 		window.alert("You must select a location.");
 		return false;
@@ -25,7 +26,7 @@ function checkForm1()
 	else
 		return true; 
 	
-	if(checkEmail(document.form4.Email.value) == false)
+	if(checkEmail(document.form1.Email.value) == false)
 	{
 		window.alert("You must enter a vaild email.");
 		return false;
@@ -33,21 +34,22 @@ function checkForm1()
 	else
 		return true;
 
-	if (document.form7.problem.selectedIndex == -1)
+	if (document.form1.problem.selectedIndex == -1)
 	   {
 	   	window.alert("you must select a problem");
 	   	return false;
 	   }
-	else if (document.form6.UrgentYes.checked == false && document.form6.UrgentNo.checked == false)
+	else if (document.form1.UrgentYes.checked == false && document.form6.UrgentNo.checked == false)
 		{
 			window.alert("you must select urgent or not urgent");
 			return false;
 		}
-	else if (checkPhoneNumber(document.form5.PhoneNumber.value) == false)
+	else if (checkPhoneNumber(document.form1.PhoneNumber.value) == false)
 		{
 			window.alert("you must enter a valid phone number");
 			return false;
 		}	
+	/*	
 }
 
 function checkPhoneNumber(PhoneNumber)
@@ -79,7 +81,7 @@ function checkEmail(Email)
 				<br>
 				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
 			</tr>
-			<h:form id = "form1" onsubmit = "checkForm1()">
+			<h:form id = "form1" onsubmit = "return checkForm1()">
 			<br>
 		    <tr id = "row1">
 				<h>
