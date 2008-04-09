@@ -8,6 +8,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>/CHCHelpDesk/*</url-pattern>
+    <url-pattern>/CHCHelpDeskWeb/*</url-pattern>
   </servlet-mapping>
 </web-app>
