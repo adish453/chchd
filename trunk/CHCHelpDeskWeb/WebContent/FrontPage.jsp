@@ -79,7 +79,7 @@ function checkEmail(Email)
 	<h:dataTable border="0">
 		<h:column id="column1">
 			<tr id = "row0">
-				<h:graphicImage src = "http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png" border="0" alt="Photobucket"></h:graphicImage>
+				<h:graphicImage src="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png" border="0" alt="Photobucket"> </h:graphicImage>
 				<b>
 				<h:outputText value =" Welcome to CHC Help Desk!"></h:outputText>
 				</b>
