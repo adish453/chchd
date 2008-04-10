@@ -79,13 +79,12 @@ function checkEmail(Email)
 	<h:dataTable border="0">
 		<h:column id="column1">
 			<tr id = "row0">
-				<h:graphicImage src="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png" border="0" alt="Photobucket"> </h:graphicImage>
-				<b>
-				<h:outputText value =" Welcome to CHC Help Desk!"></h:outputText>
-				</b>
-				<br></br>
-				<br></br>
+				<td>
+				<b><h:outputText value =" Welcome to CHC Help Desk!"></h:outputText></b> 
+				</td>
+				<td>
 				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
+				</td>
 			</tr>
 			<h:form id = "form1" onsubmit = "return checkForm1()">
 			<br>
@@ -118,7 +117,7 @@ function checkEmail(Email)
 				<td>
 				 * Email 
 					<h:inputText id = "Email"> </h:inputText>
-				 eg; (yourname@Chc.edu) 
+				 eg; (yourname@chc.edu) 
 				</td>
 			</tr>
 			<tr id = "row5">
