@@ -131,7 +131,7 @@ function checkEmail(Email)
 			<tr id = "row6">
 					<td>
 					* What is your problem (choose one)
-					</br>
+					<br></br>
 					<h:selectOneMenu id="problem" value="">
 						<f:selectItem id="email" itemLabel="Email" itemValue="1" />
 						<f:selectItem id="MSOffice" itemLabel="Microsoft Office" itemValue="2" />
