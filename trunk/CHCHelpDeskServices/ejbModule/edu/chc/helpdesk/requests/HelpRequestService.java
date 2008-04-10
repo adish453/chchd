@@ -11,13 +11,14 @@ import java.util.List;
 public interface HelpRequestService {
     
     // TODO 28-03-08 What parameters should be passed in?
-    public void submit(HelpRequest request);
+    // TODO 10-04-08 Return a HelpRequest object to get it's ID?
+    public int submit(HelpRequest request);
     
-    public void update(HelpRequest request);
-    
-    // TODO 28-03-08 Should we provide a way to get Requests?
-    public HelpRequest get(int requestID);
-    
-    public List<HelpRequest> getAll();
+//    public void update(HelpRequest request);
+//    
+//    // TODO 28-03-08 Should we provide a way to get Requests?
+//    public HelpRequest get(int requestID);
+//    
+//    public List<HelpRequest> getAll();
     
 }
