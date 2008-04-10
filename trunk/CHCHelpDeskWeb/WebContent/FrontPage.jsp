@@ -91,25 +91,19 @@ function checkEmail(Email)
 			<br>
 		    <tr id = "row1">
 				<td>
-				<h>
 				* First Name :
-				</h>
 					<h:inputText id = "FirstName"> </h:inputText>
 				</td>
 			</tr>
 			<tr id = "row2">
 					<td>
-					<h>
 					* Last Name :
-					</h>
 					<h:inputText id = "LastName"> </h:inputText>
 			</td>
 			</tr>
 			<tr id = "row3">
 				<td>
-				<h>
 				Location(* for residents) : 
-				</h>
 					<h:selectOneMenu style="width: 105px" id = "location" value = ""> 
 						<f:selectItem id="FzHall" itemLabel="Fitz Hall" itemValue="1" />
 						<f:selectItem id="StJoes" itemLabel="Saint Joseph's Hall" itemValue="2" />
@@ -122,16 +116,16 @@ function checkEmail(Email)
 			</tr>
 			<tr id = "row4">
 				<td>
-				<h> * Email </h>
+				 * Email 
 					<h:inputText id = "Email"> </h:inputText>
-				<h> eg; (yourname@Chc.edu) </h>
+				 eg; (yourname@Chc.edu) 
 				</td>
 			</tr>
 			<tr id = "row5">
 					<td>
-					<h> * Phone Number </h>
+					* Phone Number 
 						<h:inputText id = "PhoneNumber"> </h:inputText>
-					<h> eg; ((xxx) xxx-xxxx)</h>	
+					 eg; ((xxx) xxx-xxxx)
 					</td>
 			</tr>
 			<tr id = "row6">
@@ -148,17 +142,17 @@ function checkEmail(Email)
 			</tr> 
 			<tr id = "row7">
 					<td>
-					<h> * Is your Problem Urgent? (choose one) </h>
+					* Is your Problem Urgent? (choose one)
 					<br>
-						<h> Yes </h>
+						 Yes 
 						<h:selectBooleanCheckbox id = "UrgentYes"></h:selectBooleanCheckbox>
-						<h> No </h>
+						 No 
 					<h:selectBooleanCheckbox id = "UrgentNo"></h:selectBooleanCheckbox>
 					</td>
 			</tr>
 			<tr id = "row8">
 					<td>
-					<h> Comments(100 characters or less) </h>
+					Comments(100 characters or less)
 					<br>
 						<h:inputTextarea style="height: 119px; width: 275px"> </h:inputTextarea>
 					</td>
