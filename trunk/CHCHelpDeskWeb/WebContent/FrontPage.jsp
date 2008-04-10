@@ -83,25 +83,30 @@ function checkEmail(Email)
 				<b>
 				<h:outputText value =" Welcome to CHC Help Desk!"></h:outputText>
 				</b>
-				<br>
-				<br>
+				<br></br>
+				<br></br>
 				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
 			</tr>
 			<h:form id = "form1" onsubmit = "return checkForm1()">
 			<br>
 		    <tr id = "row1">
+				<td>
 				<h>
 				* First Name :
 				</h>
 					<h:inputText id = "FirstName"> </h:inputText>
+				</td>
 			</tr>
 			<tr id = "row2">
+					<td>
 					<h>
 					* Last Name :
 					</h>
 					<h:inputText id = "LastName"> </h:inputText>
+			</td>
 			</tr>
 			<tr id = "row3">
+				<td>
 				<h>
 				Location(* for residents) : 
 				</h>
@@ -113,47 +118,58 @@ function checkEmail(Email)
 						<f:selectItem id="Library" itemLabel="Library" itemValue="5" />
 						
 					 </h:selectOneMenu>
+			</td>
 			</tr>
 			<tr id = "row4">
+				<td>
 				<h> * Email </h>
 					<h:inputText id = "Email"> </h:inputText>
 				<h> eg; (yourname@Chc.edu) </h>
+				</td>
 			</tr>
 			<tr id = "row5">
+					<td>
 					<h> * Phone Number </h>
 						<h:inputText id = "PhoneNumber"> </h:inputText>
 					<h> eg; ((xxx) xxx-xxxx)</h>	
+					</td>
 			</tr>
 			<tr id = "row6">
-					<p>
+					<td>
 					* What is your problem (choose one)
-					</p>
+					</br>
 					<h:selectOneMenu id="problem" value="">
 						<f:selectItem id="email" itemLabel="Email" itemValue="1" />
 						<f:selectItem id="MSOffice" itemLabel="Microsoft Office" itemValue="2" />
 						<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
 						<f:selectItem id="Other" itemLabel="Other (Please Specify)" itemValue="4" />
 					</h:selectOneMenu>
+					</td>
 			</tr> 
 			<tr id = "row7">
+					<td>
 					<h> * Is your Problem Urgent? (choose one) </h>
 					<br>
 						<h> Yes </h>
 						<h:selectBooleanCheckbox id = "UrgentYes"></h:selectBooleanCheckbox>
 						<h> No </h>
 					<h:selectBooleanCheckbox id = "UrgentNo"></h:selectBooleanCheckbox>
+					</td>
 			</tr>
 			<tr id = "row8">
+					<td>
 					<h> Comments(100 characters or less) </h>
 					<br>
 						<h:inputTextarea style="height: 119px; width: 275px"> </h:inputTextarea>
-			
+					</td>
 			</tr>
 			<tr id = "row9">
+					<td>
 					<h:commandButton value = "Submit" action = "success">
 					</h:commandButton>
 					<h:commandButton value = "Cancel" action = "reset">
 					</h:commandButton>
+					</td>
 			</tr>
 			</h:form>
 		</h:column>
