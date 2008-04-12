@@ -8,9 +8,6 @@ package edu.chc.helpdesk.requests;
  *
  */
 
-//FIXME Move this interface to CHCHelpDeskDataModel project
-//FIXME Remame to HelpDeskFacade
-
 abstract class HelpRequest {
    
    /**
