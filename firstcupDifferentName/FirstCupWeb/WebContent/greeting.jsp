@@ -15,7 +15,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Firstcup Greeting Page</title>
+        <title>Firstcup Greeting Page (Mike was here)</title>
     </head>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>  
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
