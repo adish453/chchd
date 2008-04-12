@@ -78,30 +78,24 @@ function checkEmail(Email)
 <f:view>
 	<h:dataTable border="0">
 		<h:column id="column1">
-			<tr id = "row0">
-				<td>
-				<b><h:outputText value =" Welcome to CHC Help Desk!"></h:outputText></b> 
-				</td>
-				<td>
+		<h:form id = "form1" onsubmit = "return checkForm1()">
+			<f:facet name = "row0">
+				<b><h:outputText value =" Welcome to CHC Help Desk!"></h:outputText>
+				<br>
 				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
-				</td>
-			</tr>
-			<h:form id = "form1" onsubmit = "return checkForm1()">
+			</f:facet>
 			<br>
-		    <tr id = "row1">
-				<td>
+		    <f:facet name = "row1">
 				* First Name :
 					<h:inputText id = "FirstName"> </h:inputText>
-				</td>
-			</tr>
-			<tr id = "row2">
-					<td>
+			</f:facet>
+			<br>
+			<f:facet name = "row2">
 					* Last Name :
 					<h:inputText id = "LastName"> </h:inputText>
-			</td>
-			</tr>
-			<tr id = "row3">
-				<td>
+			</f:facet>
+			<br>
+			<f:facet name = "row3">
 				Location(* for residents) : 
 					<h:selectOneMenu style="width: 105px" id = "location" value = ""> 
 						<f:selectItem id="FzHall" itemLabel="Fitz Hall" itemValue="1" />
@@ -111,24 +105,21 @@ function checkEmail(Email)
 						<f:selectItem id="Library" itemLabel="Library" itemValue="5" />
 						
 					 </h:selectOneMenu>
-			</td>
-			</tr>
-			<tr id = "row4">
-				<td>
+			</f:facet>
+			<br>
+			<f:facet name = "row4">
 				 * Email 
 					<h:inputText id = "Email"> </h:inputText>
 				 eg; (yourname@chc.edu) 
-				</td>
-			</tr>
-			<tr id = "row5">
-					<td>
+			</f:facet>
+			<br>
+			<f:facet name = "row5">
 					* Phone Number 
 						<h:inputText id = "PhoneNumber"> </h:inputText>
 					 eg; ((xxx) xxx-xxxx)
-					</td>
-			</tr>
-			<tr id = "row6">
-					<td>
+			</f:facet>
+			<br>
+			<f:facet name = "row6">
 					* What is your problem (choose one)
 					<br></br>
 					<h:selectOneMenu id="problem" value="">
@@ -137,34 +128,34 @@ function checkEmail(Email)
 						<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
 						<f:selectItem id="Other" itemLabel="Other (Please Specify)" itemValue="4" />
 					</h:selectOneMenu>
-					</td>
-			</tr> 
-			<tr id = "row7">
-					<td>
+			</f:facet> 
+			<br>
+			<br>
+			<f:facet name = "row7">
 					* Is your Problem Urgent? (choose one)
 					<br>
 						 Yes 
 						<h:selectBooleanCheckbox id = "UrgentYes"></h:selectBooleanCheckbox>
 						 No 
 					<h:selectBooleanCheckbox id = "UrgentNo"></h:selectBooleanCheckbox>
-					</td>
-			</tr>
-			<tr id = "row8">
-					<td>
+					
+			</f:facet>
+			<br>
+			<br>
+			<f:facet name = "row8">
 					Comments(100 characters or less)
 					<br>
 						<h:inputTextarea style="height: 119px; width: 275px"> </h:inputTextarea>
-					</td>
-			</tr>
-			<tr id = "row9">
-					<td>
+			</f:facet>
+			<br>
+			<f:facet name = "row9">
+					
 					<h:commandButton value = "Submit" action = "success">
 					</h:commandButton>
 					<h:commandButton value = "Cancel" action = "reset">
 					</h:commandButton>
-					</td>
-			</tr>
-			</h:form>
+			</f:facet>
+		</h:form>	
 		</h:column>
 	</h:dataTable>
 </f:view>
