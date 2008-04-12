@@ -9,7 +9,6 @@ package edu.chc.helpdesk.requests;
  *
  */
 
-// FIXME This class should implement HelpRequestFacade
 public class HelpRequestStub extends HelpRequest {
 
    /**
