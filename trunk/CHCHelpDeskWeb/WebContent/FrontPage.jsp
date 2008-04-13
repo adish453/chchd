@@ -16,14 +16,9 @@ function checkForm1()
 	}
 	else
 		return true;
-
-/*	if(document.form3.location.selectIndex == -1)
-=======
-		return true;
 		
 	/*
 	if(document.form1.location.selectIndex == -1)
->>>>>>> .r37
 	{
 		window.alert("You must select a location.");
 		return false;
@@ -33,7 +28,7 @@ function checkForm1()
 	
 	if(checkEmail(document.form1.Email.value) == false)
 	{
-		window.alert("You must enter a vaild email.");
+		window.alert("You must enter a valid email.");
 		return false;
 	}
 	else
