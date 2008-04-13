@@ -137,7 +137,7 @@ function checkEmail(Email)
 						 Yes 
 						<h:selectBooleanCheckbox id = "UrgentYes"></h:selectBooleanCheckbox>
 						 No 
-					<h:selectBooleanCheckbox id = "UrgentNo"></h:selectBooleanCheckbox>
+					<h:selectBooleanCheckbox id = "UrgentNo"></h:selectBooleanCheckbox> 
 					
 			</f:facet>
 			<br>
