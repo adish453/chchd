@@ -75,7 +75,7 @@ function checkEmail(Email)
 		<h:column id="column1">
 		<h:form id = "form1" onsubmit = "return checkForm1()">
 			<f:facet name = "row0">
-				<b><h:outputText value =" Welcome to CHC Help Desk!"></h:outputText>
+				<b><h:outputText value =" Welcome to CHC Help Desk!"></h:outputText></b>
 				<br>
 				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
 			</f:facet>
