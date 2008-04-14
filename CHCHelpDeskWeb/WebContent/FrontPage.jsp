@@ -72,7 +72,7 @@ function checkEmail(Email)
 <body bgcolor = "maroon" text = "gray">
 <f:view>
 		<h:form id = "form1" onsubmit = "return checkForm1()">
-				<b><h:outputText value =" Welcome to CHC Help Desk!"></h:outputText>
+				<b><h:outputText value =" Welcome to CHC Help Desk!"></h:outputText></b>
 				<br>
 				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
 			<br>
