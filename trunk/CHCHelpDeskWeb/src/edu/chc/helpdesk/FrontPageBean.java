@@ -51,19 +51,19 @@ public class FrontPageBean {
 		this.problem = problem;
 	}
 
-	public String getUrgentYes() {
+	public String getYes() {
 		return UrgentYes;
 	}
 
-	public void setUrgentYes(String urgentYes) {
-		UrgentYes = urgentYes;
+	public void setYes(String urgentyes) {
+		UrgentYes = urgentyes;
 	}
 
-	public String getUrgentNo() {
+	public String getNo() {
 		return UrgentNo;
 	}
 
-	public void setUrgentNo(String urgentNo) {
+	public void setNo(String urgentNo) {
 		UrgentNo = urgentNo;
 	}
 }

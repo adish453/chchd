@@ -130,9 +130,9 @@ function checkEmail(Email)
 					* Is your Problem Urgent? (choose one)
 					<br>
 						 Yes 
-						<h:selectBooleanCheckbox id = "UrgentYes"></h:selectBooleanCheckbox>
+						<h:selectBooleanCheckbox id = "Yes"></h:selectBooleanCheckbox>
 						 No 
-					<h:selectBooleanCheckbox id = "UrgentNo"></h:selectBooleanCheckbox> 
+					<h:selectBooleanCheckbox id = "No"></h:selectBooleanCheckbox> 
 					
 			</f:facet>
 			<br>
