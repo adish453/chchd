@@ -62,7 +62,7 @@ public class Message {
 		return this.to;
 	}
 
-	public void send() throws MessageNotValidException {
+	public void send() throws MessageIsNotValidException {
 
 		if (isValid()) {
 			Session session = Session.getInstance(this.props, null);
@@ -79,7 +79,7 @@ public class Message {
 			}
 		}
 
-		throw new MessageNotValidException();
+		throw new MessageIsNotValidException();
 
 	}
 
