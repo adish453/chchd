@@ -14,42 +14,38 @@ function checkForm1()
 		window.alert("You must enter your first and last name.");
 		return false;
 	}
-	else
-		return true;
-}
-	/*
-	if(document.form1.location.selectIndex == -1)
+	
+	else if(document.form1["form1:location"].selectIndex == -1)
 	{
 		window.alert("You must select a location.");
 		return false;
 	}
-	else
-		return true; 
 	
-	if(checkEmail(document.form1.Email.value) == false)
+	else if(checkEmail(document.form1["form1:Email"].value) == false)
 	{
 		window.alert("You must enter a valid email.");
 		return false;
 	}
-	else
-		return true;
-
-	if (document.form1.problem.selectedIndex == -1)
+	
+	else if (document.form1["form1:problem"].selectedIndex == -1)
 	   {
 	   	window.alert("you must select a problem");
 	   	return false;
 	   }
-	else if (document.form1.UrgentYes.checked == false && document.form6.UrgentNo.checked == false)
+	
+	else if (document.form1["form1:UrgentYes"].checked == false && document.form1["form1:UrgentNo"].checked == false)
 		{
 			window.alert("you must select urgent or not urgent");
 			return false;
 		}
-	else if (checkPhoneNumber(document.form1.PhoneNumber.value) == false)
+	
+	else if (checkPhoneNumber(document.form1["form1:PhoneNumber"].value) == false)
 		{
 			window.alert("you must enter a valid phone number");
 			return false;
 		}	
-	/*	
+	else 
+		return true;	
 }
 
 function checkPhoneNumber(PhoneNumber)
@@ -62,7 +58,7 @@ function checkEmail(Email)
 {
 	re =/^\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,8}$/
 	return re.test(Email);
-}*/
+}
 
 </script>
 
