@@ -9,9 +9,9 @@
 <script type="text/javascript">
 function checkForm1()
 {
-	if(document.form1["form1:FirstName"].value != "" || document.form1["form1:LastName"].value != "")
+	if(document.form1["form1:FirstName"].value =="" || document.form1["form1:LastName"].value == "")
 	{
-		window.alert("You must enter your first and last names.");
+		window.alert("You must enter your first and last name.");
 		return false;
 	}
 	else
