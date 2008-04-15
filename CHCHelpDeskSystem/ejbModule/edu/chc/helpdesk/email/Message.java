@@ -26,14 +26,14 @@ public class Message {
 	String to;
 
 	public Message() {
-		this.to = null;
 		this.subject = null;
-		this.body = null;
 		this.props = new Properties();
 		this.host = "mailhost.chc.edu";
 		this.from = "helpdesk@chc.edu";
 		this.props.put("mail.smtp.host", this.host);
 		this.props.put("mail.from", this.from);
+		this.to = null;
+		this.body = null;
 	}
 	
 	public Message(String to, String subject, String body) {
@@ -62,7 +62,7 @@ public class Message {
 		return this.to;
 	}
 
-	public void send() throws MessageIsNotValidException {
+	public void send() throws MessageNotValidException {
 
 		if (isValid()) {
 			Session session = Session.getInstance(this.props, null);
@@ -79,7 +79,7 @@ public class Message {
 			}
 		}
 
-		throw new MessageIsNotValidException();
+		throw new MessageNotValidException();
 
 	}
 
