@@ -12,6 +12,8 @@ import javax.mail.Transport;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.MimeMessage;
 
+//TODO 15-04-08 Should be able to construct it's content based on what type of message it is (Corresponding with the MessageType Enum)  Especially the Subject line.  Because of this, we don't need a public setSubject() method because the subject will be built at run time.
+
 /**
  * @author tim
  * 
@@ -87,7 +89,8 @@ public class Message {
 		this.body = body;
 	}
 
-	public void setSubject(String subject) {
+	private void setSubject() {
+		//FIXME Create subject dynamically based on what type the message is.
 		this.subject = subject;
 	}
 
