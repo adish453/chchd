@@ -76,7 +76,7 @@ function checkEmail(Email)
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <body bgcolor = "maroon" text = "gray">
 <f:view>
-		<h:form id = "form1" onsubmit = "return checkForm1()">
+		<h:form id="form1" onsubmit="return checkForm1()">
 				<b><h:outputText value =" Welcome to CHC Help Desk!"></h:outputText></b>
 				<br>
 				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
