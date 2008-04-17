@@ -7,6 +7,12 @@
 <title>CHC Help Desk Greeting</title>
 
 <script type="text/javascript">
+
+/*function allowReset()  
+{
+		 return window.confirm("Do you really want to clear the data?")
+}*/
+
 function checkForm1()
 {
 	if(document.form1["form1:FirstName"].value =="" || document.form1["form1:LastName"].value == "")
@@ -44,8 +50,10 @@ function checkForm1()
 			window.alert("you must enter a valid phone number");
 			return false;
 		}	
-	else 
-		return true;	
+	else
+	{ 
+  		return window.confirm("Do you really want to submit the data?");
+	}
 }
 
 function checkPhoneNumber(PhoneNumber)
@@ -59,6 +67,7 @@ function checkEmail(Email)
 	re =/^\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,8}$/
 	return re.test(Email);
 }
+
 
 </script>
 
@@ -120,10 +129,8 @@ function checkEmail(Email)
 						<h:inputTextarea style="height: 119px; width: 275px"> </h:inputTextarea>
 			<br>
 					
-					<h:commandButton value = "Submit" action = "success">
-					</h:commandButton>
-					<h:commandButton value = "Cancel" action = "reset">
-					</h:commandButton>
+					<h:commandButton id="submit" value="Submit" action="success"/>
+					<h:commandButton id="reset" value="Reset" action="reset"/>
 		</h:form>	
 </f:view>
 </body>
