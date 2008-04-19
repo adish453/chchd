@@ -39,9 +39,9 @@ function checkForm1()
 	   	return false;
 	   }
 	
-	else if (document.form1["form1:UrgentYes"].checked == false && document.form1["form1:UrgentNo"].checked == false)
+	else if (document.form1["form1:Room"].value == "")
 		{
-			window.alert("you must select urgent or not urgent");
+			window.alert("you must enter a room number");
 			return false;
 		}
 	
@@ -87,7 +87,7 @@ function checkEmail(Email)
 					* Last Name :
 					<h:inputText id = "LastName"> </h:inputText>
 			<br>
-				Location(* for residents) : 
+				* Location(building) : 
 					<h:selectOneMenu style="width: 105px" id = "location" value = ""> 
 						<f:selectItem id="FzHall" itemLabel="Fitz Hall" itemValue="1" />
 						<f:selectItem id="StJoes" itemLabel="Saint Joseph's Hall" itemValue="2" />
@@ -96,6 +96,9 @@ function checkEmail(Email)
 						<f:selectItem id="Library" itemLabel="Library" itemValue="5" />
 						
 					 </h:selectOneMenu>
+			<br>
+				* Location(Room) :
+					<h:inputText id = "Room"> </h:inputText>
 			<br>
 				 * Email 
 					<h:inputText id = "Email"> </h:inputText>
@@ -113,15 +116,6 @@ function checkEmail(Email)
 						<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
 						<f:selectItem id="Other" itemLabel="Other (Please Specify)" itemValue="4" />
 					</h:selectOneMenu>
-			<br>
-			<br>
-					* Is your Problem Urgent? (choose one)
-					<br>
-						 Yes 
-						<h:selectBooleanCheckbox id = "UrgentYes"></h:selectBooleanCheckbox>
-						 No 
-					<h:selectBooleanCheckbox id = "UrgentNo"></h:selectBooleanCheckbox> 
-					
 			<br>
 			<br>
 					Comments(100 characters or less)
