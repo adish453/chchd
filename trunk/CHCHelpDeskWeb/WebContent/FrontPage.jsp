@@ -8,10 +8,10 @@
 
 <script type="text/javascript">
 
-/*function allowReset()  
+function allowReset()  
 {
 		 return window.confirm("Do you really want to clear the data?")
-}*/
+}
 
 function checkForm1()
 {
@@ -50,6 +50,12 @@ function checkForm1()
 			window.alert("you must enter a valid phone number");
 			return false;
 		}	
+	/*else if (document.form1["form1:comments"].value.length) > 100)
+		{
+			window.alert('Too much data in comments box Please remove '+
+    		(document.form1["form1:comments"].value.length - 100)+ ' characters');
+    		return false;
+		}*/
 	else
 	{ 
   		return window.confirm("Do you really want to submit the data?");
@@ -67,8 +73,6 @@ function checkEmail(Email)
 	re =/^\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,8}$/
 	return re.test(Email);
 }
-
-
 </script>
 
 </head>
@@ -76,7 +80,7 @@ function checkEmail(Email)
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <body bgcolor = "maroon" text = "gray">
 <f:view>
-		<h:form id="form1" onsubmit="return checkForm1()">
+		<h:form id="form1">
 				<b><h:outputText value =" Welcome to CHC Help Desk!"></h:outputText></b>
 				<br>
 				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
@@ -120,11 +124,12 @@ function checkEmail(Email)
 			<br>
 					Comments(100 characters or less)
 					<br>
-						<h:inputTextarea style="height: 119px; width: 275px"> </h:inputTextarea>
+						<h:inputTextarea style="height: 119px; width: 275px" id = "comments"> 
+						</h:inputTextarea>
 			<br>
 					
-					<h:commandButton id="submit" value="Submit" action="success"/>
-					<h:commandButton id="reset" value="Reset" action="reset"/>
+					<h:commandButton id="submit" value="Submit" onclick="return checkForm1()" action="success"/>
+					<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="reset"/>
 		</h:form>	
 </f:view>
 </body>
