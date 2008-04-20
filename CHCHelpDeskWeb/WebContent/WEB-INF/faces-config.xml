@@ -5,5 +5,38 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
     version="1.2">
+	<navigation-rule>
+		<display-name>
+		FrontPage</display-name>
+		<from-view-id>
+		/FrontPage.jsp</from-view-id>
+		<navigation-case>
+		<from-outcome> success </from-outcome>
+			<to-view-id>
+			/confirmation.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>
+		confirmation</display-name>
+		<from-view-id>
+		/confirmation.jsp</from-view-id>
+		<navigation-case>
+		<from-outcome> success </from-outcome>
+			<to-view-id>
+			/FrontPage.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>
+		FrontPage</display-name>
+		<from-view-id>
+		/FrontPage.jsp</from-view-id>
+		<navigation-case>
+		<from-outcome>reset</from-outcome>
+			<to-view-id>
+			/FrontPage.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

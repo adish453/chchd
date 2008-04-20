@@ -34,7 +34,7 @@ public class FrontPageBean {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
+	
 	public String getPhoneNumber() {
 		return PhoneNumber;
 	}
@@ -49,21 +49,5 @@ public class FrontPageBean {
 
 	public void setProblem(String problem) {
 		this.problem = problem;
-	}
-
-	public String getYes() {
-		return UrgentYes;
-	}
-
-	public void setYes(String urgentyes) {
-		UrgentYes = urgentyes;
-	}
-
-	public String getNo() {
-		return UrgentNo;
-	}
-
-	public void setNo(String urgentNo) {
-		UrgentNo = urgentNo;
 	}
 }
