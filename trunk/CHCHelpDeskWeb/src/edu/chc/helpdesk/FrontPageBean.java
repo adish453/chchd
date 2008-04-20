@@ -1,7 +1,7 @@
 package edu.chc.helpdesk;
 
 public class FrontPageBean {
-	String FirstName, LastName, Email, location, PhoneNumber, problem, UrgentYes, UrgentNo;
+	String FirstName, LastName, Email, location, PhoneNumber, problem, Room;
 
 	public String getFirstName() {
 		return FirstName;
@@ -33,6 +33,14 @@ public class FrontPageBean {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	
+	public String getRoom(){
+			return Room;
+	}
+	
+	public void setRoom(String room){
+		Room = room;
 	}
 	
 	public String getPhoneNumber() {
