@@ -50,10 +50,10 @@ function checkForm1()
 			window.alert("you must enter a valid phone number");
 			return false;
 		}	
-	/*else if (document.form1["form1:comments"].value.length) > 100)
+	/*else if (document.form1["form1:comments"].length <= 100) == false)
 		{
 			window.alert('Too much data in comments box Please remove '+
-    		(document.form1["form1:comments"].value.length - 100)+ ' characters');
+    		(document.form1["form1:comments"].length - 100)+ ' characters');
     		return false;
 		}*/
 	else
