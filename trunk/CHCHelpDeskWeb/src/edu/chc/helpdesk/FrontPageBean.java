@@ -58,4 +58,9 @@ public class FrontPageBean {
 	public void setProblem(String problem) {
 		this.problem = problem;
 	}
+	
+	public String submit()
+	{
+		return "success";
+	}
 }

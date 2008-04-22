@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12068596515000" configfile="/CHCHelpDeskWeb/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="FrontPage" x="336" y="192" id="pf12070264138280" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf12086526742810 pf12086538192813" inlinks="pf12086534370312 pf12086538192813" path="/FrontPage.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="FrontPage" x="648" y="228" id="pf12070264138280" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf12086526742810 pf12086538192813" inlinks="pf12086534370312 pf12086538192813" path="/FrontPage.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="confirmation" x="120" y="192" id="pf12086526742811" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf12086534370312" inlinks="pf12086526742810" path="/confirmation.jsp"/>
   <links id="pf12086526742810" target="pf12086526742811" source="pf12070264138280" outcome="success"/>
   <links id="pf12086534370312" target="pf12070264138280" source="pf12086526742811" outcome="success"/>
   <links id="pf12086538192813" target="pf12070264138280" source="pf12070264138280" outcome="reset">
-    <bendPoints d1Height="-36" d2Height="-36"/>
-    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="12" d1Height="-125" d2Width="12" d2Height="-125"/>
+    <bendPoints d1Width="-129" d1Height="-119" d2Width="-129" d2Height="-119"/>
     <bendPoints d1Width="-64" d2Width="-64"/>
   </links>
 </pageflow:Pageflow>
