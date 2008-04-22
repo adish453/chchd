@@ -5,6 +5,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
     version="1.2">
+	<managed-bean>
+		<managed-bean-name>
+		frontPageBean</managed-bean-name>
+		<managed-bean-class>
+		edu.chc.helpdesk.FrontPageBean</managed-bean-class>
+		<managed-bean-scope>
+		request</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>
 		FrontPage</display-name>
