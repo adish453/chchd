@@ -10,7 +10,7 @@
 
 function allowReset()  
 {
-		 return window.confirm("Do you really want to clear the data?")
+		 return window.confirm("Do you really want to clear the data?");
 }
 
 function checkForm1()
@@ -80,8 +80,10 @@ function checkEmail(Email)
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <body bgcolor = "maroon" text = "gray">
 <f:view>
-		<h:form id="form1">
-				<b><h:outputText value =" Welcome to CHC Help Desk!"></h:outputText></b>
+		<h:form id="form1">			
+			<h:graphicImage id="image" alt="griff logo" url="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png"></h:graphicImage><b>
+			<br>
+			<h:outputText value =" Welcome to CHC Help Desk!"></h:outputText></b>
 				<br>
 				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
 			<br>
