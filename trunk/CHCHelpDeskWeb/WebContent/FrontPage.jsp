@@ -96,7 +96,7 @@ function checkEmail(Email)
 					<h:inputText id = "LastName"> </h:inputText>
 			<br>
 				* Location(building) : 
-					<h:selectOneMenu style="width: 105px" id = "location" value = ""> 
+					<h:selectOneMenu style="width: 105px" id = "location"> 
 						<f:selectItem id="FzHall" itemLabel="Fitz Hall" itemValue="1" />
 						<f:selectItem id="StJoes" itemLabel="Saint Joseph's Hall" itemValue="2" />
 						<f:selectItem id="Fr" itemLabel="Fournier" itemValue="3" />
@@ -118,7 +118,7 @@ function checkEmail(Email)
 			<br>
 					* What is your problem (choose one)
 					<br></br>
-					<h:selectOneMenu id="problem" value="">
+					<h:selectOneMenu id="problem">
 						<f:selectItem id="email" itemLabel="Email" itemValue="1" />
 						<f:selectItem id="MSOffice" itemLabel="Microsoft Office" itemValue="2" />
 						<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
@@ -132,7 +132,7 @@ function checkEmail(Email)
 						</h:inputTextarea>
 			<br>
 					
-					<h:commandButton id="submit" value="Submit" onclick="return checkForm1()" action="success"/>
+					<h:commandButton id="submit" value="Submit" onclick="return checkForm1()" action="#{frontPageBean.submit}"/>
 					<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="reset"/>
 		</h:form>	
 </f:view>
