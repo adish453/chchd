@@ -73,6 +73,8 @@ function checkEmail(Email)
 	re =/^\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,8}$/
 	return re.test(Email);
 }
+
+
 </script>
 
 </head>
