@@ -36,7 +36,7 @@
 				Location(Room) :
 					<h:inputText id = "Room"> </h:inputText>
 				<br>
-					* What is your problem (choose one)
+					Problem:
 					<br></br>
 					<h:selectOneMenu id="problem">
 						<f:selectItem id="email" itemLabel="Email" itemValue="1" />
