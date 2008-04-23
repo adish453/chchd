@@ -133,7 +133,8 @@ function checkEmail(Email)
 			<br>
 					
 					<h:commandButton id="submit" value="Submit" onclick="return checkForm1()" action="#{frontPageBean.submit}"/>
-					<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="reset"/>
+					<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="#{frontPageBean.reset}"/>
+				
 		</h:form>	
 </f:view>
 </body>

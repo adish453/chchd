@@ -7,8 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Browse Request Page</title>
 </head>
-<body>
-
+<body bgcolor = "maroon" text = "gray">
 <f:view>
 	<h:form id="form1">			
 			<h:graphicImage id="image" alt="griff logo" url="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png"></h:graphicImage><b>
@@ -47,5 +46,6 @@
 			<br>
 			<h:commandButton id="search" value="Search" onclick = ""action="search"/>
 		</h:form>	
-</f:view></body>
+</f:view>
+</body>
 </html>
