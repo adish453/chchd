@@ -63,4 +63,8 @@ public class FrontPageBean {
 	{
 		return "success";
 	}
+	
+	public String reset(){
+		return "reset";
+	}
 }

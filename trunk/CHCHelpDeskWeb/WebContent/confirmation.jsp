@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Confirmation</title>
 </head>
-<body>
+<body bgcolor = "maroon" text = "gray">
 <center>
 <p>Thank you! Your request has been submitted to the HelpDesk.</p>
 </center>
