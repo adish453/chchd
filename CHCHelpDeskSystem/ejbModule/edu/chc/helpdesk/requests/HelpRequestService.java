@@ -8,6 +8,5 @@ package edu.chc.helpdesk.requests;
  */
 public interface HelpRequestService {
 
-	public HelpRequest submit(HelpRequest request) throws HelpRequestNotValidException;
-
+	public HelpRequest submit(HelpRequest request) throws HelpDeskApplicationException;
 }
