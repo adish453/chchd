@@ -1,5 +1,5 @@
 package edu.chc.helpdesk.requests;
 
-public class HelpRequestNotValidException extends Throwable {
+public class HelpRequestNotValidException extends HelpDeskApplicationException {
 
 }

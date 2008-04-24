@@ -18,9 +18,13 @@ import static javax.persistence.TemporalType.DATE;
 //TODO Should we stop and finalize the DB design or create new entities as needed and build the DB around them?
 //TODO Start addressing all of these To-do's...
 
+//TODO Add Issue field (will be a drop-down in the program)
+//TODO Remove Urgent field
+//TODO Add Location (will be a drop-down) and RoomNumber fields
+
 @Entity
-@Table(schema="HelpDeskDB")
 @NamedQuery(name="getAllRequests", query="SELECT r FROM HelpRequest r")
+@Table(schema="HelpDeskDB")
 public class HelpRequest {
 	
 	/**
@@ -37,6 +41,7 @@ public class HelpRequest {
 	}
 	
 	@Id
+	@GeneratedValue
 	private int requestID;
 	@Temporal(DATE)
 	private Date dateEntered;
