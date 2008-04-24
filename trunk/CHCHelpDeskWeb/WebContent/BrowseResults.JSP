@@ -8,13 +8,10 @@
 <title>search results</title>
 </head>
 <body bgcolor = "maroon" text = "gray">
-<f:view>
-<h:form id="form1">			
+<f:view>		
 	<h:graphicImage id="image" alt="griff logo" url="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png"></h:graphicImage><b>
 	<br>
-	<h:outputText value =" Welcome to CHC Help Desk Search Results!"></h:outputText></b>
-	
-</h:form>
+	<h:outputText value =" Welcome to CHC Help Desk Search Results!"></h:outputText></b><br>
 </f:view>
 </body>
 </html>
