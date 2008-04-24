@@ -45,7 +45,6 @@
 					</h:selectOneMenu>
 			<br>
 			<h:commandButton id="search" value="Search" onclick = ""action="search"/>
-			
 		</h:form>	
 </f:view>
 </body>
