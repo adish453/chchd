@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Search Results</title>
 </head>
-<body>
+<body bgcolor = "maroon" text = "gray">
 <h:graphicImage id="image" alt="griff logo" url="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png"></h:graphicImage><b>
 			<br/>
 			<h:outputText value =" Welcome to CHC Help Desk Search Results!"></h:outputText></b>
