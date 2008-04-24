@@ -36,7 +36,7 @@
 					<h:inputText id = "Room"> </h:inputText>
 				<br>
 					Problem:
-					<br></br>
+					
 					<h:selectOneMenu id="problem">
 						<f:selectItem id="email" itemLabel="Email" itemValue="1" />
 						<f:selectItem id="MSOffice" itemLabel="Microsoft Office" itemValue="2" />
