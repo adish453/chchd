@@ -28,18 +28,24 @@ public class Message {
 	String to;
 
 	public Message() {
-		this.subject = null;
 		this.props = new Properties();
 		this.host = "mailhost.chc.edu";
 		this.from = "helpdesk@chc.edu";
 		this.props.put("mail.smtp.host", this.host);
 		this.props.put("mail.from", this.from);
 		this.to = null;
+		this.subject = null;
 		this.body = null;
 	}
 	
+	//FIXME Change to HelpRequest Parameter.
 	public Message(String to, String subject, String body) {
-		this.to = to;
+		this.props = new Properties();
+		this.host = "mailhost.chc.edu";
+		this.from = "helpdesk@chc.edu";
+		this.props.put("mail.smtp.host", this.host);
+		this.props.put("mail.from", this.from);
+		this.to = to; //FIXME Change to an HelpRequest getter method access.  Next two as well.
 		this.subject = subject;
 		this.body = body;
 	}
@@ -64,6 +70,7 @@ public class Message {
 		return this.to;
 	}
 
+	//FIXME Directly access help request fields.
 	public void send() throws MessageNotValidException {
 
 		if (isValid()) {
@@ -98,6 +105,7 @@ public class Message {
 		this.to = to;
 	}
 
+	//FIXME Change to check on HelpRequest information.
 	private boolean isValid() {
 		return !(this.props == null && this.host == null && this.from == null
 		        && this.to == null && this.subject == null && this.body == null);
