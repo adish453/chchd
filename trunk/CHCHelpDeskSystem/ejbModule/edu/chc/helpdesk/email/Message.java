@@ -20,23 +20,12 @@ import javax.mail.internet.MimeMessage;
  */
 public class Message {
 
-	String body;
-	String from;
-	String host;
+	String body; //TODO delete
+	String from; 
+	String host; 
 	Properties props;
-	String subject;
-	String to;
-
-	public Message() {
-		this.props = new Properties();
-		this.host = "mailhost.chc.edu";
-		this.from = "helpdesk@chc.edu";
-		this.props.put("mail.smtp.host", this.host);
-		this.props.put("mail.from", this.from);
-		this.to = null;
-		this.subject = null;
-		this.body = null;
-	}
+	String subject; //TODO delete
+	String to; //TODO delete
 	
 	//FIXME Change to HelpRequest Parameter.
 	public Message(String to, String subject, String body) {
@@ -50,7 +39,9 @@ public class Message {
 		this.body = body;
 	}
 
+	//TODO Parameterize with a MessageType
 	public String getBody() {
+		//TODO Implement Customer and Tech options
 		return this.body;
 	}
 
@@ -70,7 +61,7 @@ public class Message {
 		return this.to;
 	}
 
-	//FIXME Directly access help request fields.
+	//FIXME Call Message get methods to get things, rather than accessing fields directly
 	public void send() throws MessageNotValidException {
 
 		if (isValid()) {
@@ -92,15 +83,18 @@ public class Message {
 
 	}
 
+	//TODO Decide whether or not we need this.
 	public void setBody(String body) {
 		this.body = body;
 	}
 
+	//TODO Decide whether or not we need this.
 	private void setSubject() {
 		//FIXME Create subject dynamically based on what type the message is.
 		this.subject = subject;
 	}
 
+	//TODO Decide whether or not we need this.
 	public void setTo(String to) {
 		this.to = to;
 	}
