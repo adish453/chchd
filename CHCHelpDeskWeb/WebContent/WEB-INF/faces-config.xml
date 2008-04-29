@@ -13,6 +13,14 @@
 		<managed-bean-scope>
 		request</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>
+		browseRequestbean</managed-bean-name>
+		<managed-bean-class>
+		browseRequestbean</managed-bean-class>
+		<managed-bean-scope>
+		request</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>
 		FrontPage</display-name>
