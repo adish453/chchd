@@ -15,24 +15,12 @@ public class EJBHelpRequestService implements HelpRequestService {
 	// Should this throw HelpRequestNotValidException as a checked exception? 
 	// Maybe the presentation layer should handle the exception by mapping
 	// exceptions to error pages in faces-config.xml
-<<<<<<< .mine
 	public void submit(HelpRequest request) throws HelpDeskApplicationException {
 
 		if (!request.isValid()) {
 			throw new HelpRequestNotValidException();
 		}
 		try {
-=======
-	public HelpRequest submit(HelpRequest request) 
-		throws HelpDeskApplicationException
-	{
-		
-		if(!request.isValid())
-			throw new HelpRequestNotValidException();
-		
-		try
-		{
->>>>>>> .r140
 			em.persist(request);
 		} catch (PersistenceException pe) {
 			//TODO Use the Logging API
