@@ -18,8 +18,9 @@ public class EJBHelpRequestService implements HelpRequestService {
 		throws HelpDeskApplicationException
 	{
 		
-		//if(!request.isValid())
-		//	throw new HelpRequestNotValidException();	
+		if(!request.isValid())
+			throw new HelpRequestNotValidException();
+		
 		try
 		{
 			em.persist(request);
