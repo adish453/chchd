@@ -46,11 +46,14 @@ public class HelpRequest {
 	@Temporal(DATE)
 	private Date dateEntered;
 	private RequestStatus status;
+	//private IssueType issue;
 	private String firstName;
 	private String lastName;
 	private String emailAddress;
 	private String phoneNumber;
-	private boolean urgent;
+	//private Location building;
+	private String roomNumber;
+	
 	private String comments;
 	
 	/**
@@ -139,18 +142,7 @@ public class HelpRequest {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	/**
-	 * @return <b>True</b> if the request is marked <i>Urgent</i>; <b>False</b> otherwise.
-	 */
-	public boolean isUrgent() {
-		return urgent;
-	}
-	/**
-	 * @param mark or unmark the request as <i>Urgent</i>
-	 */
-	public void setUrgent(boolean urgent) {
-		this.urgent = urgent;
-	}
+
 	/**
 	 * @return additional comments entered by the end-user
 	 */
@@ -169,6 +161,16 @@ public class HelpRequest {
 		//TODO Implement
 		return true;
 	}
-	
-	
+	/**
+	 * @return the roomNumber
+	 */
+	public String getRoomNumber() {
+		return roomNumber;
+	}
+	/**
+	 * @param roomNumber the roomNumber to set
+	 */
+	public void setRoomNumber(String roomNumber) {
+		this.roomNumber = roomNumber;
+	}	
 }
