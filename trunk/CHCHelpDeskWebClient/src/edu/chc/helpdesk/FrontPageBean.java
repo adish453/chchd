@@ -19,7 +19,7 @@ public class FrontPageBean {
 
 	public void setFirstName(String firstName)
 	{
-		firstName = firstName;
+		this.firstName = firstName;
 	}
 
 	public String getLastName()
@@ -29,7 +29,7 @@ public class FrontPageBean {
 
 	public void setLastName(String lastName)
 	{
-		lastName = lastName;
+		this.lastName = lastName;
 	}
 
 	public String getEmail()
@@ -39,7 +39,7 @@ public class FrontPageBean {
 
 	public void setEmail(String email)
 	{
-		email = email;
+		this.email = email;
 	}
 
 	public String getBldg()
@@ -59,7 +59,7 @@ public class FrontPageBean {
 	
 	public void setRoomNo(String room)
 	{
-		roomNo = roomNo;
+		this.roomNo = roomNo;
 	}
 	
 	public String getPhoneNumber()
@@ -69,7 +69,7 @@ public class FrontPageBean {
 
 	public void setPhoneNumber(String phoneNumber)
 	{
-		phoneNumber = phoneNumber;
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getProblem()
