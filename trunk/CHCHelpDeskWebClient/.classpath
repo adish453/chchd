@@ -14,5 +14,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.jsf.core.internal.jsflibrarycontainer/chcJSF"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CHCHelpDeskSystem"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
