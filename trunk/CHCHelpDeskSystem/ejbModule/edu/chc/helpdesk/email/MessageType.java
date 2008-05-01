@@ -1,6 +1,6 @@
 package edu.chc.helpdesk.email;
 
-enum MessageType {
+public enum MessageType {
 	
 	ADMIN, TECH, CUSTOMER;
 
