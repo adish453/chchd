@@ -24,13 +24,13 @@ function allowReset()
 			<h:outputText value =" Welcome to CHC Help Desk Search!"></h:outputText></b>
 				<br>
 			<h:outputText value ="Please Enter Your Search Terms in the Fields Below"></h:outputText>
-			</br>
+			<br>
 				First Name :
 					<h:inputText id = "FirstName"> </h:inputText>
-			</br>
+			<br>
 				Last Name :
 					<h:inputText id = "LastName"> </h:inputText>
-			</br>
+			<br>
 				Location(building) : 
 					<h:selectOneMenu style="width: 105px" id = "location"> 
 						<f:selectItem id="FzHall" itemLabel="Fitz Hall" itemValue="1" />
@@ -40,10 +40,10 @@ function allowReset()
 						<f:selectItem id="Library" itemLabel="Library" itemValue="5" />
 						
 					 </h:selectOneMenu>
-			</br>
+			<br>
 				Location(Room) :
 					<h:inputText id = "Room"> </h:inputText>
-				</br>
+				<br>
 					Problem:
 					
 					<h:selectOneMenu id="problem">
@@ -52,7 +52,7 @@ function allowReset()
 						<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
 						<f:selectItem id="Other" itemLabel="Other (Please Specify)" itemValue="4" />
 					</h:selectOneMenu>
-			</br>
+			<br>
 			<h:commandButton id="search" value="Search" onclick = ""action="#{browseResultsBean.search}"/>
 			<h:commandButton id ="reset" value = "Reset" onclick = "return allowReset()" action = "#{browseResultsBean.reset}"> </h:commandButton>
 	</h:form>	
