@@ -9,15 +9,7 @@
 		<managed-bean-name>
 		browseResultsBean</managed-bean-name>
 		<managed-bean-class>
-		edu.chc.helpdesk.BrowseResultsBean</managed-bean-class>
-		<managed-bean-scope>
-		request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>
-		browseResultsbean</managed-bean-name>
-		<managed-bean-class>
-		browseResultsbean</managed-bean-class>
+		edu.chc.helpdesk.admin.BrowseResultsBean</managed-bean-class>
 		<managed-bean-scope>
 		request</managed-bean-scope>
 	</managed-bean>
