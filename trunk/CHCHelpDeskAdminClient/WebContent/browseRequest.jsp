@@ -53,7 +53,7 @@ function allowReset()
 						<f:selectItem id="Other" itemLabel="Other (Please Specify)" itemValue="4" />
 					</h:selectOneMenu>
 			<br>
-			<h:commandButton id="search" value="Search" onclick = ""action="#{browseResultsBean.search}"/>
+			<h:commandButton id="search" value="Search" action="#{browseResultsBean.search}"> </h:commandButton>
 			<h:commandButton id ="reset" value = "Reset" onclick = "return allowReset()" action = "#{browseResultsBean.reset}"> </h:commandButton>
 	</h:form>	
 </f:view>
