@@ -12,48 +12,38 @@ import static javax.persistence.TemporalType.DATE;
  */
 
 //TODO Fix problems with JavaDoc generation (embedded HTML causing a problem?)
-//TODO A subject line separate from the comments would probably be good to have.
 //TODO Location should probably be it's own entity so that we can make locations configurable in the program.
 //TODO Add "assigned to" property or better: just point to a Technician record.
 //TODO Should we stop and finalize the DB design or create new entities as needed and build the DB around them?
 //TODO Start addressing all of these To-do's...
 
 //TODO Add Issue field (will be a drop-down in the program)
-//TODO Remove Urgent field
 //TODO Add Location (will be a drop-down) and RoomNumber fields
 
 @Entity
 @NamedQuery(name="getAllRequests", query="SELECT r FROM HelpRequest r")
 @Table(schema="HelpDeskDB")
 public class HelpRequest {
-	
-	/**
-	 * 
-	 * @author mspross
-	 * @desc Encapsulates request status codes
-	 */
-	
-	//TODO Do we want a configurable status or are hard-coded values OK?
-	public enum RequestStatus {
-		OPEN,
-		CLOSED,
-		HOLD
-	}
-	
+
 	@Id
 	@GeneratedValue
 	private int requestID;
+	
 	@Temporal(DATE)
 	private Date dateEntered;
-	private RequestStatus status;
-	//private IssueType issue;
+	
+	@ManyToOne
+	private StatusDropDownValue status;
+	@ManyToOne
+	private IssueDropDownValue issue;
+	@ManyToOne
+	private LocationDropDownValue location;
+	
 	private String firstName;
 	private String lastName;
 	private String emailAddress;
 	private String phoneNumber;
-	//private Location building;
 	private String roomNumber;
-	
 	private String comments;
 	
 	/**
@@ -80,19 +70,6 @@ public class HelpRequest {
 	 */
 	public void setDateEntered(Date dateEntered) {
 		this.dateEntered = dateEntered;
-	}
-	
-	/**
-	 * @return the status
-	 */
-	public RequestStatus getStatus() {
-		return status;
-	}
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(RequestStatus status) {
-		this.status = status;
 	}
 	/**
 	 * @return the first name of the user who submitted the request
@@ -172,5 +149,41 @@ public class HelpRequest {
 	 */
 	public void setRoomNumber(String roomNumber) {
 		this.roomNumber = roomNumber;
+	}
+	/**
+	 * @return the issue
+	 */
+	public IssueDropDownValue getIssue() {
+		return issue;
+	}
+	/**
+	 * @param issue the issue to set
+	 */
+	public void setIssue(IssueDropDownValue issue) {
+		this.issue = issue;
+	}
+	/**
+	 * @return the location
+	 */
+	public LocationDropDownValue getLocation() {
+		return location;
+	}
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(LocationDropDownValue location) {
+		this.location = location;
+	}
+	/**
+	 * @return the status
+	 */
+	public StatusDropDownValue getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(StatusDropDownValue status) {
+		this.status = status;
 	}	
 }
