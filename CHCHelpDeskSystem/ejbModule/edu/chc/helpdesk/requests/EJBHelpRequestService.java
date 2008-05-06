@@ -1,5 +1,7 @@
 package edu.chc.helpdesk.requests;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,6 +42,30 @@ public class EJBHelpRequestService implements HelpRequestService {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public List<LocationDropDownValue> getLocationDropDownList() {
+		List<LocationDropDownValue> results =
+			em.createNamedQuery("getDropDownValuesForList")
+			.setParameter("listName", "LOCATION")
+			.getResultList();
+		return results;
+	}
+	
+	public List<StatusDropDownValue> getStatusDropDownList() {
+		List<StatusDropDownValue> results =
+			em.createNamedQuery("getDropDownValuesForList")
+			.setParameter("listName", "STATUS")
+			.getResultList();
+		return results;
+	}
+	
+	public List<IssueDropDownValue> getIssueDropDownList() {
+		List<IssueDropDownValue> results =
+			em.createNamedQuery("getDropDownValuesForList")
+			.setParameter("listName", "ISSUE")
+			.getResultList();
+		return results;
 	}
 
 	// injected resource for database access
