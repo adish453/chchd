@@ -21,20 +21,15 @@ import edu.chc.helpdesk.requests.HelpRequest;
  * 
  */
 public class Message {
+	
+	private final String from = "helpdesk@chc.edu";
+	private final String host = "mailhost.chc.edu";
 
-	String body; //TODO delete
-	String from; 
-	String host; 
 	Properties props;
 	HelpRequest request;
-	String subject; //TODO delete
-	String to; //TODO delete
 	
-	//FIXME Change to HelpRequest Parameter.
 	public Message(HelpRequest request) {
 		this.props = new Properties();
-		this.host = "mailhost.chc.edu";
-		this.from = "helpdesk@chc.edu";
 		this.props.put("mail.smtp.host", this.host);
 		this.props.put("mail.from", this.from);
 		this.request = request;
@@ -58,8 +53,14 @@ public class Message {
 		return this.subject;
 	}
 
-	public String getTo() {
-		return this.to;
+	public String getTo(MessageType type) throws MessageNotValidException {
+		switch (type) {
+			case TECH:
+				return "helpdesk@chc.edu";
+			case CUSTOMER:
+				return request.getEmailAddress();
+		}
+		throw new MessageNotValidException();
 	}
 
 	//FIXME Call Message get methods to get things, rather than accessing fields directly
@@ -70,7 +71,7 @@ public class Message {
 			try {
 				MimeMessage msg = new MimeMessage(session);
 				msg.setFrom();
-				msg.setRecipients(RecipientType.TO, this.to);
+				msg.setRecipients(RecipientType.TO, getTo(type));
 				msg.setSubject(this.subject);
 				msg.setSentDate(new Date());
 				msg.setText(this.body);
