@@ -1,14 +1,22 @@
 package edu.chc.helpdesk;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
+import javax.faces.component.UISelectItems;
+import javax.faces.component.html.HtmlSelectOneMenu;
+import javax.faces.model.SelectItem;
 
 import edu.chc.helpdesk.requests.HelpRequest;
 import edu.chc.helpdesk.requests.HelpRequestService;
+import edu.chc.helpdesk.requests.LocationDropDownValue;
 
 public class FrontPageBean {
 	
 	@EJB
 	private HelpRequestService requestService;
+	HtmlSelectOneMenu locationMenu;
 	
 	String firstName, lastName, email, bldg, phoneNumber, problem, roomNo;
 
@@ -98,5 +106,25 @@ public class FrontPageBean {
 	public String reset()
 	{
 		return "reset";
+	}
+	
+	//location drop-down
+	public HtmlSelectOneMenu getLocationMenu() {
+		
+		locationMenu = new HtmlSelectOneMenu();
+
+		final List<LocationDropDownValue> locationList;
+		locationList = requestService.getLocationDropDownList();
+		
+		final List list = new ArrayList();
+		for(LocationDropDownValue l : locationList) {
+			list.add(new SelectItem(l.getID(), l.getDisplayValue()));
+		}
+		
+		final UISelectItems items = new UISelectItems();
+		items.setValue(list);
+		
+		locationMenu.getChildren().add(items);
+		return locationMenu;
 	}
 }
