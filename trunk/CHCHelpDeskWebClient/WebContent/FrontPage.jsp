@@ -90,14 +90,7 @@ function checkEmail(Email)
 					<h:inputText id = "LastName"> </h:inputText>
 			<br>
 				* Location(building) : 
-					<h:selectOneMenu style="width: 105px" id = "location"> 
-						<f:selectItem id="FzHall" itemLabel="Fitz Hall" itemValue="1" />
-						<f:selectItem id="StJoes" itemLabel="Saint Joseph's Hall" itemValue="2" />
-						<f:selectItem id="Fr" itemLabel="Fournier" itemValue="3" />
-						<f:selectItem id="Font" itemLabel="Fontbonne" itemValue="4" />
-						<f:selectItem id="Library" itemLabel="Library" itemValue="5" />
-						
-					 </h:selectOneMenu>
+					<h:selectOneMenu style="width: auto" id = "locationTest" binding="#{frontPageBean.locationMenu}" />
 			<br>
 				* Location(Room) :
 					<h:inputText id = "Room"> </h:inputText>
