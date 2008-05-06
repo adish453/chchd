@@ -55,7 +55,7 @@ public class FrontPageBean {
 		return bldg;
 	}
 
-	public void setBldg(String location)
+	public void setBldg(String bldg)
 	{
 		this.bldg = bldg;
 	}
@@ -65,7 +65,7 @@ public class FrontPageBean {
 			return roomNo;
 	}
 	
-	public void setRoomNo(String room)
+	public void setRoomNo(String roomNo)
 	{
 		this.roomNo = roomNo;
 	}
