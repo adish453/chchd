@@ -12,8 +12,6 @@ import javax.mail.Transport;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.MimeMessage;
 
-import edu.chc.helpdesk.requests.HelpRequest;
-
 //TODO 15-04-08 Should be able to construct it's content based on what type of message it is (Corresponding with the MessageType Enum)  Especially the Subject line.  Because of this, we don't need a public setSubject() method because the subject will be built at run time.
 
 /**
@@ -25,13 +23,19 @@ public class Message {
 	private final String from = "helpdesk@chc.edu";
 	private final String host = "mailhost.chc.edu";
 
+	//deleted String body;  
 	Properties props;
+	//deleted String subject;
+	//deleted String to;
 	HelpRequest request;
 	
 	public Message(HelpRequest request) {
 		this.props = new Properties();
 		this.props.put("mail.smtp.host", this.host);
 		this.props.put("mail.from", this.from);
+		
+		//this.subject = subject;
+		//this.body = body;
 		this.request = request;
 	}
 
