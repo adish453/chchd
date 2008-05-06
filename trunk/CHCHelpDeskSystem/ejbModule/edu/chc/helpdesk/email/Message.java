@@ -12,6 +12,8 @@ import javax.mail.Transport;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.MimeMessage;
 
+import edu.chc.helpdesk.requests.HelpRequest;
+
 //TODO 15-04-08 Should be able to construct it's content based on what type of message it is (Corresponding with the MessageType Enum)  Especially the Subject line.  Because of this, we don't need a public setSubject() method because the subject will be built at run time.
 
 /**
@@ -23,10 +25,7 @@ public class Message {
 	private final String from = "helpdesk@chc.edu";
 	private final String host = "mailhost.chc.edu";
 
-	//deleted String body;  
 	Properties props;
-	//deleted String subject;
-	//deleted String to;
 	HelpRequest request;
 	
 	public Message(HelpRequest request) {
@@ -39,10 +38,49 @@ public class Message {
 		this.request = request;
 	}
 
-	//TODO Parameterize with a MessageType
-	public String getBody() {
+	public String getBody(MessageType type) throws MessageNotValidException {	
 		//TODO Implement Customer and Tech options
-		return this.body;
+		StringBuilder body = new StringBuilder();
+		String sep = System.getProperty("line.separator");
+		switch (type) {
+			case TECH:
+				//Submission Date
+				body.append("Date of Submission - ");
+				body.append(request.getDateEntered());
+				body.append(sep);
+				//Customer Name
+				body.append("Customer Name - ");
+				body.append(request.getLastName());
+				body.append(", ");
+				body.append(request.getFirstName());
+				body.append(sep);
+				//Location
+				body.append("Location - ");
+				body.append(request.getLocation());
+				body.append(sep);
+				//Telephone Number
+				body.append("Telephone Number - ");
+				body.append(request.getPhoneNumber());
+				body.append(sep);
+				//Issue
+				body.append("Issue - ");
+				body.append(request.getIssue());
+				body.append(sep);
+				//Comment
+				body.append("Comment - ");
+				body.append(request.getComments());
+				return body.toString();
+			case CUSTOMER:
+				body.append("Thank you for contacting CHC Helpdesk.  Your request has been recieved and will be processed shortly.  So we can more easily assist you, please remember your case number and give it to the tech helping you with this problem.");
+				body.append(sep);
+				body.append("Thank you and have a nice day.");
+				body.append(sep);
+				body.append("Case Number - ");
+				body.append(request.getRequestID());
+				return body.toString();
+			default:
+				throw new MessageNotValidException();
+		}
 	}
 
 	public String getFrom() {
@@ -53,8 +91,8 @@ public class Message {
 		return this.host;
 	}
 
-	public String getSubject() {
-		return this.subject;
+	public String getSubject(MessageType type) {
+		return "";
 	}
 
 	public String getTo(MessageType type) throws MessageNotValidException {
@@ -70,15 +108,15 @@ public class Message {
 	//FIXME Call Message get methods to get things, rather than accessing fields directly
 	public void send(MessageType type) throws MessageNotValidException {
 
-		if (isValid()) {
+		if (isValid(type)) {
 			Session session = Session.getInstance(this.props, null);
 			try {
 				MimeMessage msg = new MimeMessage(session);
 				msg.setFrom();
 				msg.setRecipients(RecipientType.TO, getTo(type));
-				msg.setSubject(this.subject);
+				msg.setSubject(getSubject(type));
 				msg.setSentDate(new Date());
-				msg.setText(this.body);
+				msg.setText(getBody(type));
 				Transport.send(msg);
 			} catch (MessagingException mex) {
 				// TODO Properly catch this exception.
@@ -89,26 +127,10 @@ public class Message {
 
 	}
 
-	//TODO Decide whether or not we need this.
-	public void setBody(String body) {
-		this.body = body;
-	}
-
-	//TODO Decide whether or not we need this.
-	private void setSubject() {
-		//FIXME Create subject dynamically based on what type the message is.
-		this.subject = subject;
-	}
-
-	//TODO Decide whether or not we need this.
-	public void setTo(String to) {
-		this.to = to;
-	}
-
 	//FIXME Change to check on HelpRequest information.
-	private boolean isValid() {
+	private boolean isValid(MessageType type) throws MessageNotValidException {
 		return !(this.props == null && this.host == null && this.from == null
-		        && this.to == null && this.subject == null && this.body == null);
+		        && getTo(type) == null && getSubject(type) == null && getBody(type) == null);
 	}
 
 }
