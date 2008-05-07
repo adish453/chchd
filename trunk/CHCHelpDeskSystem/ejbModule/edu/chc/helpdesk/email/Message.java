@@ -91,8 +91,24 @@ public class Message {
 		return this.host;
 	}
 
-	public String getSubject(MessageType type) {
-		return "";
+	public String getSubject(MessageType type) throws MessageNotValidException {
+		StringBuilder subject = new StringBuilder();
+		switch (type) {
+			case TECH:
+				subject.append("Help Request for ");
+				subject.append(request.getIssue());
+				subject.append(" from ");
+				subject.append(request.getFirstName());
+				subject.append(" ");
+				subject.append(request.getLastName());
+				return subject.toString();
+			case CUSTOMER:
+				subject.append("Your Help Request (id ");
+				subject.append(request.getRequestID());
+				subject.append(") Has Been Received.");
+				return subject.toString();
+		}
+		throw new MessageNotValidException();
 	}
 
 	public String getTo(MessageType type) throws MessageNotValidException {
@@ -126,9 +142,13 @@ public class Message {
 
 	}
 
-	private boolean isValid(MessageType type) throws MessageNotValidException {
-		return !(this.props == null && this.host == null && this.from == null
-		        && getTo(type) == null && getSubject(type) == null && getBody(type) == null);
+	private boolean isValid(MessageType type) {
+		try {
+	        return !(this.props == null && this.host == null && this.from == null
+	                && getTo(type) == null && getSubject(type) == null && getBody(type) == null);
+        } catch (MessageNotValidException e) {
+	        return false;
+        }
 	}
 
 }
