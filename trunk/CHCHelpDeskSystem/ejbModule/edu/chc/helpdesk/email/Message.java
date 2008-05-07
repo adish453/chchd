@@ -105,7 +105,6 @@ public class Message {
 		throw new MessageNotValidException();
 	}
 
-	//FIXME Call Message get methods to get things, rather than accessing fields directly
 	public void send(MessageType type) throws MessageNotValidException {
 
 		if (isValid(type)) {
@@ -127,7 +126,6 @@ public class Message {
 
 	}
 
-	//FIXME Change to check on HelpRequest information.
 	private boolean isValid(MessageType type) throws MessageNotValidException {
 		return !(this.props == null && this.host == null && this.from == null
 		        && getTo(type) == null && getSubject(type) == null && getBody(type) == null);
