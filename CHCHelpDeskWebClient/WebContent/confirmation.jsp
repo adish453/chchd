@@ -7,6 +7,7 @@
 <title>Confirmation</title>
 </head>
 <body bgcolor = "maroon" text = "gray">
+<br><a href="http://www.pimpmyspace.org/g12631ky.html"><img src="http://m.pimpmyspace.org/07/4/13/12631ky.gif" border="0" alt="pimp myspace" /></a><br /><a href="http://www.pimpmyspace.org/myspacelayouts.php">myspace layouts</a><br><a href="http://www.pimpmyspace.org"><img src="http://m.pimpmyspace.org/site/buttons/myspace.gif" alt="pimp myspace" style="position:absolute; left:0px; top: 0px;" border="0" /></a><br />
 <center>
 <p>Thank you! Your request has been submitted to the HelpDesk.</p>
 </center>
