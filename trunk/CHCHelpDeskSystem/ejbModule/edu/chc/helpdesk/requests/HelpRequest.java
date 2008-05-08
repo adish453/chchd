@@ -165,13 +165,13 @@ public class HelpRequest {
 	/**
 	 * @return the location
 	 */
-	public LocationDropDownValue getLocation() {
+	public LocationDropDownValue getLocationId() {
 		return location;
 	}
 	/**
 	 * @param location the location to set
 	 */
-	public void setLocation(LocationDropDownValue location) {
+	public void setLocationId(LocationDropDownValue location) {
 		this.location = location;
 	}
 	/**
