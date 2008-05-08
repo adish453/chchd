@@ -23,4 +23,14 @@ public class EJBHelpRequestServiceStub implements HelpRequestService {
 		return null;
 	}
 
+	public IssueDropDownValue getIssueById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public LocationDropDownValue getLocationById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
