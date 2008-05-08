@@ -153,13 +153,13 @@ public class HelpRequest {
 	/**
 	 * @return the issue
 	 */
-	public IssueDropDownValue getIssue() {
+	public IssueDropDownValue getIssueId() {
 		return issue;
 	}
 	/**
 	 * @param issue the issue to set
 	 */
-	public void setIssue(IssueDropDownValue issue) {
+	public void setIssueId(IssueDropDownValue issue) {
 		this.issue = issue;
 	}
 	/**
