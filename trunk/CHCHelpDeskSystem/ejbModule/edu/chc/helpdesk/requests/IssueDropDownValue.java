@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema="HelpDeskDB")
+@Table(schema="HelpDeskDB",name="DROPDOWNVALUE")
 @DiscriminatorValue("ISSUE")
 public class IssueDropDownValue extends DropDownValue {
 	/* This class is a placeholder.

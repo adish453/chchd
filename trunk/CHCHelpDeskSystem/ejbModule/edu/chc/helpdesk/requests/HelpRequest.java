@@ -11,33 +11,24 @@ import static javax.persistence.TemporalType.DATE;
  * @desc An entity bean that represents a row in the HelpRequest table.
  */
 
-//TODO Fix problems with JavaDoc generation (embedded HTML causing a problem?)
-//TODO Location should probably be it's own entity so that we can make locations configurable in the program.
-//TODO Add "assigned to" property or better: just point to a Technician record.
-//TODO Should we stop and finalize the DB design or create new entities as needed and build the DB around them?
-//TODO Start addressing all of these To-do's...
-
-//TODO Add Issue field (will be a drop-down in the program)
-//TODO Add Location (will be a drop-down) and RoomNumber fields
-
 @Entity
 @NamedQuery(name="getAllRequests", query="SELECT r FROM HelpRequest r")
 @Table(schema="HelpDeskDB")
 public class HelpRequest {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int requestID;
 	
 	@Temporal(DATE)
 	private Date dateEntered;
-	
-	@ManyToOne
-	private StatusDropDownValue status;
-	@ManyToOne
-	private IssueDropDownValue issue;
-	@ManyToOne
-	private LocationDropDownValue location;
+
+	@Column(name="STATUS_ID")
+	private int statusId;
+	@Column(name="ISSUE_ID")
+	private int issueId;
+	@Column(name="LOCATION_ID")
+	private int locationId;
 	
 	private String firstName;
 	private String lastName;
@@ -151,39 +142,39 @@ public class HelpRequest {
 		this.roomNumber = roomNumber;
 	}
 	/**
-	 * @return the issue
+	 * @return the statusId
 	 */
-	public IssueDropDownValue getIssue() {
-		return issue;
+	public int getStatusId() {
+		return statusId;
 	}
 	/**
-	 * @param issue the issue to set
+	 * @param statusId the statusId to set
 	 */
-	public void setIssue(IssueDropDownValue issue) {
-		this.issue = issue;
+	public void setStatusId(int statusId) {
+		this.statusId = statusId;
 	}
 	/**
-	 * @return the location
+	 * @return the issueId
 	 */
-	public LocationDropDownValue getLocation() {
-		return location;
+	public int getIssueId() {
+		return issueId;
 	}
 	/**
-	 * @param location the location to set
+	 * @param issueId the issueId to set
 	 */
-	public void setLocation(LocationDropDownValue location) {
-		this.location = location;
+	public void setIssueId(int issueId) {
+		this.issueId = issueId;
 	}
 	/**
-	 * @return the status
+	 * @return the locationId
 	 */
-	public StatusDropDownValue getStatus() {
-		return status;
+	public int getLocationId() {
+		return locationId;
 	}
 	/**
-	 * @param status the status to set
+	 * @param locationId the locationId to set
 	 */
-	public void setStatus(StatusDropDownValue status) {
-		this.status = status;
+	public void setLocationId(int locationId) {
+		this.locationId = locationId;
 	}	
 }

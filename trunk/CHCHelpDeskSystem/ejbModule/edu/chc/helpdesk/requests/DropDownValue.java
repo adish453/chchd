@@ -6,6 +6,7 @@ import static javax.persistence.InheritanceType.SINGLE_TABLE;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.NamedQuery;
@@ -34,7 +35,7 @@ import javax.persistence.Table;
 @NamedQuery(name="getDropDownValuesForList", query="SELECT v FROM DropDownValue v WHERE v.listName=:listName")
 public abstract class DropDownValue {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ID;
 	private String listName;
 	private String displayValue;

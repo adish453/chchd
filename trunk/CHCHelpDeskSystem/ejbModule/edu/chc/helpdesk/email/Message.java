@@ -56,7 +56,7 @@ public class Message {
 				body.append(sep);
 				//Location
 				body.append("Location - ");
-				body.append(request.getLocation());
+				body.append(request.getLocationId());
 				body.append(sep);
 				//Telephone Number
 				body.append("Telephone Number - ");
@@ -64,7 +64,7 @@ public class Message {
 				body.append(sep);
 				//Issue
 				body.append("Issue - ");
-				body.append(request.getIssue());
+				body.append(request.getIssueId());
 				body.append(sep);
 				//Comment
 				body.append("Comment - ");
@@ -96,7 +96,7 @@ public class Message {
 		switch (type) {
 			case TECH:
 				subject.append("Help Request for ");
-				subject.append(request.getIssue());
+				subject.append(request.getIssueId());
 				subject.append(" from ");
 				subject.append(request.getFirstName());
 				subject.append(" ");

@@ -68,6 +68,14 @@ public class EJBHelpRequestService implements HelpRequestService {
 		return results;
 	}
 
+	public LocationDropDownValue getLocationById(String id) {
+		return em.find(LocationDropDownValue.class, id);
+	}
+	
+	public IssueDropDownValue getIssueById(String id) {
+		return em.find(IssueDropDownValue.class, id);
+	}
+
 	// injected resource for database access
 	@PersistenceContext(name = "CHCHelpDeskDB")
 	private EntityManager em;
