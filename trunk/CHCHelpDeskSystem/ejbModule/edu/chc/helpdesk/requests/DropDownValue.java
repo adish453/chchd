@@ -2,7 +2,6 @@ package edu.chc.helpdesk.requests;
 
 import static javax.persistence.DiscriminatorType.STRING;
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
-
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +33,7 @@ import javax.persistence.Table;
 @DiscriminatorColumn(name="LISTNAME",discriminatorType=STRING,length=40)
 @NamedQuery(name="getDropDownValuesForList", query="SELECT v FROM DropDownValue v WHERE v.listName=:listName")
 public abstract class DropDownValue {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ID;
@@ -52,13 +52,13 @@ public abstract class DropDownValue {
 		ID = id;
 	}
 	/**
-	 * @return the list
+	 * @return the list name
 	 */
 	public String getListName() {
 		return listName;
 	}
 	/**
-	 * @param list the list to set
+	 * @param list the list name to set
 	 */
 	public void setListName(String listName) {
 		this.listName = listName;
