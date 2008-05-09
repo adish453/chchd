@@ -4,22 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.component.UISelectItems;
-import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.model.SelectItem;
 
+import edu.chc.helpdesk.requests.DropDownValue;
+import edu.chc.helpdesk.requests.HelpDeskApplicationException;
 import edu.chc.helpdesk.requests.HelpRequest;
 import edu.chc.helpdesk.requests.HelpRequestService;
-import edu.chc.helpdesk.requests.LocationDropDownValue;
 
 public class FrontPageBean {
 	
 	@EJB
-	private HelpRequestService requestService;
-	HtmlSelectOneMenu locationMenu;
+	public HelpRequestService requestService;
 	
-	String firstName, lastName, email, bldg, phoneNumber, problem, roomNo;
-
+	String firstName;
+	String lastName;
+	String email;
+	String phoneNumber;
+	String roomNo;
+	String comments;
+	int problem;
+	int location;
+	
+	List locationMenuItems;
+	List issueMenuItems;
+	
 	public String getfirstName()
 	{
 		return firstName;
@@ -50,14 +58,14 @@ public class FrontPageBean {
 		this.email = email;
 	}
 
-	public String getBldg()
+	public int getLocation()
 	{
-		return bldg;
+		return location;
 	}
 
-	public void setBldg(String bldg)
+	public void setLocation(int location)
 	{
-		this.bldg = bldg;
+		this.location = location;
 	}
 	
 	public String getRoomNo()
@@ -80,16 +88,24 @@ public class FrontPageBean {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getProblem()
+	public int getProblem()
 	{
 		return problem;
 	}
 
-	public void setProblem(String problem)
+	public void setProblem(int problem)
 	{
 		this.problem = problem;
 	}
 	
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
 	public String submit()
 	{
 		HelpRequest request = new HelpRequest();
@@ -97,10 +113,20 @@ public class FrontPageBean {
 		request.setLastName(lastName);
 		request.setEmailAddress(email);
 		request.setPhoneNumber(phoneNumber);
-
+		//request.setLocation(requestService.getLocationById(location));
+		//request.setIssue(requestService.getIssueById(problem));
+		request.setLocationId(location);
+		request.setIssueId(problem);
+		request.setRoomNumber(roomNo);
+		request.setComments(comments);
 		
-		
-		return "success";
+		try {
+			requestService.submit(request);
+			return "success";
+		} 
+		catch(HelpDeskApplicationException hae) {
+			return "fail";
+		}
 	}
 	
 	public String reset()
@@ -108,23 +134,36 @@ public class FrontPageBean {
 		return "reset";
 	}
 	
-	//location drop-down
-	public HtmlSelectOneMenu getLocationMenu() {
+	public List getLocationMenuItems() {
+		if(locationMenuItems ==  null) {
+			locationMenuItems = getSelectItemsForList(requestService.getLocationDropDownList());
+		}
+		return locationMenuItems;
+	}
+	
+	public void setLocationMenuItems(List locationMenuItems)  {
+		this.locationMenuItems = locationMenuItems;
+	}
+	
+	public List getIssueMenuItems() {
+		if(issueMenuItems == null){
+			issueMenuItems = getSelectItemsForList(requestService.getIssueDropDownList());
+		}
+		return issueMenuItems;
+	}
+	
+	public void setIssueMenuItems(List issueMenuItems)  {
+		this.issueMenuItems = issueMenuItems;
+	}
+	
+	private List getSelectItemsForList(List<? extends DropDownValue> valueList) {
 		
-		locationMenu = new HtmlSelectOneMenu();
-
-		final List<LocationDropDownValue> locationList;
-		locationList = requestService.getLocationDropDownList();
+		List selectItems = new ArrayList();
 		
-		final List list = new ArrayList();
-		for(LocationDropDownValue l : locationList) {
-			list.add(new SelectItem(l.getID(), l.getDisplayValue()));
+		for(DropDownValue value : valueList) {
+			selectItems.add(new SelectItem(value.getID(),value.getDisplayValue()));
 		}
 		
-		final UISelectItems items = new UISelectItems();
-		items.setValue(list);
-		
-		locationMenu.getChildren().add(items);
-		return locationMenu;
+		return selectItems;
 	}
 }
