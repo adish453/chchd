@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.chc.helpdesk.requests;
 
 import java.util.List;
@@ -15,6 +12,7 @@ public interface HelpRequestService {
 	public List<LocationDropDownValue> getLocationDropDownList();
 	public List<StatusDropDownValue> getStatusDropDownList();
 	public List<IssueDropDownValue> getIssueDropDownList();
-	public LocationDropDownValue getLocationById(String id);
-	public IssueDropDownValue getIssueById(String id);
+	public LocationDropDownValue getLocationById(int id);
+	public IssueDropDownValue getIssueById(int id);
+	public StatusDropDownValue getStatusById(int id);
 }

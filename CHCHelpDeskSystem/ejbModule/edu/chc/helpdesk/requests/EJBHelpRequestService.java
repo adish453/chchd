@@ -68,12 +68,16 @@ public class EJBHelpRequestService implements HelpRequestService {
 		return results;
 	}
 
-	public LocationDropDownValue getLocationById(String id) {
+	public LocationDropDownValue getLocationById(int id) {
 		return em.find(LocationDropDownValue.class, id);
 	}
 	
-	public IssueDropDownValue getIssueById(String id) {
+	public IssueDropDownValue getIssueById(int id) {
 		return em.find(IssueDropDownValue.class, id);
+	}
+	
+	public StatusDropDownValue getStatusById(int id) {
+		return em.find(StatusDropDownValue.class, id);
 	}
 
 	// injected resource for database access

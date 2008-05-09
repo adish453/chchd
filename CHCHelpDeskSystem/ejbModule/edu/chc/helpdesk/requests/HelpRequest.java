@@ -1,7 +1,16 @@
 package edu.chc.helpdesk.requests;
 
-import javax.persistence.*;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
 
 /** 
@@ -11,33 +20,34 @@ import static javax.persistence.TemporalType.DATE;
  * @desc An entity bean that represents a row in the HelpRequest table.
  */
 
-//TODO Fix problems with JavaDoc generation (embedded HTML causing a problem?)
-//TODO Location should probably be it's own entity so that we can make locations configurable in the program.
-//TODO Add "assigned to" property or better: just point to a Technician record.
-//TODO Should we stop and finalize the DB design or create new entities as needed and build the DB around them?
-//TODO Start addressing all of these To-do's...
-
-//TODO Add Issue field (will be a drop-down in the program)
-//TODO Add Location (will be a drop-down) and RoomNumber fields
-
 @Entity
 @NamedQuery(name="getAllRequests", query="SELECT r FROM HelpRequest r")
 @Table(schema="HelpDeskDB")
 public class HelpRequest {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int requestID;
 	
 	@Temporal(DATE)
 	private Date dateEntered;
 	
 	@ManyToOne
+	@JoinColumn(name="STATUS_ID", insertable=false, updatable=false)
 	private StatusDropDownValue status;
 	@ManyToOne
+	@JoinColumn(name="ISSUE_ID", insertable=false, updatable=false)
 	private IssueDropDownValue issue;
 	@ManyToOne
+	@JoinColumn(name="LOCATION_ID", insertable=false, updatable=false)
 	private LocationDropDownValue location;
+	
+	@Column(name="STATUS_ID")
+	private int statusId;
+	@Column(name="ISSUE_ID")
+	private int issueId;
+	@Column(name="LOCATION_ID")
+	private int locationId;
 	
 	private String firstName;
 	private String lastName;
@@ -46,97 +56,167 @@ public class HelpRequest {
 	private String roomNumber;
 	private String comments;
 	
+	//no-arg constructor
+	public HelpRequest() {}
+	
+	boolean isValid()
+	{
+		// Check phone number length
+		if(this.phoneNumber.length() > 10) {
+			return false;
+		}
+
+		//TODO Add additional validation here if needed...
+		
+		return true;
+	}
+	
 	/**
-	 * @return the auto-generated database ID for the request
+	 * @return the requestID
 	 */
 	public int getRequestID() {
 		return requestID;
 	}
 	/**
-	 * @param requestID the database ID for this request. This field is set automatically when a HelpRequest entity is persisted to the database.
+	 * @param requestID the requestID to set.
+	 * Protected because only JPA should modify this field.
 	 */
 	protected void setRequestID(int requestID) {
 		this.requestID = requestID;
 	}
-	
 	/**
-	 * @return the date this request was entered
-	 */	
+	 * @return the dateEntered
+	 */
 	public Date getDateEntered() {
 		return dateEntered;
 	}
 	/**
-	 * @param dateEntered the date this request was added
+	 * @param dateEntered the dateEntered to set
 	 */
 	public void setDateEntered(Date dateEntered) {
 		this.dateEntered = dateEntered;
 	}
 	/**
-	 * @return the first name of the user who submitted the request
+	 * @return the status
+	 */
+	public StatusDropDownValue getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(StatusDropDownValue status) {
+		this.status = status;
+	}
+	/**
+	 * @return the issue
+	 */
+	public IssueDropDownValue getIssue() {
+		return issue;
+	}
+	/**
+	 * @param issue the issue to set
+	 */
+	public void setIssue(IssueDropDownValue issue) {
+		this.issue = issue;
+	}
+	/**
+	 * @return the location
+	 */
+	public LocationDropDownValue getLocation() {
+		return location;
+	}
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(LocationDropDownValue location) {
+		this.location = location;
+	}
+	/**
+	 * @return the statusId
+	 */
+	public int getStatusId() {
+		return statusId;
+	}
+	/**
+	 * @param statusId the statusId to set
+	 */
+	public void setStatusId(int statusId) {
+		this.statusId = statusId;
+	}
+	/**
+	 * @return the issueId
+	 */
+	public int getIssueId() {
+		return issueId;
+	}
+	/**
+	 * @param issueId the issueId to set
+	 */
+	public void setIssueId(int issueId) {
+		this.issueId = issueId;
+	}
+	/**
+	 * @return the locationId
+	 */
+	public int getLocationId() {
+		return locationId;
+	}
+	/**
+	 * @param locationId the locationId to set
+	 */
+	public void setLocationId(int locationId) {
+		this.locationId = locationId;
+	}
+	/**
+	 * @return the firstName
 	 */
 	public String getFirstName() {
 		return firstName;
 	}
 	/**
-	 * @param firstName the first name of the user who submitted the request
+	 * @param firstName the firstName to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 	/**
-	 * @return the last name of the user who submitted the request
+	 * @return the lastName
 	 */
 	public String getLastName() {
 		return lastName;
 	}
 	/**
-	 * @param lastName the last name of the user who submitted the request
+	 * @param lastName the lastName to set
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 	/**
-	 * @return the e-mail address of the user who submitted the request
+	 * @return the emailAddress
 	 */
 	public String getEmailAddress() {
 		return emailAddress;
 	}
 	/**
-	 * @param emailAddress the e-mail address of the user who submitted the request
+	 * @param emailAddress the emailAddress to set
 	 */
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
 	/**
-	 * @return the phone number of the end-user who submitted the request
+	 * @return the phoneNumber
 	 */
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 	/**
-	 * @param the phone number of the end-user who submitted the request
+	 * @param phoneNumber the phoneNumber to set
 	 */
 	public void setPhoneNumber(String phoneNumber) {
+		//strip formatting characters from phone number
+		phoneNumber = phoneNumber.replaceAll("\\D", "");
 		this.phoneNumber = phoneNumber;
-	}
-
-	/**
-	 * @return additional comments entered by the end-user
-	 */
-	public String getComments() {
-		return comments;
-	}
-	/**
-	 * @param comments additional comments entered by the end-user
-	 */
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-	
-	boolean isValid()
-	{
-		//TODO Implement
-		return true;
 	}
 	/**
 	 * @return the roomNumber
@@ -151,39 +231,15 @@ public class HelpRequest {
 		this.roomNumber = roomNumber;
 	}
 	/**
-	 * @return the issue
+	 * @return the comments
 	 */
-	public IssueDropDownValue getIssueId() {
-		return issue;
+	public String getComments() {
+		return comments;
 	}
 	/**
-	 * @param issue the issue to set
+	 * @param comments the comments to set
 	 */
-	public void setIssueId(IssueDropDownValue issue) {
-		this.issue = issue;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
-	/**
-	 * @return the location
-	 */
-	public LocationDropDownValue getLocationId() {
-		return location;
-	}
-	/**
-	 * @param location the location to set
-	 */
-	public void setLocationId(LocationDropDownValue location) {
-		this.location = location;
-	}
-	/**
-	 * @return the status
-	 */
-	public StatusDropDownValue getStatus() {
-		return status;
-	}
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(StatusDropDownValue status) {
-		this.status = status;
-	}	
 }

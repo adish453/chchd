@@ -4,8 +4,6 @@
 		<class>
 		edu.chc.helpdesk.requests.DropDownValue</class>
 		<class>
-		edu.chc.helpdesk.requests.HelpRequest</class>
-		<class>
 		edu.chc.helpdesk.requests.IssueDropDownValue</class>
 		<class>
 		edu.chc.helpdesk.requests.LocationDropDownValue</class>

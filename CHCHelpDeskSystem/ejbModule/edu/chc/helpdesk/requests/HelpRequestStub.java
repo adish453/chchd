@@ -12,8 +12,6 @@ import java.util.Date;
 
 public class HelpRequestStub extends HelpRequest {
 	
-	
-
 	@Override
 	public String getComments() {
 		return "Fake Comments.";
@@ -35,7 +33,7 @@ public class HelpRequestStub extends HelpRequest {
 	}
 
 	@Override
-	public IssueDropDownValue getIssueId() {
+	public IssueDropDownValue getIssue() {
 		return new IssueDropDownValue();
 	}
 
@@ -45,7 +43,7 @@ public class HelpRequestStub extends HelpRequest {
 	}
 
 	@Override
-	public LocationDropDownValue getLocationId() {
+	public LocationDropDownValue getLocation() {
 		return new LocationDropDownValue();
 	}
 
@@ -94,20 +92,20 @@ public class HelpRequestStub extends HelpRequest {
 		super.setFirstName(firstName);
 	}
 
-	@Override
-	public void setIssueId(IssueDropDownValue issue) {
-		super.setIssueId(issue);
-	}
+//	@Override
+//	public void setIssue(IssueDropDownValue issue) {
+//		super.setIssue(issue);
+//	}
 
 	@Override
 	public void setLastName(String lastName) {
 		super.setLastName(lastName);
 	}
 
-	@Override
-	public void setLocationId(LocationDropDownValue location) {
-		super.setLocationId(location);
-	}
+//	@Override
+//	public void setLocation(LocationDropDownValue location) {
+//		super.setLocation(location);
+//	}
 
 	@Override
 	public void setPhoneNumber(String phoneNumber) {
@@ -125,11 +123,9 @@ public class HelpRequestStub extends HelpRequest {
 		super.setRoomNumber(roomNumber);
 	}
 
-	@Override
-	public void setStatus(StatusDropDownValue status) {
-		super.setStatus(status);
-	}
-
-
-
+//	@Override
+//	public void setStatus(StatusDropDownValue status) {
+//		super.setStatus(status);
+//	}
+	
 }
