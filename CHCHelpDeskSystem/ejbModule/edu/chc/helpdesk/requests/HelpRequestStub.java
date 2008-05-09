@@ -113,7 +113,7 @@ public class HelpRequestStub extends HelpRequest {
 	}
 
 	@Override
-	protected void setRequestID(int requestID) {
+	public void setRequestID(int requestID) {
 		super.setRequestID(requestID);
 	}
 
