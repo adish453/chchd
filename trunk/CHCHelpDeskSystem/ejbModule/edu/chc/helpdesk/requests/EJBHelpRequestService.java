@@ -1,5 +1,6 @@
 package edu.chc.helpdesk.requests;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -23,7 +24,16 @@ public class EJBHelpRequestService implements HelpRequestService {
 			throw new HelpRequestNotValidException();
 		}
 		try {
+			
+			//set the date for this request
+			request.setDateEntered(new Date());
+			//insert the request in the DB
 			em.persist(request);
+			//force JPA to insert the data into the DB right now
+			em.flush();
+			//reload the request from the DB (in order to get the auto-generated ID)
+			em.refresh(request);
+			
 		} catch (PersistenceException pe) {
 			//TODO Use the Logging API
 			throw new HelpRequestSaveException("Request was not submitted due to a database error.");

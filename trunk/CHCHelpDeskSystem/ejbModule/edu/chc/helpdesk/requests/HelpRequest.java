@@ -81,7 +81,7 @@ public class HelpRequest {
 	 * @param requestID the requestID to set.
 	 * Protected because only JPA should modify this field.
 	 */
-	protected void setRequestID(int requestID) {
+	public void setRequestID(int requestID) {
 		this.requestID = requestID;
 	}
 	/**

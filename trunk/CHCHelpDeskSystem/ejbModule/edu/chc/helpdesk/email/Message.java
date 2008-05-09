@@ -12,6 +12,8 @@ import javax.mail.Transport;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.MimeMessage;
 
+import com.sun.enterprise.admin.util.Logger;
+
 import edu.chc.helpdesk.requests.HelpRequest;
 
 //TODO 15-04-08 Should be able to construct it's content based on what type of message it is (Corresponding with the MessageType Enum)  Especially the Subject line.  Because of this, we don't need a public setSubject() method because the subject will be built at run time.
@@ -132,13 +134,21 @@ public class Message {
 				msg.setSubject(getSubject(type));
 				msg.setSentDate(new Date());
 				msg.setText(getBody(type));
-				Transport.send(msg);
+				
+				// since the chc mail server
+				// doesn't work off-campus,
+				// temporarily log the e-mails to the app server log
+				// instead of trying to send them.
+				Logger.log(getBody(type));
+				//Transport.send(msg);
+				
 			} catch (MessagingException mex) {
 				// TODO Properly catch this exception.
 			}
 		}
-
-		throw new MessageNotValidException();
+		else {
+			throw new MessageNotValidException();
+		}
 
 	}
 
