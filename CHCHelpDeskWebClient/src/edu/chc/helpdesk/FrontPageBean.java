@@ -25,8 +25,8 @@ public class FrontPageBean {
 	int problem;
 	int location;
 	
-	List locationMenuItems;
-	List issueMenuItems;
+	List locationSelectItems;
+	List issueSelectItems;
 	
 	public String getfirstName()
 	{
@@ -113,8 +113,6 @@ public class FrontPageBean {
 		request.setLastName(lastName);
 		request.setEmailAddress(email);
 		request.setPhoneNumber(phoneNumber);
-		//request.setLocation(requestService.getLocationById(location));
-		//request.setIssue(requestService.getIssueById(problem));
 		request.setLocationId(location);
 		request.setIssueId(problem);
 		request.setRoomNumber(roomNo);
@@ -134,26 +132,26 @@ public class FrontPageBean {
 		return "reset";
 	}
 	
-	public List getLocationMenuItems() {
-		if(locationMenuItems ==  null) {
-			locationMenuItems = getSelectItemsForList(requestService.getLocationDropDownList());
+	public List getLocationSelectItems() {
+		if(locationSelectItems ==  null) {
+			locationSelectItems = getSelectItemsForList(requestService.getLocationDropDownList());
 		}
-		return locationMenuItems;
+		return locationSelectItems;
 	}
 	
-	public void setLocationMenuItems(List locationMenuItems)  {
-		this.locationMenuItems = locationMenuItems;
+	public void setLocationSelectItems(List locationSelectItems)  {
+		this.locationSelectItems = locationSelectItems;
 	}
 	
-	public List getIssueMenuItems() {
-		if(issueMenuItems == null){
-			issueMenuItems = getSelectItemsForList(requestService.getIssueDropDownList());
+	public List getIssueSelectItems() {
+		if(issueSelectItems == null){
+			issueSelectItems = getSelectItemsForList(requestService.getIssueDropDownList());
 		}
-		return issueMenuItems;
+		return issueSelectItems;
 	}
 	
-	public void setIssueMenuItems(List issueMenuItems)  {
-		this.issueMenuItems = issueMenuItems;
+	public void setIssueSelectItems(List issueSelectItems)  {
+		this.issueSelectItems = issueSelectItems;
 	}
 	
 	private List getSelectItemsForList(List<? extends DropDownValue> valueList) {
