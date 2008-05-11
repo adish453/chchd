@@ -1,6 +1,9 @@
 package edu.chc.helpdesk.requests;
 
+import static javax.persistence.TemporalType.DATE;
+
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import static javax.persistence.TemporalType.DATE;
 
 /** 
  * 
@@ -97,40 +99,22 @@ public class HelpRequest {
 		this.dateEntered = dateEntered;
 	}
 	/**
-	 * @return the status
+	 * @return the status as a DropDownValue object (read-only)
 	 */
 	public StatusDropDownValue getStatus() {
 		return status;
 	}
 	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(StatusDropDownValue status) {
-		this.status = status;
-	}
-	/**
-	 * @return the issue
+	 * @return the issue as a DropDownValue object (read-only)
 	 */
 	public IssueDropDownValue getIssue() {
 		return issue;
 	}
 	/**
-	 * @param issue the issue to set
-	 */
-	public void setIssue(IssueDropDownValue issue) {
-		this.issue = issue;
-	}
-	/**
-	 * @return the location
+	 * @return the location as a DropDownValue object (read-only)
 	 */
 	public LocationDropDownValue getLocation() {
 		return location;
-	}
-	/**
-	 * @param location the location to set
-	 */
-	public void setLocation(LocationDropDownValue location) {
-		this.location = location;
 	}
 	/**
 	 * @return the statusId
@@ -209,6 +193,21 @@ public class HelpRequest {
 	 */
 	public String getPhoneNumber() {
 		return phoneNumber;
+	}
+	/**
+	 * @return the phone number in the format "(###) ###-####"
+	 */
+	public String getPhoneNumberFormatted() {
+		
+		String areaCode, prefix, suffix;
+		String formattedPhone;
+		
+		areaCode = phoneNumber.substring(0,3);
+		prefix = phoneNumber.substring(3,6);
+		suffix = phoneNumber.substring(6,10);
+		
+		formattedPhone = "("+areaCode+") "+prefix+"-"+suffix;
+		return formattedPhone;
 	}
 	/**
 	 * @param phoneNumber the phoneNumber to set

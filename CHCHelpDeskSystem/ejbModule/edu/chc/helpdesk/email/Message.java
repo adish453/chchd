@@ -3,12 +3,12 @@
  */
 package edu.chc.helpdesk.email;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.MimeMessage;
 
@@ -46,30 +46,38 @@ public class Message {
 		String sep = System.getProperty("line.separator");
 		switch (type) {
 			case TECH:
+				
+				String formattedDate;
+				SimpleDateFormat df = new SimpleDateFormat("EEEE MMMM d, yyyy");
+				formattedDate = df.format(request.getDateEntered());
+				
 				//Submission Date
-				body.append("Date of Submission - ");
-				body.append(request.getDateEntered());
+				body.append("Date Submitted: ");
+				body.append(formattedDate);
 				body.append(sep);
 				//Customer Name
-				body.append("Customer Name - ");
+				body.append("Submitted by: ");
 				body.append(request.getLastName());
 				body.append(", ");
 				body.append(request.getFirstName());
 				body.append(sep);
 				//Location
-				body.append("Location - ");
+				body.append("Location: ");
 				body.append(request.getLocation().getDisplayValue());
+				body.append(", Room ");
+				body.append(request.getRoomNumber());
 				body.append(sep);
 				//Telephone Number
-				body.append("Telephone Number - ");
-				body.append(request.getPhoneNumber());
+				body.append("Phone: ");
+				body.append(request.getPhoneNumberFormatted());
 				body.append(sep);
 				//Issue
-				body.append("Issue - ");
+				body.append("Issue: ");
 				body.append(request.getIssue().getDisplayValue());
-				body.append(sep);
+				body.append(sep).append(sep);
 				//Comment
-				body.append("Comment - ");
+				body.append("Additional Comments: ");
+				body.append(sep).append(sep);
 				body.append(request.getComments());
 				return body.toString();
 			case CUSTOMER:
@@ -77,7 +85,7 @@ public class Message {
 				body.append(sep);
 				body.append("Thank you and have a nice day.");
 				body.append(sep);
-				body.append("Case Number - ");
+				body.append("Case Number: ");
 				body.append(request.getRequestID());
 				return body.toString();
 			default:
