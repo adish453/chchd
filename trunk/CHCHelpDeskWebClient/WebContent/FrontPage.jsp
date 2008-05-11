@@ -5,8 +5,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CHC Help Desk Greeting</title>
-
+<link rel="stylesheet" type="text/css" href="main.css">
 <script type="text/javascript">
+
+function mask_phone(input, e) {
+
+	MAX_PHONE_LEN=14;
+
+	//get the key code and ASCII char for the key being pressed
+	key = (e.keyCode) ? e.keyCode : e.which;
+	keyChar = String.fromCharCode(key);
+
+	//allow backspace,tab, and delete
+	if(key==8 || key==9 || key==46) {
+		return true;
+	}
+	else {
+
+		var phone = input.value;
+
+		//ignore non-digit characters
+		if(!/\d/.test(keyChar))
+			return false;
+
+		//ignore key if field is full
+		if(phone.length==MAX_PHONE_LEN)
+			return false;
+
+		if(phone.length==0) phone = "(" + phone;
+		if(phone.length==4) phone = phone + ") ";
+		if(phone.length==9) phone = phone + "-";
+		input.value = phone+keyChar;
+
+		return false;
+	}
+}
 
 function allowReset()  
 {
@@ -74,60 +107,48 @@ function checkEmail(Email)
 </head>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>  
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
-<body bgcolor = "maroon" text = "gray">
+<body>
 <f:view>
 		<h:form id="form1">			
 			<h:graphicImage id="image" alt="griff logo" url="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png"></h:graphicImage><b>
 			<br>
-			<h:outputText value =" Welcome to CHC Help Desk!"></h:outputText></b>
-				<br>
-				<h:outputText value ="Please Enter all required information marked with a *"></h:outputText>
-			<br>
-				* First Name :
-					<h:inputText id = "FirstName" value="#{frontPageBean.firstName}"> </h:inputText>
-			<br>
-					* Last Name :
-					<h:inputText id = "LastName" value="#{frontPageBean.lastName}"> </h:inputText>
-			<br>
-				* Location(building) : 
-					<h:selectOneMenu style="width: auto" id = "location" value="#{frontPageBean.location}">
-						<f:selectItems value="#{frontPageBean.locationMenuItems}"/>
-					</h:selectOneMenu>
-			<br>
-				* Location(Room) :
-					<h:inputText id = "Room" value="#{frontPageBean.roomNo}"> </h:inputText>
-			<br>
-				 * Email 
-					<h:inputText id = "Email" value="#{frontPageBean.email}"> </h:inputText>
-				 eg; (yourname@chc.edu) 
-			<br>
-					* Phone Number 
-						<h:inputText id = "PhoneNumber" value="#{frontPageBean.phoneNumber}"> </h:inputText>
-					 eg; ((xxx) xxx-xxxx)
-			<br>
-					* What is your problem (choose one)
-					<br></br>
-					<h:selectOneMenu id="problemOLD" >
-						<f:selectItem id="email" itemLabel="Email" itemValue="1" />
-						<f:selectItem id="MSOffice" itemLabel="Microsoft Office" itemValue="2" />
-						<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
-						<f:selectItem id="Other" itemLabel="Other (Please Specify)" itemValue="4" />
-					</h:selectOneMenu>
-					
-					<h:selectOneMenu id="problem" value="#{frontPageBean.problem}">
-						<f:selectItems value="#{frontPageBean.issueMenuItems}"/>
-					</h:selectOneMenu>
-			<br>
-			<br>
-					Comments(100 characters or less)
-					<br>
-						<h:inputTextarea style="height: 119px; width: 275px" id = "comments" value="#{frontPageBean.comments}"> 
-						</h:inputTextarea>
-			<br>
-					
-					<h:commandButton id="submit" value="Submit" onclick="return checkForm1()" action="#{frontPageBean.submit}"/>
-					<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="#{frontPageBean.reset}"/>
+			<h:outputText value ="Welcome to CHC Help Desk!" style="font-size:14pt"></h:outputText></b>
+				<br><br>
 				
+		
+		<h:message style="border:1px solid #00000; background-color: #ffff80" for="comments" />
+		
+		<h:panelGrid border="0" columns="1" frame="none">
+		<h:outputText styleClass="help" value="Please fill in the following information."></h:outputText>
+		<h:panelGrid border="0" columns="2" frame="none">
+			<h:outputText value="First Name:"></h:outputText>
+			<h:inputText id="FirstName" value="#{frontPageBean.firstName}"> </h:inputText>
+			<h:outputText value="Last Name:"></h:outputText>
+			<h:inputText id="LastName" value="#{frontPageBean.lastName}">
+			</h:inputText><h:outputText value="Building:"></h:outputText>
+			<h:selectOneMenu style="width: auto" id="location" value="#{frontPageBean.location}">
+						<f:selectItems value="#{frontPageBean.locationSelectItems}" />
+					</h:selectOneMenu><h:outputText value="Room Number:"></h:outputText><h:inputText id="Room" value="#{frontPageBean.roomNo}"> </h:inputText>
+			<h:outputText value="Your e-mail address:"></h:outputText>
+			<h:inputText id = "Email" value="#{frontPageBean.email}"> </h:inputText>
+			<h:outputText value="Phone number:"></h:outputText>
+			<h:inputText id = "PhoneNumber" value="#{frontPageBean.phoneNumber}" onkeypress="return mask_phone(this,event)"> </h:inputText>
+			<h:outputText value="I am having a problem with: "></h:outputText>
+			<h:selectOneMenu id="problem" value="#{frontPageBean.problem}">
+				<f:selectItems value="#{frontPageBean.issueSelectItems}"/>
+			</h:selectOneMenu>		
+		</h:panelGrid>
+		<h:panelGrid border="0" columns="1" frame="none" style="width: 381px">
+			<h:outputText value="Additional comments:"></h:outputText>
+			<h:inputTextarea style="width: 348px;height: 107px" id= "comments" value="#{frontPageBean.comments}">
+					<f:validateLength maximum="100"/>
+			</h:inputTextarea>	
+		</h:panelGrid>
+		</h:panelGrid>
+		
+		<h:commandButton id="submit" value="Submit" onclick="return checkForm1()" action="#{frontPageBean.submit}"/>
+		<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="#{frontPageBean.reset}"/>
+
 		</h:form>	
 </f:view>
 </body>
