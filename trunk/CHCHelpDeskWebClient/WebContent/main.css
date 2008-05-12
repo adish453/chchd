@@ -11,29 +11,22 @@ input,textarea
 	font-family:Verdana;
 	font-size:10pt;
 	color:black;
-	border: 1px solid gray;
 }
 
 table,tr,td,th,tbody
 {
-	background-color: #f0f0f0;
+	background-color: #ffffff;
 	color: maroon;
 }
 
 table
 {
-	margin: 10px;
-}
-
-hr
-{
-	border: 1px solid maroon;
+	margin: 0px;
 }
 
 .help
 {
 	font-family:Verdana;
 	font-size:10pt;
-	color:maroon;
-	font-weight:bold;
+	color:#404040;
 }
