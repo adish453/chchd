@@ -1,6 +1,6 @@
 package edu.chc.helpdesk.admin;
 
-public class BroweRequestBean {
+public class BrowseRequestBean {
 	String firstName, lastName, email, location, phoneNumber, room;
 
 	public String getFirstName() {
