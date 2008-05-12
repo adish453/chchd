@@ -3,8 +3,11 @@ body
 	font-family:Verdana;
 	font-size:10pt;
 	color:maroon;
-	background-color:white;
-	margin:0px;
+	margin-left:80px;
+	margin-right:80px;
+	margin-top:0px;
+	margin-bottom:0px;
+	background-color:#e0e0e0;
 }
 
 input,textarea

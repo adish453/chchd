@@ -110,12 +110,12 @@ function checkEmail(Email)
 <body>
 <f:view>
 	<h:form id="form1">
+	<div style="background-color:white">
 		<div style="background-color:maroon; font-color:white; padding:5px">
 		<h:outputText value ="Chestnut Hill College" style="font-family:Arial;font-size:12pt; color:white"></h:outputText>
 		<br />
 		<h:outputText value ="HelpDesk" style="font-family:Arial;font-size:22pt; font-weight:bold; color:white"></h:outputText>
 		</div>
-		<div style="border-bottom: 1pt solid gray; height:5px; background-color: #e0e0e0"></div>
 		<br />
 		<div style="margin:10px">
 		<h:outputText value ="Help Request Form" style="font-size:18pt"></h:outputText>
@@ -172,9 +172,12 @@ function checkEmail(Email)
 				</td>
 			</tr>
 		</table>
-		<br /><br />
+		<br />
 		<h:commandButton id="submit" value="Submit" onclick="return checkForm1()" action="#{frontPageBean.submit}"/>
 		<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="#{frontPageBean.reset}"/>
+		<br /><br />
+		</div>
+		<div style="font-size:10pt; color:gray; background-color:#e0e0e0;align:right">&#169;2008 Chestnut Hill College</div>
 		</div>
 		</h:form>	
 </f:view>
