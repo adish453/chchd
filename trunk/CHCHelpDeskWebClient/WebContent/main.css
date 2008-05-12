@@ -4,6 +4,7 @@ body
 	font-size:10pt;
 	color:maroon;
 	background-color:white;
+	margin:0px;
 }
 
 input,textarea

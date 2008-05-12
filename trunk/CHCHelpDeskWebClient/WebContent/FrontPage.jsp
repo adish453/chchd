@@ -109,14 +109,19 @@ function checkEmail(Email)
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <body>
 <f:view>
-	<h:form id="form1">			
-		<h:graphicImage id="image" alt="griff logo" url="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png"></h:graphicImage><b>
+	<h:form id="form1">
+		<div style="background-color:maroon; font-color:white; padding:5px">
+		<h:outputText value ="Chestnut Hill College" style="font-family:Arial;font-size:12pt; color:white"></h:outputText>
 		<br />
-		<h:outputText value ="Help Request Form" style="font-size:14pt"></h:outputText></b>
+		<h:outputText value ="HelpDesk" style="font-family:Arial;font-size:22pt; font-weight:bold; color:white"></h:outputText>
+		</div>
+		<div style="border-bottom: 1pt solid gray; height:5px; background-color: #e0e0e0"></div>
+		<br />
+		<div style="margin:10px">
+		<h:outputText value ="Help Request Form" style="font-size:18pt"></h:outputText>
 		<br />
 		<h:message style="border:1px solid #00000; background-color: #ffff80" for="comments" />
 		<br />
-
 		<h:outputText style="font-size:12pt;" value="What do I do?"></h:outputText>
 		<br /><br />
 		<h:outputText styleClass="help" value="Fill out the information below and click Submit to send a request for service to the HelpDesk."></h:outputText>
@@ -170,7 +175,7 @@ function checkEmail(Email)
 		<br /><br />
 		<h:commandButton id="submit" value="Submit" onclick="return checkForm1()" action="#{frontPageBean.submit}"/>
 		<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="#{frontPageBean.reset}"/>
-
+		</div>
 		</h:form>	
 </f:view>
 </body>
