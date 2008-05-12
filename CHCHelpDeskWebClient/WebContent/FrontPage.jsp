@@ -109,43 +109,65 @@ function checkEmail(Email)
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <body>
 <f:view>
-		<h:form id="form1">			
-			<h:graphicImage id="image" alt="griff logo" url="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png"></h:graphicImage><b>
-			<br>
-			<h:outputText value ="Welcome to CHC Help Desk!" style="font-size:14pt"></h:outputText></b>
-				<br><br>
-				
-		
+	<h:form id="form1">			
+		<h:graphicImage id="image" alt="griff logo" url="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png"></h:graphicImage><b>
+		<br />
+		<h:outputText value ="Help Request Form" style="font-size:14pt"></h:outputText></b>
+		<br />
 		<h:message style="border:1px solid #00000; background-color: #ffff80" for="comments" />
-		
-		<h:panelGrid border="0" columns="1" frame="none">
-		<h:outputText styleClass="help" value="Please fill in the following information."></h:outputText>
-		<h:panelGrid border="0" columns="2" frame="none">
-			<h:outputText value="First Name:"></h:outputText>
-			<h:inputText id="FirstName" value="#{frontPageBean.firstName}"> </h:inputText>
-			<h:outputText value="Last Name:"></h:outputText>
-			<h:inputText id="LastName" value="#{frontPageBean.lastName}">
-			</h:inputText><h:outputText value="Building:"></h:outputText>
-			<h:selectOneMenu style="width: auto" id="location" value="#{frontPageBean.location}">
-						<f:selectItems value="#{frontPageBean.locationSelectItems}" />
-					</h:selectOneMenu><h:outputText value="Room Number:"></h:outputText><h:inputText id="Room" value="#{frontPageBean.roomNo}"> </h:inputText>
-			<h:outputText value="Your e-mail address:"></h:outputText>
-			<h:inputText id = "Email" value="#{frontPageBean.email}"> </h:inputText>
-			<h:outputText value="Phone number:"></h:outputText>
-			<h:inputText id = "PhoneNumber" value="#{frontPageBean.phoneNumber}" onkeypress="return mask_phone(this,event)"> </h:inputText>
-			<h:outputText value="I am having a problem with: "></h:outputText>
-			<h:selectOneMenu id="problem" value="#{frontPageBean.problem}">
-				<f:selectItems value="#{frontPageBean.issueSelectItems}"/>
-			</h:selectOneMenu>		
-		</h:panelGrid>
-		<h:panelGrid border="0" columns="1" frame="none" style="width: 381px">
-			<h:outputText value="Additional comments:"></h:outputText>
-			<h:inputTextarea style="width: 348px;height: 107px" id= "comments" value="#{frontPageBean.comments}">
+		<br />
+
+		<h:outputText style="font-size:12pt;" value="What do I do?"></h:outputText>
+		<br /><br />
+		<h:outputText styleClass="help" value="Fill out the information below and click Submit to send a request for service to the HelpDesk."></h:outputText>
+		<br /><br />
+		<table cellspacing="10px">
+			<tr>
+				<td align="right">First name:</td>
+				<td><h:inputText id="FirstName" value="#{frontPageBean.firstName}"> </h:inputText></td>
+			</tr>
+			<tr>
+				<td align="right">Last name:</td>
+				<td><h:inputText id="LastName" value="#{frontPageBean.lastName}"></h:inputText></td>
+			</tr>
+			<tr>
+				<td align="right">Building:</td>
+				<td>			
+				<h:selectOneMenu style="width: auto" id="location" value="#{frontPageBean.location}">
+					<f:selectItems value="#{frontPageBean.locationSelectItems}" />
+				</h:selectOneMenu>
+				</td>
+			</tr>		
+			<tr>
+				<td align="right">Room number:</td>
+				<td><h:inputText id="Room" value="#{frontPageBean.roomNo}"> </h:inputText></td>
+			</tr>		
+			<tr>
+				<td align="right">Your e-mail:<br /><span class="help">(i.e. jdoe@chc.edu)</span></td>
+				<td><h:inputText id = "Email" value="#{frontPageBean.email}"> </h:inputText></td>
+			</tr>	
+			<tr>
+				<td align="right">Phone number:</td>
+				<td><h:inputText id = "PhoneNumber" value="#{frontPageBean.phoneNumber}" onkeypress="return mask_phone(this,event)"> </h:inputText></td>
+			</tr>
+			<tr>
+				<td align="right">Problem:</td>
+				<td>
+				<h:selectOneMenu id="problem" value="#{frontPageBean.problem}">
+					<f:selectItems value="#{frontPageBean.issueSelectItems}"/>
+				</h:selectOneMenu>	
+				</td>
+			</tr>
+			<tr>
+				<td align="right" valign="top">Additional Comments:<br /><span class="help">(100 characters max)</span></td>
+				<td>
+				<h:inputTextarea style="width: 400px;height: 200px" id= "comments" value="#{frontPageBean.comments}">
 					<f:validateLength maximum="100"/>
-			</h:inputTextarea>	
-		</h:panelGrid>
-		</h:panelGrid>
-		
+				</h:inputTextarea>					
+				</td>
+			</tr>
+		</table>
+		<br /><br />
 		<h:commandButton id="submit" value="Submit" onclick="return checkForm1()" action="#{frontPageBean.submit}"/>
 		<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="#{frontPageBean.reset}"/>
 
