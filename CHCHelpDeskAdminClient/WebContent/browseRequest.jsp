@@ -13,49 +13,71 @@ function allowReset()
 		 return window.confirm("Do you really want to clear the data?");
 }
 
+
+
 </script>
 
 </head>
-<body bgcolor = "maroon" text = "gray">
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>  
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
+<body>
 <f:view>
-	<h:form id="form1">			
-			<h:graphicImage id="image" alt="griff logo" url="http://i225.photobucket.com/albums/dd83/w_goldfish/Picture1.png"></h:graphicImage><b>
-			<br>
-			<h:outputText value =" Welcome to CHC Help Desk Search!"></h:outputText></b>
-				<br>
-			<h:outputText value ="Please Enter Your Search Terms in the Fields Below"></h:outputText>
-			<br>
-				First Name :
-					<h:inputText id = "FirstName"> </h:inputText>
-			<br>
-				Last Name :
-					<h:inputText id = "LastName"> </h:inputText>
-			<br>
-				Location(building) : 
-					<h:selectOneMenu style="width: 105px" id = "location"> 
-						<f:selectItem id="FzHall" itemLabel="Fitz Hall" itemValue="1" />
-						<f:selectItem id="StJoes" itemLabel="Saint Joseph's Hall" itemValue="2" />
-						<f:selectItem id="Fr" itemLabel="Fournier" itemValue="3" />
-						<f:selectItem id="Font" itemLabel="Fontbonne" itemValue="4" />
-						<f:selectItem id="Library" itemLabel="Library" itemValue="5" />
-						
-					 </h:selectOneMenu>
-			<br>
-				Location(Room) :
-					<h:inputText id = "Room"> </h:inputText>
-				<br>
-					Problem:
-					
-					<h:selectOneMenu id="problem">
-						<f:selectItem id="email" itemLabel="Email" itemValue="1" />
-						<f:selectItem id="MSOffice" itemLabel="Microsoft Office" itemValue="2" />
-						<f:selectItem id="Internet" itemLabel="Internet" itemValue="3" />
-						<f:selectItem id="Other" itemLabel="Other (Please Specify)" itemValue="4" />
-					</h:selectOneMenu>
-			<br>
-			<h:commandButton id="search" value="Search" action="#{browseResultsBean.search}"> </h:commandButton>
-			<h:commandButton id ="reset" value = "Reset" onclick = "return allowReset()" action = "#{browseResultsBean.reset}"> </h:commandButton>
-	</h:form>	
+	<h:form id="form1">
+	<div style="background-color:white">
+		<div style="background-color:maroon; font-color:white; padding:5px">
+		<h:outputText value ="Chestnut Hill College" style="font-family:Arial;font-size:12pt; color:white"></h:outputText>
+		<br />
+		<h:outputText value ="HelpDesk" style="font-family:Arial;font-size:22pt; font-weight:bold; color:white"></h:outputText>
+		</div>
+		<br />
+		<div style="margin:10px">
+		<h:outputText value ="Help Search Form" style="font-size:18pt"></h:outputText>
+		<br />
+		<h:message style="border:1px solid #00000; background-color: #ffff80" for="comments" />
+		<br />
+		<h:outputText style="font-size:12pt;" value="What do I do?"></h:outputText>
+		<br /><br />
+		<h:outputText styleClass="help" value="Fill out the information below and click Submit to search or modify a HelpDesk request"></h:outputText>
+		<br /><br />
+		<table cellspacing="10px">
+			<tr>
+				<td align="right">First name:</td>
+				<td><h:inputText id="FirstName" value="#{browseResultsBean.firstName}"> </h:inputText></td>
+			</tr>
+			<tr>
+				<td align="right">Last name:</td>
+				<td><h:inputText id="LastName" value="#{browseResultsBean.lastName}"></h:inputText></td>
+			</tr>
+			<tr>
+				<td align="right">Building:</td>
+				<td>			
+				<h:selectOneMenu style="width: auto" id="location" value="#{browseResultsBean.location}">
+					<f:selectItems value="#{browseResultsBean.locationSelectItems}" />
+				</h:selectOneMenu>
+				</td>
+			</tr>		
+			<tr>
+				<td align="right">Room number:</td>
+				<td><h:inputText id="Room" value="#{browseResultsBean.roomNo}"> </h:inputText></td>
+			</tr>		
+			<tr>
+				<td align="right">Problem:</td>
+				<td>
+				<h:selectOneMenu id="problem" value="#{browseResultsBean.problem}">
+					<f:selectItems value="#{browseResultsBean.issueSelectItems}"/>
+				</h:selectOneMenu>	
+				</td>
+			</tr>
+			
+		</table>
+		<br />
+		<h:commandButton id="search" value="Search" action="#{browseResultsBean.search}"/>
+		<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="#{browseResultsBean.reset}"/>
+		<br /><br />
+		</div>
+		<div style="font-size:10pt; color:gray; background-color:#e0e0e0;align:right">&#169;2008 Chestnut Hill College</div>
+		</div>
+		</h:form>	
 </f:view>
 </body>
 </html>
