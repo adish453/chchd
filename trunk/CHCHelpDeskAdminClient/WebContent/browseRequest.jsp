@@ -32,7 +32,7 @@ function allowReset()
 		</div>
 		<br />
 		<div style="margin:10px">
-		<h:outputText value ="Help Search Form" style="font-size:18pt"></h:outputText>
+		<h:outputText value ="Search Help Requests" style="font-size:18pt"></h:outputText>
 		<br />
 		<h:message style="border:1px solid #00000; background-color: #ffff80" for="comments" />
 		<br />
@@ -43,37 +43,37 @@ function allowReset()
 		<table cellspacing="10px">
 			<tr>
 				<td align="right">First name:</td>
-				<td><h:inputText id="FirstName" value="#{browseResultsBean.firstName}"> </h:inputText></td>
+				<td><h:inputText id="FirstName" value="#{browseRequestBean.firstName}"> </h:inputText></td>
 			</tr>
 			<tr>
 				<td align="right">Last name:</td>
-				<td><h:inputText id="LastName" value="#{browseResultsBean.lastName}"></h:inputText></td>
+				<td><h:inputText id="LastName" value="#{browseRequestBean.lastName}"></h:inputText></td>
 			</tr>
 			<tr>
 				<td align="right">Building:</td>
 				<td>			
-				<h:selectOneMenu style="width: auto" id="location" value="#{browseResultsBean.location}">
-					<f:selectItems value="#{browseResultsBean.locationSelectItems}" />
+				<h:selectOneMenu style="width: auto" id="location" value="#{browseRequestBean.location}">
+					<f:selectItems value="#{browseRequestBean.locationSelectItems}" />
 				</h:selectOneMenu>
 				</td>
 			</tr>		
 			<tr>
 				<td align="right">Room number:</td>
-				<td><h:inputText id="Room" value="#{browseResultsBean.roomNo}"> </h:inputText></td>
+				<td><h:inputText id="Room" value="#{browseRequestBean.roomNo}"> </h:inputText></td>
 			</tr>		
 			<tr>
 				<td align="right">Problem:</td>
 				<td>
-				<h:selectOneMenu id="problem" value="#{browseResultsBean.problem}">
-					<f:selectItems value="#{browseResultsBean.issueSelectItems}"/>
+				<h:selectOneMenu id="problem" value="#{browseRequestBean.problem}">
+					<f:selectItems value="#{browseRequestBean.issueSelectItems}"/>
 				</h:selectOneMenu>	
 				</td>
 			</tr>
 			
 		</table>
 		<br />
-		<h:commandButton id="search" value="Search" action="#{browseResultsBean.search}"/>
-		<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="#{browseResultsBean.reset}"/>
+		<h:commandButton id="search" value="Search" action="#{browseRequestBean.search}"/>
+		<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="#{browseRequestBean.reset}"/>
 		<br /><br />
 		</div>
 		<div style="font-size:10pt; color:gray; background-color:#e0e0e0;align:right">&#169;2008 Chestnut Hill College</div>

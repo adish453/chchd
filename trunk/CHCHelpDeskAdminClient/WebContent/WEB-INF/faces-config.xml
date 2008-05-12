@@ -6,10 +6,10 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
     version="1.2">
     	<managed-bean>
-		<managed-bean-name>
-		browseResultsBean</managed-bean-name>
-		<managed-bean-class>
-		edu.chc.helpdesk.admin.BrowseResultsBean</managed-bean-class>
+    		<managed-bean-name>
+    		browseRequestBean</managed-bean-name>
+    		<managed-bean-class>
+    		edu.chc.helpdesk.admin.BrowseRequestBean</managed-bean-class>
 		<managed-bean-scope>
 		request</managed-bean-scope>
 	</managed-bean>
