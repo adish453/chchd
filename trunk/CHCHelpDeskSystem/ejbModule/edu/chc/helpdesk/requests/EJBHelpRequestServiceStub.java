@@ -38,4 +38,9 @@ public class EJBHelpRequestServiceStub implements HelpRequestService {
 		return null;
 	}
 
+	public Criteria getCriteriaObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

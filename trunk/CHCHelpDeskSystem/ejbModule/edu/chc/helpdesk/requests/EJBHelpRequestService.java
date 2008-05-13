@@ -94,4 +94,10 @@ public class EJBHelpRequestService implements HelpRequestService {
 	@PersistenceContext(name = "CHCHelpDeskDB")
 	private EntityManager em;
 
+	// return a new Criteria object that can be used
+	// to query the database for help requests
+	public Criteria getCriteriaObject() {
+		return new Criteria(HelpRequest.class, em);
+	}
+
 }
