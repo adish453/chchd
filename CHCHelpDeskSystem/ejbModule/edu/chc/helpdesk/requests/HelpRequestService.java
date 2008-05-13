@@ -15,4 +15,5 @@ public interface HelpRequestService {
 	public LocationDropDownValue getLocationById(int id);
 	public IssueDropDownValue getIssueById(int id);
 	public StatusDropDownValue getStatusById(int id);
+	public Criteria getCriteriaObject();
 }

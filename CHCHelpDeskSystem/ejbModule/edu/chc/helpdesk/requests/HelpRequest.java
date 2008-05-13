@@ -2,10 +2,12 @@ package edu.chc.helpdesk.requests;
 
 import static javax.persistence.TemporalType.DATE;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,13 +36,15 @@ public class HelpRequest {
 	@Temporal(DATE)
 	private Date dateEntered;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="STATUS_ID", insertable=false, updatable=false)
 	private StatusDropDownValue status;
-	@ManyToOne
+	
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="ISSUE_ID", insertable=false, updatable=false)
 	private IssueDropDownValue issue;
-	@ManyToOne
+	
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="LOCATION_ID", insertable=false, updatable=false)
 	private LocationDropDownValue location;
 	
@@ -240,5 +244,14 @@ public class HelpRequest {
 	 */
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+	
+	public String getFullName() {
+		return firstName+" "+lastName;
+	}
+	
+	public String getShortDate() {
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		return formatter.format(dateEntered);
 	}
 }
