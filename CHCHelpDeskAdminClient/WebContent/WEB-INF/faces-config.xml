@@ -15,11 +15,11 @@
 	</managed-bean>
 	<navigation-rule>
 		<display-name>
-		browseResults</display-name>
+		browseRequest</display-name>
 		<from-view-id>
-		/browseResults.jsp</from-view-id>
+		/browseRequest.jsp</from-view-id>
 		<navigation-case>
-		<from-outcome> success </from-outcome>
+		<from-outcome> reset </from-outcome> 
 			<to-view-id>
 			/browseRequest.jsp</to-view-id>
 		</navigation-case>
@@ -30,18 +30,8 @@
 		<from-view-id>
 		/browseRequest.jsp</from-view-id>
 		<navigation-case>
-		<from-outcome> success </from-outcome>
-			<to-view-id>
-			/browseResults.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>
-		browseRequest</display-name>
-		<from-view-id>
-		/browseRequest.jsp</from-view-id>
-		<navigation-case>
-		<from-outcome> reset </from-outcome> 
+			<from-outcome>
+			success</from-outcome>
 			<to-view-id>
 			/browseRequest.jsp</to-view-id>
 		</navigation-case>

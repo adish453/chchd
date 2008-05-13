@@ -7,6 +7,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Browse Request Page</title>
 <link rel="stylesheet" type="text/css" href="main.css">
+<style type="text/css">
+
+	.evenRow 
+	{ 
+		background-color:white; 
+	}
+	
+	.oddRow  
+	{ 
+		background-color:#e0e0e0; 
+	}
+	
+</style>
 <script type="text/javascript">
 
 function allowReset()  
@@ -75,6 +88,52 @@ function allowReset()
 		<h:commandButton id="search" value="Search" action="#{browseRequestBean.search}"/>
 		<h:commandButton id="reset" value="Reset" onclick = "return allowReset()"action="#{browseRequestBean.reset}"/>
 		<br /><br />
+		<h:outputText style="font-size:14pt" value="#{browseRequestBean.resultCount} matches"></h:outputText>
+		<br /><br />
+		<h:dataTable style="width:100%" value="#{browseRequestBean.searchResults}" var="result" rowClasses="evenRow, oddRow">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Request ID"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{result.requestID}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Date Added"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{result.shortDate}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Status"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{result.status.displayValue}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Submitted By"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{result.fullName}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Location"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{result.location.displayValue}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Room Nbr"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{result.roomNumber}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Problem"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{result.issue.displayValue}"></h:outputText>
+			</h:column>
+		</h:dataTable>
 		</div>
 		<div style="font-size:10pt; color:gray; background-color:#e0e0e0;align:right">&#169;2008 Chestnut Hill College</div>
 		</div>

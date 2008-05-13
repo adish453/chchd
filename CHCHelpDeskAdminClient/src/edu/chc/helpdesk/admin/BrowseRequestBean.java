@@ -6,10 +6,17 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.model.SelectItem;
 
+import com.sun.enterprise.admin.util.Logger;
+
+import edu.chc.helpdesk.requests.Criteria;
 import edu.chc.helpdesk.requests.DropDownValue;
+import edu.chc.helpdesk.requests.HelpRequest;
 import edu.chc.helpdesk.requests.HelpRequestService;
+import edu.chc.helpdesk.utils.Expression;
 
 public class BrowseRequestBean {
+	
+	private final int LIST_NONE = 0;
 	
 	@EJB
 	protected HelpRequestService requestService;
@@ -23,6 +30,9 @@ public class BrowseRequestBean {
 	
 	private List locationSelectItems;
 	private List issueSelectItems;
+	
+	//search results are stored here
+	private List<HelpRequest> searchResults;
 	
 	/**
 	 * @return the firstName
@@ -96,6 +106,24 @@ public class BrowseRequestBean {
 	
 	public String search()
 	{
+		// this code probably should go in the business layer,
+		// but this was quicker to implement
+		Criteria c = requestService.getCriteriaObject();
+		
+		if(!isNullOrEmpty(firstName))
+			c.add(Expression.like("firstName",firstName));
+		if(!isNullOrEmpty(lastName))
+			c.add(Expression.like("lastName", lastName));
+		if(!isNullOrEmpty(roomNo))
+			c.add(Expression.like("roomNumber", roomNo));
+		if(location != LIST_NONE)
+			c.add(Expression.equalTo("locationId", location));
+		if(problem != LIST_NONE)
+			c.add(Expression.equalTo("issueId", problem));
+
+		Logger.log(c.getQueryString());
+		searchResults = (List<HelpRequest>) c.list();
+		
 		return "success";
 	}
 	
@@ -129,10 +157,38 @@ public class BrowseRequestBean {
 		
 		List selectItems = new ArrayList();
 		
+		//(none)
+		selectItems.add(new SelectItem(LIST_NONE,""));
+		
 		for(DropDownValue value : valueList) {
 			selectItems.add(new SelectItem(value.getID(),value.getDisplayValue()));
 		}
 		
 		return selectItems;
+	}
+
+	/**
+	 * @return the searchResults
+	 */
+	public List<HelpRequest> getSearchResults() {
+		return searchResults;
+	}
+
+	/**
+	 * @param searchResults the searchResults to set
+	 */
+	public void setSearchResults(List<HelpRequest> searchResults) {
+		this.searchResults = searchResults;
+	}
+	
+	public int getResultCount() {
+		if(searchResults != null)
+			return searchResults.size();
+		else
+			return 0;
+	}
+
+	private boolean isNullOrEmpty(String s) { 
+		return (s==null || s==""); 
 	}
 }

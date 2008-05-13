@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12094801640780" configfile="/CHCHelpDeskAdminClient/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="browseRequest" x="372" y="180" id="pf12094807542341" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf12094807546092 pf12094807546093" inlinks="pf12094807546094 pf12094807546093" path="/browseRequest.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="browseResults" x="62" y="180" id="pf12094807546095" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf12094807546094" inlinks="pf12094807546092" path="/browseResults.jsp"/>
-  <links id="pf12094807546094" target="pf12094807542341" source="pf12094807546095" outcome="success"/>
-  <links id="pf12094807546092" target="pf12094807546095" source="pf12094807542341" outcome="success"/>
+  <nodes xsi:type="pageflow:PFPage" name="browseRequest" x="372" y="180" id="pf12094807542341" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf12094807546092 pf12094807546093" inlinks="pf12094807546093 pf12094807546092" path="/browseRequest.jsp"/>
+  <links id="pf12094807546092" target="pf12094807542341" source="pf12094807542341" outcome="success"/>
   <links id="pf12094807546093" target="pf12094807542341" source="pf12094807542341" outcome="reset"/>
 </pageflow:Pageflow>
