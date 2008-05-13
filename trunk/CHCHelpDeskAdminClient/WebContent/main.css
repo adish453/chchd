@@ -17,15 +17,18 @@ input,textarea
 	color:black;
 }
 
-table,tr,td,th,tbody
+th
 {
-	background-color: #ffffff;
-	color: maroon;
+	align:left;
+	color:white;
+	background-color:maroon;	
 }
 
 table
 {
 	margin: 0px;
+	cell-spacing:0px;
+	
 }
 
 .help
