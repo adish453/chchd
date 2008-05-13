@@ -3,6 +3,7 @@
 	<name>CHCHelpDeskAdminClient</name>
 	<comment></comment>
 	<projects>
+		<project>CHCHelpDeskSystem</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
