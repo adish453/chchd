@@ -40,7 +40,7 @@ public class Message {
 		this.request = request;
 	}
 
-	public String getBody(MessageType type) throws MessageNotValidException {	
+	private String getBody(MessageType type) throws MessageNotValidException {	
 		//TODO Implement Customer and Tech options
 		StringBuilder body = new StringBuilder();
 		String sep = System.getProperty("line.separator");
@@ -93,15 +93,15 @@ public class Message {
 		}
 	}
 
-	public String getFrom() {
+	private String getFrom() {
 		return this.from;
 	}
 
-	public String getHost() {
+	private String getHost() {
 		return this.host;
 	}
 
-	public String getSubject(MessageType type) throws MessageNotValidException {
+	private String getSubject(MessageType type) throws MessageNotValidException {
 		StringBuilder subject = new StringBuilder();
 		switch (type) {
 			case TECH:
@@ -121,7 +121,7 @@ public class Message {
 		throw new MessageNotValidException();
 	}
 
-	public String getTo(MessageType type) throws MessageNotValidException {
+	private String getTo(MessageType type) throws MessageNotValidException {
 		switch (type) {
 			case TECH:
 				return "helpdesk@chc.edu";
@@ -160,6 +160,7 @@ public class Message {
 
 	}
 
+	//TODO Make this more robust
 	private boolean isValid(MessageType type) {
 		try {
 	        return !(this.props == null && this.host == null && this.from == null

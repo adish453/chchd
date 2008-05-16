@@ -25,10 +25,13 @@ import javax.persistence.Table;
  *  has its own entity that derives from
  *  this class, even though they all use
  *  the same table.
+ *  
+ *  @deprecated Switching to direct JDBC calls via utils.DropDownListService
  */
 
+@Deprecated
 @Entity
-@Table(schema="HelpDeskDB")
+@Table(schema="HelpDeskApp")
 @Inheritance(strategy=SINGLE_TABLE)
 @DiscriminatorColumn(name="LISTNAME",discriminatorType=STRING,length=40)
 @NamedQuery(name="getDropDownValuesForList", query="SELECT v FROM DropDownValue v WHERE v.listName=:listName")
