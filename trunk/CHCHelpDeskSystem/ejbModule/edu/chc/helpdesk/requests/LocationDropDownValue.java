@@ -4,8 +4,17 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author mgspross
+ * 
+ *  @deprecated Switching to direct JDBC calls via utils.DropDownListService
+ *
+ */
+
+@Deprecated
 @Entity
-@Table(schema="HelpDeskDB",name="DROPDOWNVALUE")
+@Table(schema="HelpDeskApp",name="DROPDOWNVALUE")
 @DiscriminatorValue("LOCATION")
 public class LocationDropDownValue extends DropDownValue {
 	/* This class is a placeholder.
