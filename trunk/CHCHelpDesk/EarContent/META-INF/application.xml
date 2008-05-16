@@ -6,7 +6,7 @@
   <module>
     <web>
       <web-uri>CHCHelpDeskWebClient.war</web-uri>
-      <context-root>HomePage</context-root>
+      <context-root>CHCHelpDesk</context-root>
     </web>
   </module>
   <module>
