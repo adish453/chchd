@@ -21,6 +21,10 @@ import edu.chc.helpdesk.requests.HelpRequest;
 /**
  * @author tim
  * 
+ * Message is used to send e-mails.  It generates them 
+ * dynamically by using data out of the HelpRequest object passed to it 
+ * in its constructor.
+ * 
  */
 public class Message {
 	
@@ -40,8 +44,13 @@ public class Message {
 		this.request = request;
 	}
 
+	/**
+	 * Dynamically generates the body of a HelpRequest confirmation e-mail.
+	 * @param type The type of message this body is for.
+	 * @return The body of this message.
+	 * @throws MessageNotValidException If the type passed in is an unsupported type.
+	 */
 	private String getBody(MessageType type) throws MessageNotValidException {	
-		//TODO Implement Customer and Tech options
 		StringBuilder body = new StringBuilder();
 		String sep = System.getProperty("line.separator");
 		switch (type) {
@@ -93,14 +102,29 @@ public class Message {
 		}
 	}
 
+	/**
+	 * Returns the from address.
+	 * @return The from address.
+	 */
 	private String getFrom() {
 		return this.from;
 	}
 
+	/**
+	 * Returns the SMTP host being used by this message.
+	 * @return The SMTP host.
+	 */
 	private String getHost() {
 		return this.host;
 	}
 
+	/**
+	 * Dynamically generates the Subject line based on the type of message being 
+	 * generated.
+	 * @param type The type of message being sent.
+	 * @return The subject line.
+	 * @throws MessageNotValidException If the type is an unsupported type.
+	 */
 	private String getSubject(MessageType type) throws MessageNotValidException {
 		StringBuilder subject = new StringBuilder();
 		switch (type) {
@@ -121,6 +145,13 @@ public class Message {
 		throw new MessageNotValidException();
 	}
 
+	/**
+	 * Dynamically generates the To Recipient based on the the type of 
+	 * Message being generated.
+	 * @param type The Message Type.
+	 * @return The To Field.
+	 * @throws MessageNotValidException If the type of Message is unsupported.
+	 */
 	private String getTo(MessageType type) throws MessageNotValidException {
 		switch (type) {
 			case TECH:
@@ -131,6 +162,12 @@ public class Message {
 		throw new MessageNotValidException();
 	}
 
+	/**
+	 * Takes care of dynamically generating the e-mail and sending it out 
+	 * using the SMTP host.  Validates the message content.
+	 * @param type The type of message to send.
+	 * @throws MessageNotValidException If the message is not valid 
+	 */
 	public void send(MessageType type) throws MessageNotValidException {
 
 		if (isValid(type)) {
@@ -161,6 +198,9 @@ public class Message {
 	}
 
 	//TODO Make this more robust
+	/**
+	 * Validates the Message generated for a given type.
+	 */
 	private boolean isValid(MessageType type) {
 		try {
 	        return !(this.props == null && this.host == null && this.from == null
