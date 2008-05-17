@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
  * 
@@ -31,7 +30,6 @@ import javax.persistence.Table;
 
 @Deprecated
 @Entity
-@Table(schema="HelpDeskApp")
 @Inheritance(strategy=SINGLE_TABLE)
 @DiscriminatorColumn(name="LISTNAME",discriminatorType=STRING,length=40)
 @NamedQuery(name="getDropDownValuesForList", query="SELECT v FROM DropDownValue v WHERE v.listName=:listName")

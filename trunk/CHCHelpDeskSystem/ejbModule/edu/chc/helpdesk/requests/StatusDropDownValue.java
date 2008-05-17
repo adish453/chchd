@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Deprecated
 @Entity
-@Table(schema="HelpDeskApp",name="DROPDOWNVALUE")
+@Table(name="DROPDOWNVALUE")
 @DiscriminatorValue("STATUS")
 public class StatusDropDownValue extends DropDownValue {
 	/* This class is a placeholder.

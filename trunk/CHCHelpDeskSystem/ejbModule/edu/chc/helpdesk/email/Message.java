@@ -9,6 +9,7 @@ import java.util.Properties;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.MimeMessage;
 
@@ -185,7 +186,7 @@ public class Message {
 				// temporarily log the e-mails to the app server log
 				// instead of trying to send them.
 				Logger.log(getBody(type));
-				//Transport.send(msg);
+				Transport.send(msg);
 				
 			} catch (MessagingException mex) {
 				// TODO Properly catch this exception.

@@ -26,7 +26,6 @@ import javax.persistence.Temporal;
 
 @Entity
 @NamedQuery(name="getAllRequests", query="SELECT r FROM HelpRequest r")
-@Table(schema="HelpDeskDB")
 public class HelpRequest {
 
 	@Id
