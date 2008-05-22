@@ -6,13 +6,13 @@
   <module>
     <web>
       <web-uri>CHCHelpDeskWebClient.war</web-uri>
-      <context-root>CHCHelpDesk</context-root>
+      <context-root>HelpDesk</context-root>
     </web>
   </module>
   <module>
     <web>
       <web-uri>CHCHelpDeskAdminClient.war</web-uri>
-      <context-root>CHCHelpDeskAdminClient</context-root>
+      <context-root>HelpDeskAdminClient</context-root>
     </web>
   </module>
 </application>
