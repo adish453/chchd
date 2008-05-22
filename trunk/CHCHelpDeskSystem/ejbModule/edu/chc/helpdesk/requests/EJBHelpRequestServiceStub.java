@@ -8,17 +8,17 @@ public class EJBHelpRequestServiceStub implements HelpRequestService {
 		// TODO Auto-generated method stub
 	}
 
-	public List<IssueDropDownValue> getIssueDropDownList() {
+	public List<DropDownValue> getIssueDropDownList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<LocationDropDownValue> getLocationDropDownList() {
+	public List<DropDownValue> getLocationDropDownList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<StatusDropDownValue> getStatusDropDownList() {
+	public List<DropDownValue> getStatusDropDownList() {
 		// TODO Auto-generated method stub
 		return null;
 	}

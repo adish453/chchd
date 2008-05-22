@@ -54,24 +54,24 @@ public class EJBHelpRequestService implements HelpRequestService {
 
 	}
 	
-	public List<LocationDropDownValue> getLocationDropDownList() {
-		List<LocationDropDownValue> results =
+	public List<DropDownValue> getLocationDropDownList() {
+		List<DropDownValue> results =
 			em.createNamedQuery("getDropDownValuesForList")
 			.setParameter("listName", "LOCATION")
 			.getResultList();
 		return results;
 	}
 	
-	public List<StatusDropDownValue> getStatusDropDownList() {
-		List<StatusDropDownValue> results =
+	public List<DropDownValue> getStatusDropDownList() {
+		List<DropDownValue> results =
 			em.createNamedQuery("getDropDownValuesForList")
 			.setParameter("listName", "STATUS")
 			.getResultList();
 		return results;
 	}
 	
-	public List<IssueDropDownValue> getIssueDropDownList() {
-		List<IssueDropDownValue> results =
+	public List<DropDownValue> getIssueDropDownList() {
+		List<DropDownValue> results =
 			em.createNamedQuery("getDropDownValuesForList")
 			.setParameter("listName", "ISSUE")
 			.getResultList();
