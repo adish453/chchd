@@ -1,1 +1,1 @@
-<jsp:forward page="/CHCHelpDeskAdminClient/browseRequest.jsp"/>
+<jsp:forward page="/HelpDeskAdminClient/browseRequest.jsp"/>
