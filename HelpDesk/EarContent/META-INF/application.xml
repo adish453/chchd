@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:application="http://java.sun.com/xml/ns/javaee/application_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd" id="Application_ID" version="5">
   <module>
-    <ejb>CHCHelpDeskSystem.jar</ejb>
+    <ejb>HelpDeskSystem.jar</ejb>
   </module>
   <module>
     <web>
-      <web-uri>CHCHelpDeskWebClient.war</web-uri>
-      <context-root>HelpDesk</context-root>
+      <web-uri>HelpDeskWebClient.war</web-uri>
+      <context-root>HomePage</context-root>
     </web>
   </module>
   <module>
     <web>
-      <web-uri>CHCHelpDeskAdminClient.war</web-uri>
-      <context-root>HelpDeskAdminClient</context-root>
+      <web-uri>HelpDeskAdminClient.war</web-uri>
+      <context-root>HelpDeskAdmin</context-root>
     </web>
   </module>
 </application>

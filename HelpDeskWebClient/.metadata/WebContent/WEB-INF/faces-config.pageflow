@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12068596515000" configfile="/CHCHelpDeskWebClient/WebContent/WEB-INF/faces-config.xml">
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12068596515000" configfile="/HelpDeskWebClient/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="FrontPage" x="360" y="192" id="pf12070264138280" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf12086526742810 pf12086538192813" inlinks="pf12086534370312 pf12086538192813" path="/FrontPage.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="confirmation" x="120" y="192" id="pf12086526742811" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf12086534370312" inlinks="pf12086526742810" path="/confirmation.jsp"/>
   <links id="pf12086526742810" target="pf12086526742811" source="pf12070264138280"/>

@@ -3,9 +3,9 @@
 	<name>HelpDesk</name>
 	<comment></comment>
 	<projects>
-		<project>CHCHelpDeskAdminClient</project>
-		<project>CHCHelpDeskSystem</project>
-		<project>CHCHelpDeskWebClient</project>
+		<project>HelpDeskSystem</project>
+		<project>HelpDeskWebClient</project>
+		<project>HelpDeskAdminClient</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
