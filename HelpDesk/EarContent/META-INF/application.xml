@@ -6,7 +6,7 @@
   <module>
     <web>
       <web-uri>HelpDeskWebClient.war</web-uri>
-      <context-root>HomePage</context-root>
+      <context-root>HelpDesk</context-root>
     </web>
   </module>
   <module>
