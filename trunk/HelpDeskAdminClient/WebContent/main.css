@@ -1,39 +1,33 @@
-body 
-{
-	font-family:Verdana;
-	font-size:10pt;
-	color:maroon;
-	margin-left:80px;
-	margin-right:80px;
-	margin-top:0px;
-	margin-bottom:0px;
-	background-color:#e0e0e0;
+body {
+	font-family: Verdana;
+	font-size: 10pt;
+	color: maroon;
+	margin-left: 80px;
+	margin-right: 80px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	background-color: #e0e0e0;
 }
 
-input,textarea
-{
-	font-family:Verdana;
-	font-size:10pt;
-	color:black;
+input,textarea {
+	font-family: Verdana;
+	font-size: 10pt;
+	color: black;
 }
 
-th
-{
-	align:left;
-	color:white;
-	background-color:maroon;	
+th {
+	align: left;
+	color: white;
+	background-color: maroon;
 }
 
-table
-{
+table {
 	margin: 0px;
-	cell-spacing:0px;
-	
+	cell-spacing: 0px;
 }
 
-.help
-{
-	font-family:Verdana;
-	font-size:10pt;
-	color:#404040;
+.help {
+	font-family: Verdana;
+	font-size: 10pt;
+	color: #404040;
 }
