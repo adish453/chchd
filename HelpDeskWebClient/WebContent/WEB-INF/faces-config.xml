@@ -1,57 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<faces-config
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
-    version="1.2">
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+	version="1.2">
 	<managed-bean>
-		<managed-bean-name>
-		frontPageBean</managed-bean-name>
+		<managed-bean-name>frontPageBean</managed-bean-name>
 		<managed-bean-class>
-		edu.chc.helpdesk.FrontPageBean</managed-bean-class>
-		<managed-bean-scope>
-		request</managed-bean-scope>
+			edu.chc.helpdesk.FrontPageBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>
-		browseRequestbean</managed-bean-name>
-		<managed-bean-class>
-		browseRequestbean</managed-bean-class>
-		<managed-bean-scope>
-		request</managed-bean-scope>
+		<managed-bean-name>browseRequestbean</managed-bean-name>
+		<managed-bean-class>browseRequestbean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
-		<display-name>
-		FrontPage</display-name>
-		<from-view-id>
-		/FrontPage.jsp</from-view-id>
+		<display-name>FrontPage</display-name>
+		<from-view-id>/FrontPage.jsp</from-view-id>
 		<navigation-case>
-		<from-outcome> success </from-outcome>
-			<to-view-id>
-			/confirmation.jsp</to-view-id>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/confirmation.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>
-		confirmation</display-name>
-		<from-view-id>
-		/confirmation.jsp</from-view-id>
+		<display-name>confirmation</display-name>
+		<from-view-id>/confirmation.jsp</from-view-id>
 		<navigation-case>
-		<from-outcome> success </from-outcome>
-			<to-view-id>
-			/FrontPage.jsp</to-view-id>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/FrontPage.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>
-		FrontPage</display-name>
-		<from-view-id>
-		/FrontPage.jsp</from-view-id>
+		<display-name>FrontPage</display-name>
+		<from-view-id>/FrontPage.jsp</from-view-id>
 		<navigation-case>
-		<from-outcome>reset</from-outcome>
-			<to-view-id>
-			/FrontPage.jsp</to-view-id>
+			<from-outcome>reset</from-outcome>
+			<to-view-id>/FrontPage.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
