@@ -18,8 +18,8 @@ import edu.chc.helpdesk.requests.DropDownValue;
 
 public class DropDownListService {
     
-    public List<DropDownValue> getIssueDropDownList() {
-        List<DropDownValue> issueList = new ArrayList<DropDownValue>();
+    public List<String> getIssueDropDownList() {
+        List<String> issueList = new ArrayList<String>();
         // TODO utilize JNDI available HelpDeskDS
         String driver = "org.apache.derby.jdbc.ClientDriver";
         String dbName = "HelpDeskDB";
@@ -34,6 +34,10 @@ public class DropDownListService {
             // select DISPLAYVALUE from DROPDOWNVALUE where LISTNAME is ISSUE;
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = stmt.executeQuery("select DISPLAYVALUE from DROPDOWNVALUE where LISTNAME like 'ISSUE'");
+            rs.beforeFirst();
+            while (rs.next()) {
+                issueList.add(rs.getString("DISPLAYVALUE"));
+            }
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
