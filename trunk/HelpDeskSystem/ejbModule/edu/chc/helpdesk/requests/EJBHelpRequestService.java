@@ -70,6 +70,7 @@ public class EJBHelpRequestService implements HelpRequestService {
 		return results;
 	}
 	
+	@Deprecated
 	public List<DropDownValue> getIssueDropDownList() {
 		List<DropDownValue> results =
 			em.createNamedQuery("getDropDownValuesForList")
@@ -82,6 +83,7 @@ public class EJBHelpRequestService implements HelpRequestService {
 		return em.find(LocationDropDownValue.class, id);
 	}
 	
+	@Deprecated
 	public IssueDropDownValue getIssueById(int id) {
 		return em.find(IssueDropDownValue.class, id);
 	}

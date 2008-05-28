@@ -17,27 +17,26 @@ import edu.chc.helpdesk.requests.DropDownValue;
  */
 
 public class DropDownListService {
+        
+    // TODO utilize JNDI available HelpDeskDS
+    String driver = "org.apache.derby.jdbc.ClientDriver";
+    String dbName = "HelpDeskDB";
+    String connectionURL = "jdbc:derby://localhost:1527/" + 
+        dbName + ";user=HelpDeskApp;password=HelpDeskApp;create=true";
     
     public List<String> getIssueDropDownList() {
         List<String> issueList = new ArrayList<String>();
-        // TODO utilize JNDI available HelpDeskDS
-        String driver = "org.apache.derby.jdbc.ClientDriver";
-        String dbName = "HelpDeskDB";
-        String connectionURL = "jdbc:derby://localhost:1527/" + 
-            dbName + ";user=HelpDeskApp;password=HelpDeskApp;create=true";
-        
         try {
             Class.forName(driver);
             Connection conn = DriverManager.getConnection(connectionURL);
-            // TODO populate issueList with the result set of the following SQL
-            // statement
-            // select DISPLAYVALUE from DROPDOWNVALUE where LISTNAME is ISSUE;
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs = stmt.executeQuery("SELECT DisplayValue FROM DropDownValue WHERE ListName LIKE 'ISSUE'");
+            String query = "SELECT DisplayValue FROM DropDownValue WHERE ListName='ISSUE'";
+            ResultSet rs = stmt.executeQuery(query);
             rs.beforeFirst();
             while (rs.next()) {
                 issueList.add(rs.getString("DisplayValue"));
             }
+            rs.close();
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -46,6 +45,31 @@ public class DropDownListService {
             e.printStackTrace();
         }
         return issueList;
+    }
+
+    public String getIssueByID(int issueID) {
+        String issue = "";
+        try {
+            Class.forName(driver);
+            Connection conn = DriverManager.getConnection(connectionURL);
+            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String query = "SELECT DisplayValue FROM DropDownValue WHERE ListName='ISSUE' AND ID="+issueID;
+            ResultSet rs = stmt.executeQuery(query);
+            rs.beforeFirst();
+            if (rs.next()) {
+                issue = rs.getString("DisplayValue");
+            } else {
+                issue = null;
+            }
+            rs.close();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return issue;
     }
     
 }

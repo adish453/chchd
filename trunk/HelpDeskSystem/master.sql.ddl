@@ -25,3 +25,13 @@ CREATE TABLE DropDownValue (
 	ListName VARCHAR(40) NOT NULL,
 	DisplayValue VARCHAR(80)
 );
+
+INSERT INTO DropDownValue(ListName, DisplayValue) VALUES 
+('ISSUE', 'E-Mail'),
+('ISSUE', 'Outlook'),
+('ISSUE', 'Powerpoint'),
+('LOCATION', 'Martino Hall'),
+('LOCATION', 'Saint Josephs'),
+('LOCATION', 'Fournier'),
+('STATUS', 'Open'),
+('STATUS', 'Closed');
