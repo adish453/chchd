@@ -33,10 +33,10 @@ public class DropDownListService {
             // statement
             // select DISPLAYVALUE from DROPDOWNVALUE where LISTNAME is ISSUE;
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs = stmt.executeQuery("select DISPLAYVALUE from DROPDOWNVALUE where LISTNAME like 'ISSUE'");
+            ResultSet rs = stmt.executeQuery("SELECT DisplayValue FROM DropDownValue WHERE ListName LIKE 'ISSUE'");
             rs.beforeFirst();
             while (rs.next()) {
-                issueList.add(rs.getString("DISPLAYVALUE"));
+                issueList.add(rs.getString("DisplayValue"));
             }
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
