@@ -1,3 +1,5 @@
+--DEPRECATED
+
 insert into DROPDOWNVALUE values 
 (1, 'ISSUE', 'E-Mail'),
 (2, 'ISSUE', 'Outlook'),
