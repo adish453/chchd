@@ -1,6 +1,9 @@
-connect 'jdbc:derby://localhost:1527/HelpDeskDB;user=HelpDeskApp;password=HelpDeskApp;create=true';
+-- Bad. Does not let you source it from the Command Line.
+-- CONNECT 'jdbc:derby://localhost:1527/HelpDeskDB;user=HelpDeskApp;password=HelpDeskApp;create=true';
 
-insert into DROPDOWNVALUE values 
+DELETE FROM DropDownValue;
+
+INSERT INTO DropDownValue VALUES 
 (1, 'ISSUE', 'E-Mail'),
 (2, 'ISSUE', 'Outlook'),
 (3, 'ISSUE', 'Powerpoint'),

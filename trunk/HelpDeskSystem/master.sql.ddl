@@ -1,10 +1,11 @@
-connect 'jdbc:derby://localhost:1527/HelpDeskDB;user=HelpDeskApp;password=HelpDeskApp;create=true';
+-- Bad. Does not let you source it from the Command Line.
+-- CONNECT 'jdbc:derby://localhost:1527/HelpDeskDB;user=HelpDeskApp;password=HelpDeskApp;create=true';
 
-drop table HELPREQUEST;
-drop table DROPDOWNVALUE;
+DROP TABLE HelpRequest;
+DROP TABLE DropDownValue;
 
-create table HELPREQUEST (
-	ID INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+CREATE TABLE HelpRequest (
+	ID INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 	FirstName VARCHAR(50),
 	LastName VARCHAR(50),
 	EmailAddress VARCHAR(50),
@@ -19,8 +20,8 @@ create table HELPREQUEST (
 	IssueID INT NOT NULL
 );
 
-create table DROPDOWNVALUE (
-	ID INT NOT NULL primary key,
+CREATE TABLE DropDownValue (
+	ID INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 	ListName VARCHAR(40) NOT NULL,
 	DisplayValue VARCHAR(80)
 );
