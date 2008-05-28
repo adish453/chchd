@@ -2,7 +2,9 @@ package edu.chc.helpdesk.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,11 @@ public class DropDownListService {
         try {
             Class.forName(driver);
             Connection conn = DriverManager.getConnection(connectionURL);
+            // TODO populate issueList with the result set of the following SQL
+            // statement
+            // select DISPLAYVALUE from DROPDOWNVALUE where LISTNAME is ISSUE;
+            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery("select DISPLAYVALUE from DROPDOWNVALUE where LISTNAME like 'ISSUE'");
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -34,9 +41,6 @@ public class DropDownListService {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        // TODO populate issueList with the result set of the following SQL
-        // statement
-        // select DISPLAYVALUE from DROPDOWNVALUE where LISTNAME is ISSUE;
         return issueList;
     }
     
