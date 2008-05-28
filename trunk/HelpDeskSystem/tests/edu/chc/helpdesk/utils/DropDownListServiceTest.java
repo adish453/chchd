@@ -9,7 +9,7 @@ public class DropDownListServiceTest {
     @Test
     public void testGetIssueDropDownList() {
         DropDownListService listService = new DropDownListService();
-        assertEquals(1, listService.getIssueDropDownList().size());
+        assertEquals(3, listService.getIssueDropDownList().size());
     }
 
 }
