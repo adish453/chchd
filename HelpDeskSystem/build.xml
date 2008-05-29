@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="helpDeskSystem" default="dist" basedir=".">
+<project name="HelpDeskSystem" default="dist" basedir=".">
     
-    <description>${name} Build File</description>
-    
-    <property name="name" value="Help Desk System"/>
-    <property name="src" value="src"/>
-    <property name="dist" value="dist"/>
-
-    <property name="build" value="build/classes"/>
-    <target name="init">
-        <echo>Initializing ${name}</echo>
+    <description>${ant.project.name} Build File</description>
+        
+    <target name="init" depends="clean">
+        <echo>Initializing ${ant.project.name}</echo>
         <!-- Create the time stamp -->
         <tstamp/>
         <!-- Create the build directory used by compile -->
@@ -30,25 +25,32 @@
         <!-- Populate DB with Testing Data -->
     </target>
     
+    <property name="src" value="src"/>
+    <property name="build" value="build/classes"/>
     <target name="build" depends="init">
-        <echo>Building ${name}</echo>
+        <echo>Building ${ant.project.name}</echo>
         <!-- Compile the java code from ${src} int ${build} -->
         <javac srcdir="${src}" destdir="${build}" debug="on" />
     </target>
     
     <target name="test" depends="build,dbTestPop">
-        <echo>Testing ${name}</echo>
+        <echo>Testing ${ant.project.name}</echo>
         <!-- Run Test Suite -->
     </target>
 
+    <property name="dist" value="dist"/>
     <target name="dist" depends="build">
-        <echo>Creating Distributable ${name}</echo>
+        <echo>Creating Distributable ${ant.project.name}</echo>
+        <!-- Create the distribution directory -->
+        <mkdir dir="${dist}" />
+        <!-- Jar up the project -->
+        <jar destfile="${dist}/${ant.project.name}.jar" basedir="${build}" />
     </target>
     
     <target name="clean">
-        <echo>Cleaning ${name}</echo>
-        <delete dir="${build}" />
-        <delete dir="${dist}" />
+        <echo>Cleaning ${ant.project.name}</echo>
+        <delete dir="${build}" failonerror="false"/>
+        <delete dir="${dist}" failonerror="false"/>
     </target>
 
     
