@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="helpDeskSystem" default="dist" basedir=".">
+    
+    <description>${name} Build File</description>
+    
+    <property name="name" value="Help Desk System"/>
+    <property name="src" value="src"/>
+    <property name="dist" value="dist"/>
+
+    <property name="build" value="build/classes"/>
+    <target name="init">
+        <echo>Initializing ${name}</echo>
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <!-- Create the build directory used by compile -->
+        <mkdir dir="${build}"/>
+    </target>
+    
+    <property name="dbName" value="HelpDeskDB" />
+    <property name="dbUser" value="HelpDeskApp" />
+    <property name="dbPass" value="HelpDeskApp" />
+    <target name="dbSetup">
+    	<echo>Initializing ${dbName} with user ${dbUser} and password ${dbPass}</echo>
+        <!-- Setup DB Schemas -->
+        <!-- Populate DB with Init Data -->
+    </target>
+    
+    <target name="dbTestPop" depends="dbSetup">
+    	<echo>Populating DB with Test Data</echo>
+        <!-- Populate DB with Testing Data -->
+    </target>
+    
+    <target name="build" depends="init">
+        <echo>Building ${name}</echo>
+        <!-- Compile the java code from ${src} int ${build} -->
+        <javac srcdir="${src}" destdir="${build}" debug="on" />
+    </target>
+    
+    <target name="test" depends="build,dbTestPop">
+        <echo>Testing ${name}</echo>
+        <!-- Run Test Suite -->
+    </target>
+
+    <target name="dist" depends="build">
+        <echo>Creating Distributable ${name}</echo>
+    </target>
+    
+    <target name="clean">
+        <echo>Cleaning ${name}</echo>
+        <delete dir="${build}" />
+        <delete dir="${dist}" />
+    </target>
+
+    
+</project>
