@@ -26,12 +26,11 @@ CREATE TABLE DropDownValue (
 	DisplayValue VARCHAR(80)
 );
 
-INSERT INTO DropDownValue(ListName, DisplayValue) VALUES 
-('ISSUE', 'E-Mail'),
-('ISSUE', 'Outlook'),
-('ISSUE', 'Powerpoint'),
-('LOCATION', 'Martino Hall'),
-('LOCATION', 'Saint Josephs'),
-('LOCATION', 'Fournier'),
-('STATUS', 'Open'),
-('STATUS', 'Closed');
+INSERT INTO DropDownValue (ListName, DisplayValue) VALUES ('ISSUE', 'E-Mail');
+INSERT INTO DropDownValue (ListName, DisplayValue) VALUES ('ISSUE', 'Outlook');
+INSERT INTO DropDownValue (ListName, DisplayValue) VALUES ('ISSUE', 'Powerpoint');
+INSERT INTO DropDownValue (ListName, DisplayValue) VALUES ('LOCATION', 'Martino Hall');
+INSERT INTO DropDownValue (ListName, DisplayValue) VALUES ('LOCATION', 'Saint Josephs');
+INSERT INTO DropDownValue (ListName, DisplayValue) VALUES ('LOCATION', 'Fournier');
+INSERT INTO DropDownValue (ListName, DisplayValue) VALUES ('STATUS', 'Open');
+INSERT INTO DropDownValue (ListName, DisplayValue) VALUES ('STATUS', 'Closed');
