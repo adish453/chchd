@@ -1,0 +1,12 @@
+-- Bad. Does not let you source it from the Command Line.
+-- CONNECT 'jdbc:derby://localhost:1527/HelpDeskDB;user=HelpDeskApp;password=HelpDeskApp;create=true';
+
+INSERT INTO HelpDeskApp.DropDownValue(ListName, DisplayValue) VALUES 
+('ISSUE', 'E-Mail'),
+('ISSUE', 'Outlook'),
+('ISSUE', 'Powerpoint'),
+('LOCATION', 'Martino Hall'),
+('LOCATION', 'Saint Josephs'),
+('LOCATION', 'Fournier'),
+('STATUS', 'Open'),
+('STATUS', 'Closed');
