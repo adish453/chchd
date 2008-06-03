@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project name="HelpDeskSystem" default="dist" basedir=".">
+    
+    <description>${ant.project.name} Build File</description>
+    
+    <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp/>
+    </target>
+    
+    <property name="dbName" value="HelpDeskDB" />
+    <property name="dbUser" value="HelpDeskApp" />
+    <property name="dbPass" value="HelpDeskApp" />
+    <property name="dbDriver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+    <property name="dbURL" value="jdbc:derby:${dbName};create=true" />
+    <target name="dbSetup" depends="init,clean">
+    	<!-- Setup DB Schemas -->
+        <sql driver="${dbDriver}" url="${dbURL}" userid="${dbUser}" password="${dbPass}" src="master.ddl"/>
+    </target>
+    
+    <target name="dbTestPop" depends="dbSetup">
+    	<!-- Populate DB with Testing Data -->
+        <sql driver="${dbDriver}" url="${dbURL}" userid="${dbUser}" password="${dbPass}" src="populate-dropdownvalue.dml" />
+    </target>
+    
+    <property name="src" value="src" />
+    <property name="build" value="build"/>
+    <target name="build" depends="init,clean">
+        <!-- Create the build directory -->
+        <mkdir dir="${build}"/>
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac srcdir="${src}" destdir="${build}" debug="on" />
+    </target>
+    
+    <property name="testSrc" value="tests" />
+    <target name="test" depends="build,dbTestPop">
+        <!-- Compile the JUnit Tests -->
+        <javac srcdir="${testSrc}" destdir="${build}" debug="on" />
+        <!-- Run Test Suite -->
+        <junit fork="yes" haltonfailure="true" >
+            <test name="edu.chc.helpdesk.email.MessageTest" />
+            <test name="edu.chc.helpdesk.requests.EJBHelpRequestServiceTest" />
+            <test name="edu.chc.helpdesk.utils.DropDownListServiceTest" />
+        </junit>
+    </target>
+
+    <property name="dist" value="dist"/>
+    <target name="dist" depends="build,test">
+        <!-- Create the distribution directory -->
+        <mkdir dir="${dist}" />
+        <!-- Jar up the project -->
+        <jar destfile="${dist}/${ant.project.name}-${DSTAMP}${TSTAMP}.jar" basedir="${build}" />
+    </target>
+    
+    <property name="dbHome" value="HelpDeskDB"/>
+    <target name="clean" depends="init">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+	<delete dir="${dbHome}"/>
+	<delete file="derby.log"/>
+    </target>
+
+    
+</project>
