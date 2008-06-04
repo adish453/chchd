@@ -7,20 +7,30 @@
         <!-- Create the time stamp -->
         <tstamp/>
     </target>
+
+    <path id="classpath">
+        <fileset dir="../../resources/lib" />
+    </path>
     
-    <property name="dbName" value="HelpDeskDB" />
-    <property name="dbUser" value="HelpDeskApp" />
-    <property name="dbPass" value="HelpDeskApp" />
-    <property name="dbDriver" value="org.apache.derby.jdbc.EmbeddedDriver" />
-    <property name="dbURL" value="jdbc:derby:${dbName};create=true" />
+    <property name="db:name" value="HelpDeskDB" />
+    <property name="db:user" value="HelpDeskApp" />
+    <property name="db:pass" value="HelpDeskApp" />
+    <property name="db:driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+    <property name="db:url" value="jdbc:derby:${db:name};create=true" />
+    <property name="db:ddl" value="helpdeskdb.ddl" />
     <target name="db:setup" depends="init,clean">
     	<!-- Setup DB Schemas -->
-        <sql driver="${dbDriver}" url="${dbURL}" userid="${dbUser}" password="${dbPass}" src="master.ddl"/>
+        <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:ddl}" classpath="${classpath}">
+            <classpath refid="classpath" />
+        </sql>
     </target>
     
+    <property name="db:dml:testing" value="helpdeskdb-testdata.dml" />
     <target name="db:testpop" depends="db:setup">
-    	<!-- Populate DB with Testing Data -->
-        <sql driver="${dbDriver}" url="${dbURL}" userid="${dbUser}" password="${dbPass}" src="populate-dropdownvalue.dml" />
+	<!-- Populate DB with Testing Data -->
+        <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:dml:testing}">
+            <classpath refid="classpath" />
+        </sql>
     </target>
     
     <property name="src" value="src" />
@@ -37,15 +47,16 @@
     </target>
     
     <property name="testSrc" value="tests" />
-    <target name="test" depends="build,db:testpop">
+    <target name="unittest" depends="build,db:testpop">
         <!-- Compile the JUnit Tests -->
-        <javac srcdir="${testSrc}" destdir="${build}" debug="on" />
+        <javac srcdir="${testSrc}" destdir="${build}" debug="on">
+            <classpath refid="classpath" />
+        </javac>
         <!-- Run Test Suite -->
-        <junit fork="yes" haltonfailure="true" >
-            <test name="edu.chc.helpdesk.email.MessageTest" />
-            <test name="edu.chc.helpdesk.requests.EJBHelpRequestServiceTest" />
-            <test name="edu.chc.helpdesk.utils.DropDownListServiceTest" />
-        </junit>
+    </target>
+
+    <target name="test" depends="unittest">
+
     </target>
 
     <property name="dist" value="dist"/>
@@ -56,11 +67,11 @@
         <jar destfile="${dist}/${ant.project.name}-${DSTAMP}${TSTAMP}.jar" basedir="${build}" />
     </target>
     
-    <property name="dbHome" value="HelpDeskDB"/>
+    <property name="db:base" value="HelpDeskDB"/>
     <target name="clean" depends="init">
         <delete dir="${build}"/>
         <delete dir="${dist}"/>
-	<delete dir="${dbHome}"/>
+	<delete dir="${db:base}"/>
 	<delete file="derby.log"/>
     </target>
 
