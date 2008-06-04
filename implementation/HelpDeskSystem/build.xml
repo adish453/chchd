@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <project name="HelpDeskSystem" default="dist" basedir=".">
-    
+
     <description>${ant.project.name} Build File</description>
-    
+
     <target name="init">
         <!-- Create the time stamp -->
-        <tstamp/>
+        <tstamp />
     </target>
 
     <path id="classpath">
         <fileset dir="../../resources/lib" />
     </path>
-    
+
     <property name="db:name" value="HelpDeskDB" />
     <property name="db:user" value="HelpDeskApp" />
     <property name="db:pass" value="HelpDeskApp" />
@@ -19,33 +19,31 @@
     <property name="db:url" value="jdbc:derby:${db:name};create=true" />
     <property name="db:ddl" value="helpdeskdb.ddl" />
     <target name="db:setup" depends="init,clean">
-    	<!-- Setup DB Schemas -->
+        <!-- Setup DB Schemas -->
         <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:ddl}" classpath="${classpath}">
             <classpath refid="classpath" />
         </sql>
     </target>
-    
+
     <property name="db:dml:testing" value="helpdeskdb-testdata.dml" />
     <target name="db:testpop" depends="db:setup">
-	<!-- Populate DB with Testing Data -->
+        <!-- Populate DB with Testing Data -->
         <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:dml:testing}">
             <classpath refid="classpath" />
         </sql>
     </target>
-    
+
     <property name="src" value="src" />
-    <property name="build" value="build"/>
+    <property name="build" value="build" />
     <target name="build" depends="init,clean">
         <!-- Create the build directory -->
-        <mkdir dir="${build}"/>
+        <mkdir dir="${build}" />
         <!-- Compile the java code from ${src} into ${build} -->
-        <javac srcdir="${src}" destdir="${build}" debug="on"> 
-            <classpath>
-                <fileset dir="../../resources/lib" />
-            </classpath> 
+        <javac srcdir="${src}" destdir="${build}" debug="on">
+            <classpath refid="classpath" />
         </javac>
     </target>
-    
+
     <property name="tests:src" value="tests" />
     <property name="tests:src:unit" value="${tests:src}/unit" />
     <target name="-unittest" depends="build,db:testpop">
@@ -78,20 +76,20 @@
 
     </target>
 
-    <property name="dist" value="dist"/>
+    <property name="dist" value="dist" />
     <target name="dist" depends="build,test">
         <!-- Create the distribution directory -->
         <mkdir dir="${dist}" />
         <!-- Jar up the project -->
         <jar destfile="${dist}/${ant.project.name}-${DSTAMP}${TSTAMP}.jar" basedir="${build}" />
     </target>
-    
-    <property name="db:base" value="HelpDeskDB"/>
+
+    <property name="db:base" value="HelpDeskDB" />
     <target name="clean" depends="init">
-        <delete dir="${build}"/>
-        <delete dir="${dist}"/>
-	<delete dir="${db:base}"/>
-	<delete file="derby.log"/>
+        <delete dir="${build}" />
+        <delete dir="${dist}" />
+        <delete dir="${db:base}" />
+        <delete file="derby.log" />
     </target>
-    
+
 </project>
