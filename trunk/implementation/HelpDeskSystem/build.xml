@@ -13,12 +13,12 @@
     <property name="dbPass" value="HelpDeskApp" />
     <property name="dbDriver" value="org.apache.derby.jdbc.EmbeddedDriver" />
     <property name="dbURL" value="jdbc:derby:${dbName};create=true" />
-    <target name="dbSetup" depends="init,clean">
+    <target name="db:setup" depends="init,clean">
     	<!-- Setup DB Schemas -->
         <sql driver="${dbDriver}" url="${dbURL}" userid="${dbUser}" password="${dbPass}" src="master.ddl"/>
     </target>
     
-    <target name="dbTestPop" depends="dbSetup">
+    <target name="db:testpop" depends="db:setup">
     	<!-- Populate DB with Testing Data -->
         <sql driver="${dbDriver}" url="${dbURL}" userid="${dbUser}" password="${dbPass}" src="populate-dropdownvalue.dml" />
     </target>
@@ -29,11 +29,15 @@
         <!-- Create the build directory -->
         <mkdir dir="${build}"/>
         <!-- Compile the java code from ${src} into ${build} -->
-        <javac srcdir="${src}" destdir="${build}" debug="on" />
+        <javac srcdir="${src}" destdir="${build}" debug="on"> 
+            <classpath>
+                <fileset dir="../../resources/lib" />
+            </classpath> 
+        </javac>
     </target>
     
     <property name="testSrc" value="tests" />
-    <target name="test" depends="build,dbTestPop">
+    <target name="test" depends="build,db:testpop">
         <!-- Compile the JUnit Tests -->
         <javac srcdir="${testSrc}" destdir="${build}" debug="on" />
         <!-- Run Test Suite -->
