@@ -48,7 +48,7 @@
     
     <property name="tests:src" value="tests" />
     <property name="tests:src:unit" value="${tests:src}/unit" />
-    <target name="unittest" depends="build,db:testpop">
+    <target name="-unittest" depends="build,db:testpop">
         <!-- Compile the JUnit Tests -->
         <javac srcdir="${tests:src:unit}" destdir="${build}" debug="on">
             <classpath refid="classpath" />
@@ -56,7 +56,25 @@
         <!-- Run Test Suite -->
     </target>
 
-    <target name="test" depends="unittest">
+    <property name="tests:src:integration" value="${tests:src}/integration" />
+    <target name="-integrationtest" depends="build,db:testpop">
+        <!-- Compile the JUnit Tests -->
+        <javac srcdir="${tests:src:integration}" destdir="${build}" debug="on">
+            <classpath refid="classpath" />
+        </javac>
+        <!-- Run Test Suite -->
+    </target>
+
+    <property name="tests:src:endtoend" value="${tests:src}/endtoend" />
+    <target name="-endtoendtest" depends="build,db:testpop">
+        <!-- Compile the JUnit Tests -->
+        <javac srcdir="${tests:src:endtoend}" destdir="${build}" debug="on">
+            <classpath refid="classpath" />
+        </javac>
+        <!-- Run Test Suite -->
+    </target>
+
+    <target name="test" depends="init,-unittest,-integrationtest,-endtoendtest">
 
     </target>
 
