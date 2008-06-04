@@ -46,10 +46,11 @@
         </javac>
     </target>
     
-    <property name="testSrc" value="tests" />
+    <property name="tests:src" value="tests" />
+    <property name="tests:src:unit" value="${tests:src}/unit" />
     <target name="unittest" depends="build,db:testpop">
         <!-- Compile the JUnit Tests -->
-        <javac srcdir="${testSrc}" destdir="${build}" debug="on">
+        <javac srcdir="${tests:src:unit}" destdir="${build}" debug="on">
             <classpath refid="classpath" />
         </javac>
         <!-- Run Test Suite -->
@@ -74,6 +75,5 @@
 	<delete dir="${db:base}"/>
 	<delete file="derby.log"/>
     </target>
-
     
 </project>
