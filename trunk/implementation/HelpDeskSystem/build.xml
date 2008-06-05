@@ -17,7 +17,8 @@
     <property name="db:pass" value="HelpDeskApp" />
     <property name="db:driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
     <property name="db:url" value="jdbc:derby:${db:name};create=true" />
-    <property name="db:ddl" value="helpdeskdb.ddl" />
+    <property name="db:basedir" value="../database" />
+    <property name="db:ddl" value="${db:basedir}/helpdeskdb.ddl" />
     <target name="db:setup" depends="init,clean">
         <!-- Setup DB Schemas -->
         <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:ddl}" classpath="${classpath}">
@@ -25,7 +26,7 @@
         </sql>
     </target>
 
-    <property name="db:dml:testing" value="helpdeskdb-testdata.dml" />
+    <property name="db:dml:testing" value="${db:basedir}/helpdeskdb-testdata.dml" />
     <target name="db:testpop" depends="db:setup">
         <!-- Populate DB with Testing Data -->
         <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:dml:testing}">
