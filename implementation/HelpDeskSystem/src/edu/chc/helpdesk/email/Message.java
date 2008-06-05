@@ -51,14 +51,14 @@ public class Message {
 	 * @return The body of this message.
 	 * @throws MessageNotValidException If the type passed in is an unsupported type.
 	 */
-	private String getBody(MessageType type) throws MessageNotValidException {	
+	String getBody(MessageType type) throws MessageNotValidException {	
 		StringBuilder body = new StringBuilder();
 		String sep = System.getProperty("line.separator");
 		switch (type) {
 			case TECH:
 				
 				String formattedDate;
-				SimpleDateFormat df = new SimpleDateFormat("EEEE MMMM d, yyyy");
+				SimpleDateFormat df = new SimpleDateFormat("EEEE, MMMM d, yyyy");
 				formattedDate = df.format(request.getDateEntered());
 				
 				//Submission Date
@@ -81,6 +81,10 @@ public class Message {
 				body.append("Phone: ");
 				body.append(request.getPhoneNumberFormatted());
 				body.append(sep);
+				//E-Mail
+				body.append("E-Mail: ");
+				body.append(request.getEmailAddress());
+				body.append(sep);
 				//Issue
 				body.append("Issue: ");
 				body.append(request.getIssue().getDisplayValue());
@@ -92,9 +96,9 @@ public class Message {
 				return body.toString();
 			case CUSTOMER:
 				body.append("Thank you for contacting CHC Helpdesk.  Your request has been recieved and will be processed shortly.  So we can more easily assist you, please remember your case number and give it to the tech helping you with this problem.");
-				body.append(sep);
+				body.append(sep + sep);
 				body.append("Thank you and have a nice day.");
-				body.append(sep);
+				body.append(sep + sep);
 				body.append("Case Number: ");
 				body.append(request.getRequestID());
 				return body.toString();
@@ -107,7 +111,7 @@ public class Message {
 	 * Returns the from address.
 	 * @return The from address.
 	 */
-	private String getFrom() {
+	String getFrom() {
 		return this.from;
 	}
 
@@ -115,7 +119,7 @@ public class Message {
 	 * Returns the SMTP host being used by this message.
 	 * @return The SMTP host.
 	 */
-	private String getHost() {
+	String getHost() {
 		return this.host;
 	}
 
@@ -126,7 +130,7 @@ public class Message {
 	 * @return The subject line.
 	 * @throws MessageNotValidException If the type is an unsupported type.
 	 */
-	private String getSubject(MessageType type) throws MessageNotValidException {
+	String getSubject(MessageType type) throws MessageNotValidException {
 		StringBuilder subject = new StringBuilder();
 		switch (type) {
 			case TECH:
@@ -153,7 +157,7 @@ public class Message {
 	 * @return The To Field.
 	 * @throws MessageNotValidException If the type of Message is unsupported.
 	 */
-	private String getTo(MessageType type) throws MessageNotValidException {
+	String getTo(MessageType type) throws MessageNotValidException {
 		switch (type) {
 			case TECH:
 				return "helpdesk@chc.edu";
@@ -203,7 +207,7 @@ public class Message {
 	/**
 	 * Validates the Message generated for a given type.
 	 */
-	private boolean isValid(MessageType type) {
+	boolean isValid(MessageType type) {
 		try {
 	        return !(this.props == null && this.host == null && this.from == null
 	                && getTo(type) == null && getSubject(type) == null && getBody(type) == null);
