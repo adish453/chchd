@@ -36,6 +36,54 @@ public class MessageTest {
         message = null;
     }
     
+    @Test
+    public void testGetBodyCustomer() {
+        //TODO Exercise getBody(MessageType.CUSTOMER)
+        fail("Not yet implemented.");
+    }
+    
+    @Test
+    public void testGetFrom() {
+        //TODO Exercise getFrom()
+        fail("Not yet implemented.");
+    }
+    
+    @Test
+    public void testGetHost() {
+        //TODO Exercise getHost()
+        fail("Not yet implemented.");
+    }
+    
+    @Test
+    public void testGetSubjectCustomer() {
+        //TODO Exercise getSubject(MessageType.CUSTOMER)
+        fail("Not yet implemented.");
+    }
+    
+    @Test
+    public void testGetToTech() {
+        //TODO Exercise getTo(MessageType.TECH)
+        fail("Not yet implemented.");
+    }
+    
+    @Test
+    public void testGetToCustomer() {
+        //TODO Exercise getTo(MessageType.CUSTOMER)
+        fail("Not yet implemented.");
+    }
+    
+    @Test
+    public void testIsValidTrue() {
+        //TODO Exercise isValid on Valid Request
+        fail("Not yet implemented.");
+    }
+    
+    @Test
+    public void testIsValidFalse() {
+        //TODO Exercise isValid on Invalid Request
+        fail("Not yet implemented.");
+    }
+    
     HelpRequest request;
     
     Message message;
