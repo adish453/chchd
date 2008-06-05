@@ -57,7 +57,11 @@ public class MessageTest {
     @Test
     public void testGetSubjectCustomer() {
         //TODO Exercise getSubject(MessageType.CUSTOMER)
-        fail("Not yet implemented.");
+        try {
+            assertEquals("Your Help Request (id 1) Has Been Received.",message.getSubject(MessageType.CUSTOMER));
+        } catch (MessageNotValidException e) {
+            fail("Unexpected MessageNotValidException.");
+        }
     }
     
     @Test
