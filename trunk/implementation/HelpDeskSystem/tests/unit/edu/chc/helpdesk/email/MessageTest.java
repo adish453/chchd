@@ -38,25 +38,31 @@ public class MessageTest {
     
     @Test
     public void testGetBodyCustomer() {
-        //TODO Exercise getBody(MessageType.CUSTOMER)
-        fail("Not yet implemented.");
+        String newline = System.getProperty("line.separator");
+        String expected = "Thank you for contacting CHC Helpdesk.  Your request has been " + 
+                          "received and will be processed shortly.  So we can more easily assist " +
+                          "you, please remember your case number and give it to the tech helping " + 
+                          "you with this problem." + newline + newline + "Thank you and have a nice day." + 
+                          newline + newline + "Case Number: 1";
+        try {
+            assertEquals(expected, message.getBody(MessageType.CUSTOMER));
+        } catch (MessageNotValidException e) {
+            fail("Unexpected MessageNotValidException");
+        }
     }
     
     @Test
     public void testGetFrom() {
-        //TODO Exercise getFrom()
-        fail("Not yet implemented.");
+        assertEquals("helpdesk@chc.edu", message.getFrom());
     }
     
     @Test
     public void testGetHost() {
-        //TODO Exercise getHost()
-        fail("Not yet implemented.");
+        assertEquals("mailhost.chc.edu", message.getHost());
     }
     
     @Test
     public void testGetSubjectCustomer() {
-        //TODO Exercise getSubject(MessageType.CUSTOMER)
         try {
             assertEquals("Your Help Request (id 1) Has Been Received.",message.getSubject(MessageType.CUSTOMER));
         } catch (MessageNotValidException e) {
@@ -66,25 +72,32 @@ public class MessageTest {
     
     @Test
     public void testGetToTech() {
-        //TODO Exercise getTo(MessageType.TECH)
-        fail("Not yet implemented.");
+        try {
+            assertEquals("helpdesk@chc.edu", message.getTo(MessageType.TECH));
+        } catch (MessageNotValidException e) {
+            fail("Unexpected MessageNotValidException.");
+        }
     }
     
     @Test
     public void testGetToCustomer() {
-        //TODO Exercise getTo(MessageType.CUSTOMER)
-        fail("Not yet implemented.");
+        try {
+            assertEquals("user@needshelp.com", message.getTo(MessageType.CUSTOMER));
+        } catch (MessageNotValidException e) {
+            fail("Unexpected MessageNotValidException");
+        }
     }
     
     @Test
-    public void testIsValidTrue() {
-        //TODO Exercise isValid on Valid Request
-        fail("Not yet implemented.");
+    public void testIsValidTrueCustomer() {
+        assertTrue(message.isValid(MessageType.CUSTOMER));
     }
     
+    //TODO Test isValid(MessageType.TECH) in integration
+    
     @Test
-    public void testIsValidFalse() {
-        //TODO Exercise isValid on Invalid Request
+    public void testIsValidFalseCustomer() {
+        //TODO Exercise isValid(MessageType.CUSTOMER) against an invalid request
         fail("Not yet implemented.");
     }
     

@@ -95,7 +95,10 @@ public class Message {
 				body.append(request.getComments());
 				return body.toString();
 			case CUSTOMER:
-				body.append("Thank you for contacting CHC Helpdesk.  Your request has been recieved and will be processed shortly.  So we can more easily assist you, please remember your case number and give it to the tech helping you with this problem.");
+				body.append("Thank you for contacting CHC Helpdesk.  Your request has been " +
+						    "received and will be processed shortly.  So we can more easily assist " +
+						    "you, please remember your case number and give it to the tech helping " +
+						    "you with this problem.");
 				body.append(sep + sep);
 				body.append("Thank you and have a nice day.");
 				body.append(sep + sep);
