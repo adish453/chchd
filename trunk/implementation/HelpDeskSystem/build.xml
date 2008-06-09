@@ -8,8 +8,9 @@
         <tstamp />
     </target>
 
+	<property name="lib" value="../../resources/lib"/>
     <path id="classpath">
-        <fileset dir="../../resources/lib" />
+        <fileset dir="${lib}" />
     </path>
 
     <property name="db:name" value="HelpDeskDB" />
@@ -76,6 +77,12 @@
     <target name="test" depends="init,-unittest,-integrationtest,-endtoendtest">
 
     </target>
+	
+	<property name="doc" value="doc" />
+	<target name="doc">
+		<!-- Create javadocs for the project -->
+		<javadoc sourcepath="${src}" destdir="${doc}" extdirs="${lib}" />
+	</target>
 
     <property name="dist" value="dist" />
     <target name="dist" depends="build,test">
@@ -89,6 +96,7 @@
     <target name="clean" depends="init">
         <delete dir="${build}" />
         <delete dir="${dist}" />
+    	<delete dir="${doc}" />
         <delete dir="${db:base}" />
         <delete file="derby.log" />
     </target>
