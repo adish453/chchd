@@ -107,8 +107,8 @@ public class Criteria {
      */
     public List list() {
         // execute the query and return the results
-        Query q = em.createQuery(getQueryString());
-        return q.getResultList();
+        Query query = em.createQuery(getQueryString());
+        return query.getResultList();
     }
     
     private String getClassNameAndAlias() {
