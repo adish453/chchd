@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.chc.helpdesk.requests.DropDownValue;
-
 /**
  * @author tvishe01 Service for encapsulating JDBC calls to the DropDownValue
  *         table for populating GUI Drop Down Lists and Updating their values in
@@ -17,12 +15,11 @@ import edu.chc.helpdesk.requests.DropDownValue;
  */
 
 public class DropDownListService {
-        
+    
     // TODO utilize JNDI available HelpDeskDS
     String driver = "org.apache.derby.jdbc.ClientDriver";
     String dbName = "HelpDeskDB";
-    String connectionURL = "jdbc:derby://localhost:1527/" + 
-        dbName + ";user=HelpDeskApp;password=HelpDeskApp;create=true";
+    String connectionURL = "jdbc:derby://localhost:1527/" + dbName + ";user=HelpDeskApp;password=HelpDeskApp;create=true";
     
     public List<String> getIssueDropDownList() {
         List<String> issueList = new ArrayList<String>();
@@ -46,14 +43,14 @@ public class DropDownListService {
         }
         return issueList;
     }
-
+    
     public String getIssueByID(int issueID) {
         String issue = "";
         try {
             Class.forName(driver);
             Connection conn = DriverManager.getConnection(connectionURL);
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            String query = "SELECT DisplayValue FROM DropDownValue WHERE ListName='ISSUE' AND ID="+issueID;
+            String query = "SELECT DisplayValue FROM DropDownValue WHERE ListName='ISSUE' AND ID=" + issueID;
             ResultSet rs = stmt.executeQuery(query);
             rs.beforeFirst();
             if (rs.next()) {

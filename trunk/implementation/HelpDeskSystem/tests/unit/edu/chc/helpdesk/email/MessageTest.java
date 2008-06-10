@@ -1,14 +1,16 @@
 package edu.chc.helpdesk.email;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.util.Date;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.chc.helpdesk.requests.HelpRequest;
-
-import java.util.Date;
 
 public class MessageTest {
     
@@ -39,11 +41,7 @@ public class MessageTest {
     @Test
     public void testGetBodyCustomer() {
         String newline = System.getProperty("line.separator");
-        String expected = "Thank you for contacting CHC Helpdesk.  Your request has been " + 
-                          "received and will be processed shortly.  So we can more easily assist " +
-                          "you, please remember your case number and give it to the tech helping " + 
-                          "you with this problem." + newline + newline + "Thank you and have a nice day." + 
-                          newline + newline + "Case Number: 1";
+        String expected = "Thank you for contacting CHC Helpdesk.  Your request has been " + "received and will be processed shortly.  So we can more easily assist " + "you, please remember your case number and give it to the tech helping " + "you with this problem." + newline + newline + "Thank you and have a nice day." + newline + newline + "Case Number: 1";
         try {
             assertEquals(expected, message.getBody(MessageType.CUSTOMER));
         } catch (MessageNotValidException e) {
@@ -64,7 +62,7 @@ public class MessageTest {
     @Test
     public void testGetSubjectCustomer() {
         try {
-            assertEquals("Your Help Request (id 1) Has Been Received.",message.getSubject(MessageType.CUSTOMER));
+            assertEquals("Your Help Request (id 1) Has Been Received.", message.getSubject(MessageType.CUSTOMER));
         } catch (MessageNotValidException e) {
             fail("Unexpected MessageNotValidException.");
         }
@@ -93,11 +91,12 @@ public class MessageTest {
         assertTrue(message.isValid(MessageType.CUSTOMER));
     }
     
-    //TODO Test isValid(MessageType.TECH) in integration
+    // TODO Test isValid(MessageType.TECH) in integration
     
     @Test
     public void testIsValidFalseCustomer() {
-        //TODO Exercise isValid(MessageType.CUSTOMER) against an invalid request
+        // TODO Exercise isValid(MessageType.CUSTOMER) against an invalid
+        // request
         fail("Not yet implemented.");
     }
     
