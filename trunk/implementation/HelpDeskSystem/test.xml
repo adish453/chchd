@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="test" name="HelpDeskSystemTesting">
+
+    <description>${ant.project.name} is the build file for running the comprehensive testing suite for HelpDeskSystem</description>
+    
+    <!-- ================================= 
+          target: init              
+         ================================= -->
+    <target name="init" description="--> Creates the time stamp.">
+        <tstamp />
+    </target>
+    
+    <property name="lib" value="../../resources/lib"/>
+    <path id="classpath">
+        <fileset dir="${lib}" />
+    </path>
+
+    <property name="db:name" value="HelpDeskDB" />
+    <property name="db:user" value="HelpDeskApp" />
+    <property name="db:pass" value="HelpDeskApp" />
+    <property name="db:driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+    <property name="db:url" value="jdbc:derby:${db:name};create=true" />
+    <property name="db:basedir" value="../database" />
+    <property name="db:ddl" value="${db:basedir}/helpdeskdb.ddl" />
+    <target name="db:setup" depends="init,clean">
+        <!-- Setup DB Schemas -->
+        <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:ddl}" classpath="${classpath}">
+            <classpath refid="classpath" />
+        </sql>
+    </target>
+
+    <property name="db:base" value="HelpDeskDB" />
+    <target name="clean" depends="init">
+        <delete dir="${build}" />
+        <delete dir="${dist}" />
+    	<delete dir="${doc}" />
+        <delete dir="${db:base}" />
+        <delete file="derby.log" />
+    </target>
+
+    <property name="db:dml:testing" value="${db:basedir}/helpdeskdb-testdata.dml" />
+    <target name="db:testpop" depends="init,clean,db:setup">
+        <!-- Populate DB with Testing Data -->
+        <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:dml:testing}">
+            <classpath refid="classpath" />
+        </sql>
+    </target>
+
+    
+    <!-- - - - - - - - - - - - - - - - - -
+    	  target: test
+    	  Run every test we have.
+         - - - - - - - - - - - - - - - - - -->
+    <target name="test" depends="init,clean,-unit,-integration,-endtoend">
+    
+    </target>
+    
+    <property name="tests:src" value="tests" />
+    <property name="tests:src:unit" value="${tests:src}/unit" />
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: -unit                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="-unit" depends="init,clean,build">
+        <!-- Compile the JUnit Tests -->
+        <javac srcdir="${tests:src:unit}" destdir="${build}" debug="on">
+            <classpath refid="classpath" />
+        </javac>
+        <!-- Run Test Suite -->
+    </target>
+
+    
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: -integration                      
+         - - - - - - - - - - - - - - - - - -->
+    <property name="tests:src:integration" value="${tests:src}/integration" />
+    <target name="-integration" depends="init,clean,build,db:testpop">
+        <!-- Compile the JUnit Tests -->
+        <javac srcdir="${tests:src:integration}" destdir="${build}" debug="on">
+            <classpath refid="classpath" />
+        </javac>
+        <!-- Run Test Suite -->
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: -endtoend                      
+         - - - - - - - - - - - - - - - - - -->
+	<property name="tests:src:endtoend" value="${tests:src}/endtoend" />
+    <target name="-endtoend" depends="init,clean,build,db:testpop">
+        <!-- Compile the JUnit Tests -->
+        <javac srcdir="${tests:src:endtoend}" destdir="${build}" debug="on">
+            <classpath refid="classpath" />
+        </javac>
+        <!-- Run Test Suite -->
+    </target>
+
+    <property name="src" value="src" />
+    <property name="build" value="build" />
+    <target name="build" depends="init,clean">
+        <!-- Create the build directory -->
+        <mkdir dir="${build}" />
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac srcdir="${src}" destdir="${build}" debug="on">
+            <classpath refid="classpath" />
+        </javac>
+    </target>
+    
+</project>

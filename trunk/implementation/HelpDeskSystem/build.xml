@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<project name="HelpDeskSystem" default="dist" basedir=".">
+<project name="HelpDeskSystem" default="test" basedir=".">
 
     <description>${ant.project.name} Build File</description>
 
@@ -12,28 +12,6 @@
     <path id="classpath">
         <fileset dir="${lib}" />
     </path>
-
-    <property name="db:name" value="HelpDeskDB" />
-    <property name="db:user" value="HelpDeskApp" />
-    <property name="db:pass" value="HelpDeskApp" />
-    <property name="db:driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
-    <property name="db:url" value="jdbc:derby:${db:name};create=true" />
-    <property name="db:basedir" value="../database" />
-    <property name="db:ddl" value="${db:basedir}/helpdeskdb.ddl" />
-    <target name="db:setup" depends="init,clean">
-        <!-- Setup DB Schemas -->
-        <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:ddl}" classpath="${classpath}">
-            <classpath refid="classpath" />
-        </sql>
-    </target>
-
-    <property name="db:dml:testing" value="${db:basedir}/helpdeskdb-testdata.dml" />
-    <target name="db:testpop" depends="db:setup">
-        <!-- Populate DB with Testing Data -->
-        <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:dml:testing}">
-            <classpath refid="classpath" />
-        </sql>
-    </target>
 
     <property name="src" value="src" />
     <property name="build" value="build" />
@@ -48,7 +26,7 @@
 
     <property name="tests:src" value="tests" />
     <property name="tests:src:unit" value="${tests:src}/unit" />
-    <target name="-unittest" depends="build,db:testpop">
+    <target name="-unittest" depends="build">
         <!-- Compile the JUnit Tests -->
         <javac srcdir="${tests:src:unit}" destdir="${build}" debug="on">
             <classpath refid="classpath" />
@@ -56,30 +34,12 @@
         <!-- Run Test Suite -->
     </target>
 
-    <property name="tests:src:integration" value="${tests:src}/integration" />
-    <target name="-integrationtest" depends="build,db:testpop">
-        <!-- Compile the JUnit Tests -->
-        <javac srcdir="${tests:src:integration}" destdir="${build}" debug="on">
-            <classpath refid="classpath" />
-        </javac>
-        <!-- Run Test Suite -->
-    </target>
-
-    <property name="tests:src:endtoend" value="${tests:src}/endtoend" />
-    <target name="-endtoendtest" depends="build,db:testpop">
-        <!-- Compile the JUnit Tests -->
-        <javac srcdir="${tests:src:endtoend}" destdir="${build}" debug="on">
-            <classpath refid="classpath" />
-        </javac>
-        <!-- Run Test Suite -->
-    </target>
-
-    <target name="test" depends="init,-unittest,-integrationtest,-endtoendtest">
+    <target name="test" depends="init,-unittest">
 
     </target>
 	
 	<property name="doc" value="doc" />
-	<target name="doc">
+	<target name="doc" depends="init">
 		<!-- Create javadocs for the project -->
 		<javadoc sourcepath="${src}" destdir="${doc}" extdirs="${lib}" />
 	</target>
@@ -92,13 +52,10 @@
         <jar destfile="${dist}/${ant.project.name}-${DSTAMP}${TSTAMP}.jar" basedir="${build}" />
     </target>
 
-    <property name="db:base" value="HelpDeskDB" />
     <target name="clean" depends="init">
         <delete dir="${build}" />
         <delete dir="${dist}" />
     	<delete dir="${doc}" />
-        <delete dir="${db:base}" />
-        <delete file="derby.log" />
     </target>
 
 </project>
