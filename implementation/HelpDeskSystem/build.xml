@@ -8,41 +8,43 @@
         <tstamp />
     </target>
 
-	<property name="lib" value="../../resources/lib"/>
-    <path id="classpath">
-        <fileset dir="${lib}" />
-    </path>
+    <property name="build" value="build" />
+
+    <property name="lib" value="../../resources/lib" />
 
     <property name="src" value="src" />
-    <property name="build" value="build" />
     <target name="build" depends="init,clean">
         <!-- Create the build directory -->
         <mkdir dir="${build}" />
         <!-- Compile the java code from ${src} into ${build} -->
         <javac srcdir="${src}" destdir="${build}" debug="on">
-            <classpath refid="classpath" />
+            <classpath>
+                <path id="classpath">
+                    <fileset dir="${lib}" />
+                    <fileset dir="${build}" />
+                    <pathelement location="${lib}/junit-4.4.jar" />
+                </path>
+            </classpath>
         </javac>
     </target>
 
     <property name="tests:src" value="tests" />
     <property name="tests:src:unit" value="${tests:src}/unit" />
-    <target name="-unittest" depends="build">
+    <property name="tests:out" value="testResults" />
+    <target name="test" depends="init,build">
         <!-- Compile the JUnit Tests -->
         <javac srcdir="${tests:src:unit}" destdir="${build}" debug="on">
             <classpath refid="classpath" />
         </javac>
+        <mkdir dir="${tests:out}" />
         <!-- Run Test Suite -->
     </target>
 
-    <target name="test" depends="init,-unittest">
-
+    <property name="doc" value="doc" />
+    <target name="doc" depends="init">
+        <!-- Create javadocs for the project -->
+        <javadoc sourcepath="${src}" destdir="${doc}" extdirs="${lib}" />
     </target>
-	
-	<property name="doc" value="doc" />
-	<target name="doc" depends="init">
-		<!-- Create javadocs for the project -->
-		<javadoc sourcepath="${src}" destdir="${doc}" extdirs="${lib}" />
-	</target>
 
     <property name="dist" value="dist" />
     <target name="dist" depends="build,test">
@@ -55,7 +57,8 @@
     <target name="clean" depends="init">
         <delete dir="${build}" />
         <delete dir="${dist}" />
-    	<delete dir="${doc}" />
+        <delete dir="${doc}" />
+        <delete dir="${tests:out}" />
     </target>
 
 </project>
