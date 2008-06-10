@@ -2,6 +2,8 @@ package edu.chc.helpdesk.requests;
 
 import java.util.List;
 
+import edu.chc.helpdesk.utils.Criteria;
+
 public class EJBHelpRequestServiceStub implements HelpRequestService {
 	
 	public void submit(HelpRequest request) throws HelpDeskApplicationException {

@@ -11,6 +11,7 @@ import javax.persistence.PersistenceException;
 import edu.chc.helpdesk.email.Message;
 import edu.chc.helpdesk.email.MessageNotValidException;
 import edu.chc.helpdesk.email.MessageType;
+import edu.chc.helpdesk.utils.Criteria;
 
 @Stateless
 public class EJBHelpRequestService implements HelpRequestService {
