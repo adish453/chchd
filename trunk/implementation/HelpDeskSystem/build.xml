@@ -2,15 +2,21 @@
 <project name="HelpDeskSystem" default="test" basedir=".">
 
     <description>${ant.project.name} Build File</description>
+	
+    <property name="build" value="build" />
+    <property name="lib" value="../../resources/lib" />
+	
+    <path id="classpath">
+        <fileset dir="${lib}">
+    		<include name="*.jar" />
+    	</fileset>
+    	<path location="${build}"/>
+    </path>
 
     <target name="init">
         <!-- Create the time stamp -->
         <tstamp />
     </target>
-
-    <property name="build" value="build" />
-
-    <property name="lib" value="../../resources/lib" />
 
     <property name="src" value="src" />
     <target name="build" depends="init,clean">
@@ -18,28 +24,54 @@
         <mkdir dir="${build}" />
         <!-- Compile the java code from ${src} into ${build} -->
         <javac srcdir="${src}" destdir="${build}" debug="on">
-            <classpath>
-                <path id="classpath">
-                    <fileset dir="${lib}" />
-                    <fileset dir="${build}" />
-                    <pathelement location="${lib}/junit-4.4.jar" />
-                </path>
-            </classpath>
+			<classpath refid="classpath" />
         </javac>
     </target>
 
     <property name="tests:src" value="tests" />
     <property name="tests:src:unit" value="${tests:src}/unit" />
     <property name="tests:out" value="testResults" />
+	<property name="tests:reports" value="testReports" />
+	
     <target name="test" depends="init,build">
+    	
         <!-- Compile the JUnit Tests -->
         <javac srcdir="${tests:src:unit}" destdir="${build}" debug="on">
             <classpath refid="classpath" />
         </javac>
+    	
+		<!-- Create output dirs for junit-related tasks -->
+	
         <mkdir dir="${tests:out}" />
+    	<mkdir dir="${tests:reports}" />
+    	
         <!-- Run Test Suite -->
-    </target>
+    	
+        <junit printsummary="yes" fork="no"
+               errorProperty="test.failed"
+               failureProperty="test.failed">
+          <classpath refid="classpath" />
+          <formatter type="xml" />
+          <batchtest todir="${tests:out}">
+            <fileset dir="${build}"
+                     includes="**/*Test.class" />
+          </batchtest>
+        </junit>
 
+    	
+    	<!-- Generate HTML reports from the test results -->
+   
+        <junitreport todir="${tests:out}">
+          <fileset dir="${tests:out}" includes="TEST-*.xml" />
+          <report format="frames" todir="${tests:reports}" />
+        </junitreport>
+    	
+        <!-- Build fails if any of the unit tests fail -->
+        <fail if="test.failed"
+        	message="JUnit tests failed. Check log and/or reports." />
+  
+    </target>
+	
     <property name="doc" value="doc" />
     <target name="doc" depends="init">
         <!-- Create javadocs for the project -->
@@ -51,7 +83,9 @@
         <!-- Create the distribution directory -->
         <mkdir dir="${dist}" />
         <!-- Jar up the project -->
-        <jar destfile="${dist}/${ant.project.name}-${DSTAMP}${TSTAMP}.jar" basedir="${build}" />
+        <jar destfile="${dist}/${ant.project.name}-${DSTAMP}${TSTAMP}.jar" 
+        	 basedir="${build}" 
+        	 excludes="*Test.class"/>
     </target>
 
     <target name="clean" depends="init">
@@ -59,6 +93,7 @@
         <delete dir="${dist}" />
         <delete dir="${doc}" />
         <delete dir="${tests:out}" />
+    	<delete dir="${tests:reports}" />
     </target>
 
 </project>
