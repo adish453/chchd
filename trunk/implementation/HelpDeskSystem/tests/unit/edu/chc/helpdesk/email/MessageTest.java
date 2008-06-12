@@ -14,6 +14,9 @@ import edu.chc.helpdesk.requests.HelpRequest;
 
 public class MessageTest {
     
+    HelpRequest request;
+    Message message;
+    
     @Before
     public void setUp() {
         
@@ -93,15 +96,6 @@ public class MessageTest {
     
     // TODO Test isValid(MessageType.TECH) in integration
     
-    @Test
-    public void testIsValidFalseCustomer() {
-        // TODO Exercise isValid(MessageType.CUSTOMER) against an invalid
-        // request
-        fail("Not yet implemented.");
-    }
-    
-    HelpRequest request;
-    
-    Message message;
+    // TODO Exercise isValid(MessageType.CUSTOMER) against an invalid request
     
 }

@@ -2,18 +2,25 @@
 <project basedir="." default="test" name="HelpDeskSystemTesting">
 
     <description>${ant.project.name} is the build file for running the comprehensive testing suite for HelpDeskSystem</description>
-    
-    <!-- ================================= 
-          target: init              
-         ================================= -->
+
     <target name="init" description="--> Creates the time stamp.">
         <tstamp />
     </target>
-    
-    <property name="lib" value="../../resources/lib"/>
+
+    <property name="lib" value="../../resources/lib" />
+    <property name="build" value="build" />
     <path id="classpath">
-        <fileset dir="${lib}" />
+        <fileset dir="${lib}" includes="*.jar" />
+        <path location="${build}" />
     </path>
+
+    <property name="src" value="src" />
+    <target name="build" depends="init,clean">
+        <mkdir dir="${build}" />
+        <javac srcdir="${src}" destdir="${build}" debug="on">
+            <classpath refid="classpath" />
+        </javac>
+    </target>
 
     <property name="db:name" value="HelpDeskDB" />
     <property name="db:user" value="HelpDeskApp" />
@@ -23,85 +30,125 @@
     <property name="db:basedir" value="../database" />
     <property name="db:ddl" value="${db:basedir}/helpdeskdb.ddl" />
     <target name="db:setup" depends="init,clean">
-        <!-- Setup DB Schemas -->
         <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:ddl}" classpath="${classpath}">
             <classpath refid="classpath" />
         </sql>
     </target>
 
     <property name="db:base" value="HelpDeskDB" />
-    <target name="clean" depends="init">
-        <delete dir="${build}" />
-        <delete dir="${dist}" />
-    	<delete dir="${doc}" />
-        <delete dir="${db:base}" />
-        <delete file="derby.log" />
-    </target>
-
     <property name="db:dml:testing" value="${db:basedir}/helpdeskdb-testdata.dml" />
     <target name="db:testpop" depends="init,clean,db:setup">
-        <!-- Populate DB with Testing Data -->
         <sql driver="${db:driver}" url="${db:url}" userid="${db:user}" password="${db:pass}" src="${db:dml:testing}">
             <classpath refid="classpath" />
         </sql>
     </target>
 
-    
-    <!-- - - - - - - - - - - - - - - - - -
-    	  target: test
-    	  Run every test we have.
-         - - - - - - - - - - - - - - - - - -->
-    <target name="test" depends="init,clean,-unit,-integration,-endtoend">
-    
-    </target>
-    
     <property name="tests:src" value="tests" />
+    <property name="tests:out" value="testResults" />
+    <property name="tests:reports" value="testReports" />
+    <target name="tests:init" depends="init,clean,build">
+        <mkdir dir="${tests:out}" />
+        <mkdir dir="${tests:out}/unit" />
+        <mkdir dir="${tests:out}/integration" />
+        <mkdir dir="${tests:out}/endtoend" />
+        <mkdir dir="${tests:reports}" />
+        <mkdir dir="${tests:reports}/unit" />
+        <mkdir dir="${tests:reports}/integration" />
+        <mkdir dir="${tests:reports}/endtoend" />
+    </target>
+
+    <target name="test" depends="init,clean,tests:init,-unit,-integration,-endtoend">
+        <!-- TODO fail on error somewhere else, or make this message better. -->
+        <fail if="test.failed" message="JUnit tests failed. Check log and/or reports." />
+    </target>
+
     <property name="tests:src:unit" value="${tests:src}/unit" />
-    <!-- - - - - - - - - - - - - - - - - - 
-          target: -unit                      
-         - - - - - - - - - - - - - - - - - -->
     <target name="-unit" depends="init,clean,build">
-        <!-- Compile the JUnit Tests -->
         <javac srcdir="${tests:src:unit}" destdir="${build}" debug="on">
             <classpath refid="classpath" />
         </javac>
-        <!-- Run Test Suite -->
+
+        <junit fork="yes" errorProperty="test.failed" failureProperty="test.failed">
+            <classpath refid="classpath" />
+            <formatter type="xml" />
+            <batchtest todir="${tests:out}/unit">
+                <fileset dir="${build}" includes="**/*Test.class" />
+            </batchtest>
+        </junit>
+
+        <junitreport todir="${tests:out}">
+            <fileset dir="${tests:out}" includes="TEST-*.xml" />
+            <report format="frames" todir="${tests:reports}/unit" />
+        </junitreport>
+
+        <delete failonerror="true">
+            <fileset dir="${build}">
+                <include name="**/*Test.class" />
+            </fileset>
+        </delete>
     </target>
 
-    
-    <!-- - - - - - - - - - - - - - - - - - 
-          target: -integration                      
-         - - - - - - - - - - - - - - - - - -->
+
     <property name="tests:src:integration" value="${tests:src}/integration" />
-    <target name="-integration" depends="init,clean,build,db:testpop">
-        <!-- Compile the JUnit Tests -->
+    <target name="-integration" depends="init,clean,build,db:testpop" unless="test.failed">
         <javac srcdir="${tests:src:integration}" destdir="${build}" debug="on">
             <classpath refid="classpath" />
         </javac>
-        <!-- Run Test Suite -->
+
+        <junit fork="yes" errorProperty="test.failed" failureProperty="test.failed">
+            <classpath refid="classpath" />
+            <formatter type="xml" />
+            <batchtest todir="${tests:out}/integration">
+                <fileset dir="${build}" includes="**/*Test.class" />
+            </batchtest>
+        </junit>
+
+        <junitreport todir="${tests:out}">
+            <fileset dir="${tests:out}" includes="TEST-*.xml" />
+            <report format="frames" todir="${tests:reports}/integration" />
+        </junitreport>
+
+        <delete failonerror="true">
+            <fileset dir="${build}">
+                <include name="**/*Test.class" />
+            </fileset>
+        </delete>
     </target>
 
-    <!-- - - - - - - - - - - - - - - - - - 
-          target: -endtoend                      
-         - - - - - - - - - - - - - - - - - -->
-	<property name="tests:src:endtoend" value="${tests:src}/endtoend" />
-    <target name="-endtoend" depends="init,clean,build,db:testpop">
-        <!-- Compile the JUnit Tests -->
+    <property name="tests:src:endtoend" value="${tests:src}/endtoend" />
+    <target name="-endtoend" depends="init,clean,build,db:testpop" unless="test.failed">
         <javac srcdir="${tests:src:endtoend}" destdir="${build}" debug="on">
             <classpath refid="classpath" />
         </javac>
-        <!-- Run Test Suite -->
+
+        <junit fork="yes" errorProperty="test.failed" failureProperty="test.failed">
+            <classpath refid="classpath" />
+            <formatter type="xml" />
+            <batchtest todir="${tests:out}/endtoend">
+                <fileset dir="${build}" includes="**/*Test.class" />
+            </batchtest>
+        </junit>
+
+        <junitreport todir="${tests:out}">
+            <fileset dir="${tests:out}" includes="TEST-*.xml" />
+            <report format="frames" todir="${tests:reports}/endtoend" />
+        </junitreport>
+
+        <delete failonerror="true">
+            <fileset dir="${build}">
+                <include name="**/*Test.class" />
+            </fileset>
+        </delete>
     </target>
 
-    <property name="src" value="src" />
-    <property name="build" value="build" />
-    <target name="build" depends="init,clean">
-        <!-- Create the build directory -->
-        <mkdir dir="${build}" />
-        <!-- Compile the java code from ${src} into ${build} -->
-        <javac srcdir="${src}" destdir="${build}" debug="on">
-            <classpath refid="classpath" />
-        </javac>
+    <target name="clean" depends="init">
+        <delete dir="${build}" />
+        <delete dir="${dist}" />
+        <delete dir="${doc}" />
+        <delete dir="${db:base}" />
+        <delete file="derby.log" />
+        <delete dir="${tests:out}" />
+        <delete dir="${tests:reports}" />
     </target>
-    
+
 </project>
