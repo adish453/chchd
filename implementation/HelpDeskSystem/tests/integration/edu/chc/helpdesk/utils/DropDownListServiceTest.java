@@ -16,7 +16,6 @@ public class DropDownListServiceTest {
     public void testGetIssueByID() {
         DropDownListService listService = new DropDownListService();
         assertEquals("Powerpoint", listService.getIssueByID(3));
-        assertEquals("E-Mail", listService.getIssueByID(1));
     }
     
     @Test
