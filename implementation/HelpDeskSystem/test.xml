@@ -26,7 +26,7 @@
     <property name="db:user" value="HelpDeskApp" />
     <property name="db:pass" value="HelpDeskApp" />
     <property name="db:driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
-    <property name="db:url" value="jdbc:derby:${db:name};create=true" />
+    <property name="db:url" value="jdbc:derby:${build}/${db:name};create=true" />
     <property name="db:basedir" value="../database" />
     <property name="db:ddl" value="${db:basedir}/helpdeskdb.ddl" />
     <target name="db:setup" depends="init,clean">
@@ -44,8 +44,8 @@
     </target>
 
     <property name="tests:src" value="tests" />
-    <property name="tests:out" value="testResults" />
-    <property name="tests:reports" value="testReports" />
+    <property name="tests:out" value="${build}/testResults" />
+    <property name="tests:reports" value="${build}/testReports" />
     <target name="tests:init" depends="init,clean,build">
         <mkdir dir="${tests:out}" />
         <mkdir dir="${tests:out}/unit" />
@@ -143,12 +143,6 @@
 
     <target name="clean" depends="init">
         <delete dir="${build}" />
-        <delete dir="${dist}" />
-        <delete dir="${doc}" />
-        <delete dir="${db:base}" />
-        <delete file="derby.log" />
-        <delete dir="${tests:out}" />
-        <delete dir="${tests:reports}" />
     </target>
 
 </project>
