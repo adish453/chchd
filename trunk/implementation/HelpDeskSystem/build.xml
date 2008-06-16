@@ -13,6 +13,7 @@
 
     <target name="init">
         <tstamp />
+        <mkdir dir="${build}"/>
     </target>
 
     <property name="src" value="src" />
@@ -24,13 +25,13 @@
     </target>
 
     <property name="tests:src" value="tests" />
-    <property name="tests:out" value="testResults" />
-    <property name="tests:reports" value="testReports" />
+    <property name="tests:out" value="${build}/testResults" />
+    <property name="tests:reports" value="${build}/testReports" />
     <target name="tests:init" depends="init,clean,build">
         <mkdir dir="${tests:out}" />
         <mkdir dir="${tests:reports}" />
     </target>
-    
+
     <property name="tests:src:unit" value="${tests:src}/unit" />
     <target name="test" depends="init,build,tests:init">
 
@@ -62,23 +63,21 @@
 
     </target>
 
-    <property name="doc" value="doc" />
+    <property name="doc" value="${build}/doc" />
     <target name="doc" depends="init">
         <javadoc sourcepath="${src}" destdir="${doc}" extdirs="${lib}" />
     </target>
 
-    <property name="dist" value="dist" />
+    <property name="dist" value="${build}/dist" />
     <target name="dist" depends="build,test">
         <mkdir dir="${dist}" />
         <jar destfile="${dist}/${ant.project.name}-${DSTAMP}${TSTAMP}.jar" basedir="${build}" excludes="*Test.class" />
     </target>
 
-    <target name="clean" depends="init">
-        <delete dir="${build}" />
-        <delete dir="${dist}" />
-        <delete dir="${doc}" />
-        <delete dir="${tests:out}" />
-        <delete dir="${tests:reports}" />
+    <target name="clean" depends="init" >
+        <delete includeemptydirs="true">
+            <fileset dir="${build}" />
+        </delete>
     </target>
 
 </project>
