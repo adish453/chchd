@@ -1,0 +1,1 @@
+We're attempting to create a help desk system that will utilize Java and a Database back end to facilitate the activities of any organization that is in need of the help desk services.  This extends to School IT departments, Appartment complex Superintendents, and any one else who needs such a system.
